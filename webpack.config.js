@@ -31,7 +31,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.html$/,
+                test: /\.(html|ico)$/,
                 exclude: /node_modules/,
                 loader: 'file-loader',
                 options: {

@@ -1,4 +1,9 @@
-import './index.html';
+import './icon.ico';
 import './main.scss';
+import './index.html';
 
-window.onload = () => console.log('loaded');
+
+import test from './ui/test';
+
+
+window.onload = () => test();
