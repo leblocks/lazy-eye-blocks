@@ -5,7 +5,9 @@
     },
     "globals": {
         "describe": false,
-        "it": false
+        "it": false,
+        "chai": false,
+        "mocha": false
     },
     "rules": {
         "indent": ["error", 4]

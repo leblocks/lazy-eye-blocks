@@ -4,12 +4,23 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        main: './src/main.js',
+        test: './test/main.js',
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: [
+            // so test.html will be able to access node_moduels/mocha/ and node_modules/chai
+            path.resolve(__dirname, 'node_modules'),
+            path.resolve(__dirname, 'dist'),
+        ],
+    },
     plugins: [
         new CleanWebpackPlugin(),
     ],
     output: {
-        filename: 'js/main.js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
