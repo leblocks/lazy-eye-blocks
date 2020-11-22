@@ -9,7 +9,7 @@ module.exports = {
         new CleanWebpackPlugin(),
     ],
     output: {
-        filename: 'main.js',
+        filename: 'js/main.js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -43,7 +43,7 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
-                        options: { name: '[name].css' }, // copy to dist folder with file-loader
+                        options: { name: 'css/[name].css' }, // copy to dist folder with file-loader
                     },
                     { loader: 'sass-loader' }, // transpile with sass first
                 ],

@@ -3,7 +3,4 @@ import './main.scss';
 import './index.html';
 
 
-import test from './ui/test';
-
-
-window.onload = () => test();
+window.onload = () => console.log('woow');
