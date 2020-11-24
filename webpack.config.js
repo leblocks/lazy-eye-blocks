@@ -26,12 +26,16 @@ module.exports = {
     module: {
         rules: [
             {
+                // check source code with eslint before
+                // tranpilation with babel
                 enforce: 'pre',
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'eslint-loader',
             },
             {
+                // transpile code with babel
+                // have to decide how many browsers to support
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -42,6 +46,9 @@ module.exports = {
                 },
             },
             {
+                // allow to include html files and ico files
+                // to dist folder with 'import' statement
+                // probably will switch to the HtmlWebPackPlugin in the future
                 test: /\.(html|ico)$/,
                 exclude: /node_modules/,
                 loader: 'file-loader',
@@ -50,7 +57,8 @@ module.exports = {
                 },
             },
             {
-                test: /\.s[ac]ss$/,
+                // handle scss files with sass-loader
+                test: /\.scss$/,
                 use: [
                     {
                         loader: 'file-loader',
