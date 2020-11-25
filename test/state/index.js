@@ -30,6 +30,17 @@ describe('State module tests', () => {
         expect(rightEyeColor).to.eq('blue');
     });
 
+    it('remove state observer', () => {
+        const throwingObserver = () => {
+            throw new Error('should not happen');
+        };
+
+        addStateObserver(throwingObserver);
+        removeStateObservers();
+
+        expect(() => setState({ score: 1 })).to.not.throw();
+    });
+
     it('state reset', () => {
         setState({
             score: 12,
@@ -70,14 +81,13 @@ describe('State module tests', () => {
     });
 
     it('set state with observers async', (done) => {
-        const observer = { variable: 10 };
-        addStateObserver(({ score }) => { observer.variable = score; });
+        // this observer will be invoked by setState function
+        addStateObserver(({ score }) => {
+            expect(score).to.eq(234);
+            done();
+        });
 
         // update state in an async way
-        setTimeout(() => {
-            setState({ score: 234 });
-            expect(observer.variable).to.eq(234);
-            done();
-        }, 100);
+        setTimeout(() => setState({ score: 234 }), 50);
     });
 });
