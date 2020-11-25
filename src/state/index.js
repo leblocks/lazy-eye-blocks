@@ -1,9 +1,11 @@
-const state = {
+const defaultState = {
     leftEyeColor: 'red',
     rightEyeColor: 'blue',
     score: 0,
     levelOfDifficulty: 0,
 };
+
+const state = { ...defaultState };
 
 // on each state change -> notify observers
 const stateObservers = [];
@@ -19,6 +21,14 @@ export function getState() {
     return state;
 }
 
+export function resetState() {
+    Object.assign(state, defaultState);
+}
+
 export function addStateObserver(callback) {
     stateObservers.push(callback);
+}
+
+export function removeStateObservers() {
+    stateObservers.splice(0, stateObservers.length);
 }

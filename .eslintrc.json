@@ -4,10 +4,11 @@
         "browser": true
     },
     "globals": {
-        "describe": false,
         "it": false,
         "chai": false,
-        "mocha": false
+        "mocha": false,
+        "describe": false,
+        "afterEach": false
     },
     "rules": {
         "indent": ["error", 4]
