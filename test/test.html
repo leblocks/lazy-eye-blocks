@@ -6,14 +6,18 @@
   </head>
   <body>
     <div id="mocha"></div>
+    <!-- load chai and mocha libraries -->
     <script src="chai/chai.js"></script>
     <script src="mocha/mocha.js"></script>
 
+    <!-- prepare test environment -->
     <script class="mocha-init">
         mocha.setup('bdd')
         mocha.checkLeaks();
     </script>
+    <!-- load bundled tests -->
     <script src="js/test.js"></script>
+    <!-- execute tests -->
     <script  class="mocha-exec">mocha.run()</script>
   </body>
 </html>
