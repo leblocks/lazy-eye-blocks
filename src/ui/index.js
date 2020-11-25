@@ -1,2 +1,2 @@
-export { default as createMenu } from './menu';
-export { default as createMenuItem } from './menu-item';
+export { default as createMenu } from './components/menu';
+export { default as createMenuItem } from './components/menu-item';
