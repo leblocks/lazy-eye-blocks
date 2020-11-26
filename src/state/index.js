@@ -32,32 +32,14 @@ export function getState() {
     return state;
 }
 
-/**
- * Resets state.
- */
 export function resetState() {
     Object.assign(state, defaultState);
 }
 
-/**
- * @callback OnStateUpdateCallback
- * Callback that will be called by {@link setState} method on every state update.
- *
- * @param {Object} state Updated state.
- */
-
-/**
- * Registers callback that will be called on each 'state' update.
- *
- * @param {OnStateUpdateCallback} callback To be notified on state updates.
- */
 export function addStateObserver(callback) {
     stateObservers.push(callback);
 }
 
-/**
- * Removes all registered observers.
- */
 export function removeStateObservers() {
     stateObservers.splice(0, stateObservers.length);
 }
