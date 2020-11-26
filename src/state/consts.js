@@ -1,0 +1,2 @@
+export const MAIN_MENU_STATE = 'MAIN_MENU';
+export const SETTINGS_MENU_STATE = 'SETTINGS_MENU';

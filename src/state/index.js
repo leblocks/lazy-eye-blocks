@@ -1,3 +1,6 @@
+import { MAIN_MENU_STATE } from './consts';
+
+
 const defaultState = {
     // game settings
     leftEyeColor: 'red',
@@ -8,6 +11,7 @@ const defaultState = {
     levelOfDifficulty: 0,
 
     // TODO hold here game state?
+    gameState: MAIN_MENU_STATE,
 };
 
 const state = { ...defaultState };
