@@ -1,8 +1,13 @@
 const defaultState = {
+    // game settings
     leftEyeColor: 'red',
     rightEyeColor: 'blue',
     score: 0,
+    shapesCount: 0,
+    gridEnabled: false,
     levelOfDifficulty: 0,
+
+    // TODO hold here game state?
 };
 
 const state = { ...defaultState };

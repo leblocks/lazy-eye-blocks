@@ -1,7 +1,9 @@
+@import '../../../consts.scss';
+
 .ui-menu-item {
-    background-color: #313842;
-    color: white;
-    border: 2px solid white;
+    background-color: $base-gray;
+    color: $base-white;
+    border: 2px solid $base-white;
     margin: 2vh 5vw 2vh 5vw;
     height: 5vh;
     font-family: inherit;
@@ -9,5 +11,5 @@
 }
 
 .ui-menu-item:hover {
-    background-color: black;
+    background-color: $base-black;
 }
