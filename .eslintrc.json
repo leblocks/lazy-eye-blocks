@@ -8,6 +8,8 @@
         "chai": false,
         "mocha": false,
         "describe": false,
+        "before": false,
+        "after": false,
         "afterEach": false
     },
     "rules": {
