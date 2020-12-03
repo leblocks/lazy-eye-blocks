@@ -6,6 +6,7 @@ body {
     margin: 0; // reset default body margin
 }
 
+// TODO font size is not responsive!
 .main {
     width: 100%;
     height: 100%;
@@ -14,7 +15,7 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
-@import 'ui/components/menu/main.scss';
-@import 'ui/components/menu-item/main.scss';
-@import 'ui/components/menu-title/main.scss';
+@import 'ui/utils/menu/main.scss';
+@import 'ui/utils/menu-item/main.scss';
+@import 'ui/utils/menu-title/main.scss';
 

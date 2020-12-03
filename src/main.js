@@ -7,7 +7,7 @@ import {
     createSettingsMenu,
 } from './ui';
 
-import { createMenu, createMenuItem, createMenuTitle } from './ui/components';
+import { createMenu, createMenuItem, createMenuTitle } from './ui/utils';
 
 import { setState } from './state';
 import { MAIN_MENU_STATE, SETTINGS_MENU_STATE } from './state/consts';
