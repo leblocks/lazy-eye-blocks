@@ -22,5 +22,6 @@ export default function initViewStateManager(initialState, initialMap) {
         }
     };
     addStateObserver(onStateChange);
+    // init state change and component mount
     setState({ gameState: initialState });
 }

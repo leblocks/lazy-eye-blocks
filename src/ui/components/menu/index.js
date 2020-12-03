@@ -3,7 +3,7 @@ export default function (children) {
     element.classList.add('ui-menu');
 
     if (children) {
-        children.forEach(element.appendChild);
+        children.forEach((child) => element.appendChild(child));
     }
 
     return element;

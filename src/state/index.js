@@ -1,3 +1,5 @@
+import { log } from '../utils';
+
 const defaultState = {
     // game settings
     leftEyeColor: 'red',
@@ -26,6 +28,8 @@ export function setState(stateUpdates) {
     Object.assign(state, stateUpdates);
     // notify observers
     stateObservers.forEach((observer) => observer(state));
+    // TODO remove
+    log(state);
 }
 
 export function getState() {
