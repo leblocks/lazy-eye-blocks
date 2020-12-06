@@ -1,10 +1,10 @@
 import { setState } from '../../state';
 
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
-import { createDifficultyLevelControl, createGridButton } from '../component';
+import { createGridButton } from '../component';
 
 
-import { MAIN_MENU_STATE } from '../../state/consts';
+import { SPEED_SETTINGS_MENU_STATE, MAIN_MENU_STATE } from '../../state/consts';
 
 /**
  * Creates and configures settings menu.
@@ -13,7 +13,7 @@ export default function () {
     return createMenu([
         createMenuTitle('Settings'),
         createGridButton(),
-        createDifficultyLevelControl(),
+        createMenuItem('Speed Level', () => setState({ gameState: SPEED_SETTINGS_MENU_STATE })),
         createMenuItem('Back', () => setState({ gameState: MAIN_MENU_STATE })),
     ]);
 }

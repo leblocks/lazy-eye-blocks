@@ -7,7 +7,7 @@ const defaultState = {
     score: 0,
     shapesCount: 0,
     gridEnabled: false,
-    levelOfDifficulty: 0,
+    speedLevel: 0,
 
     gameState: null,
 };

@@ -1,2 +1,2 @@
-export { default as createDifficultyLevelControl } from './difficulty-level-control';
+// eslint-disable-next-line import/prefer-default-export
 export { default as createGridButton } from './grid-button';
