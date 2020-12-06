@@ -1,16 +1,24 @@
 @import '../../../consts.scss';
 
-.ui-menu-item {
+
+@mixin menu-base-style {
     width: 60vw;
-    background-color: $base-gray;
     color: $base-white;
-    border: 2px solid $base-white;
     margin: 2vh 5vw 2vh 5vw;
     height: 5vh;
     font-family: inherit;
     font-size: inherit;
 }
 
-.ui-menu-item:hover {
-    background-color: $base-black;
+
+.ui-menu-item {
+    @include menu-base-style;
+
+    border: 2px solid $base-white;
+    background-color: $base-gray;
+
+    &:hover { 
+        background-color: $base-black;
+    }
 }
+

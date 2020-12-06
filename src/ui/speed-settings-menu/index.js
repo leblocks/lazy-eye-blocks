@@ -1,9 +1,8 @@
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
-import { setState, getState } from '../../state';
+import { setState, getState, addStateObserver } from '../../state';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 
-// TODO disable slower button on 0
 // TODO add indicator
 
 const changeSpeedLevel = (delta) => {
@@ -15,12 +14,27 @@ const changeSpeedLevel = (delta) => {
     setState({ speedLevel: speedLevel + delta });
 };
 
+const speedLevelIndicator = () => {
+    const id = 'speed-level-indicator';
+    const element = document.createElement('div');
+    element.setAttribute('id', id);
+    element.innerText = 0;
+
+    addStateObserver(({ speedLevel }) => {
+        const speedIndicator = document.getElementById(id);
+        if (speedIndicator) {
+            speedIndicator.innerText = speedLevel;
+        }
+    });
+    return element;
+};
 
 export default function () {
     return createMenu([
         createMenuTitle('Speed level'),
-        createMenuItem('Make faster', () => changeSpeedLevel(1)),
-        createMenuItem('Make slower', () => changeSpeedLevel(-1)),
+        speedLevelIndicator(),
+        createMenuItem('Faster', () => changeSpeedLevel(1)),
+        createMenuItem('Slower', () => changeSpeedLevel(-1)),
         createMenuItem('Back', () => setState({ gameState: SETTINGS_MENU_STATE })),
     ]);
 }

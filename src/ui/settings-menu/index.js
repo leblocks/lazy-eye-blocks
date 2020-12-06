@@ -13,7 +13,7 @@ export default function () {
     return createMenu([
         createMenuTitle('Settings'),
         createGridButton(),
-        createMenuItem('Speed Level', () => setState({ gameState: SPEED_SETTINGS_MENU_STATE })),
+        createMenuItem('Speed level', () => setState({ gameState: SPEED_SETTINGS_MENU_STATE })),
         createMenuItem('Back', () => setState({ gameState: MAIN_MENU_STATE })),
     ]);
 }

@@ -6,7 +6,6 @@ body {
     margin: 0; // reset default body margin
 }
 
-// TODO font size is not responsive!
 .main {
     width: 100%;
     height: 100%;
@@ -18,4 +17,5 @@ body {
 @import 'ui/utils/menu/main.scss';
 @import 'ui/utils/menu-item/main.scss';
 @import 'ui/utils/menu-title/main.scss';
+@import 'ui/speed-settings-menu/main.scss';
 
