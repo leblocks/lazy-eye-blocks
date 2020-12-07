@@ -3,15 +3,23 @@ import './main.scss';
 import './index.html';
 
 import {
-    initStateViewManager,
-    createSettingsMenu,
     createSpeedMenu,
+    createSettingsMenu,
+    initStateViewManager,
+    createLeftEyeColorPickerMenu,
+    createRightEyeColorPickerMenu,
 } from './ui';
 
 import { createMenu, createMenuItem, createMenuTitle } from './ui/utils';
-
 import { setState } from './state';
-import { SPEED_SETTINGS_MENU_STATE, MAIN_MENU_STATE, SETTINGS_MENU_STATE } from './state/consts';
+
+import {
+    MAIN_MENU_STATE,
+    SETTINGS_MENU_STATE,
+    SPEED_SETTINGS_MENU_STATE,
+    LEFT_EYE_COLOR_PICKER_MENU_STATE,
+    RIGHT_EYE_COLOR_PICKER_MENU_STATE,
+} from './state/consts';
 
 window.onload = () => {
     const mainMenu = createMenu();
@@ -22,6 +30,8 @@ window.onload = () => {
         [MAIN_MENU_STATE]: mainMenu,
         [SETTINGS_MENU_STATE]: createSettingsMenu(),
         [SPEED_SETTINGS_MENU_STATE]: createSpeedMenu(),
+        [LEFT_EYE_COLOR_PICKER_MENU_STATE]: createLeftEyeColorPickerMenu(),
+        [RIGHT_EYE_COLOR_PICKER_MENU_STATE]: createRightEyeColorPickerMenu(),
     };
     initStateViewManager(MAIN_MENU_STATE, map);
 };

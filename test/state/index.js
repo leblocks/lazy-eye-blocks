@@ -12,8 +12,11 @@ const { expect } = chai;
 describe('State module tests', () => {
     // cleanup state after each test
     afterEach(() => {
-        resetState();
         removeStateObservers();
+    });
+
+    beforeEach(() => {
+        resetState();
     });
 
     it('get default state', () => {
@@ -21,11 +24,11 @@ describe('State module tests', () => {
             score,
             leftEyeColor,
             rightEyeColor,
-            levelOfDifficulty,
+            speedLevel,
         } = getState();
 
         expect(score).to.eq(0);
-        expect(levelOfDifficulty).to.eq(0);
+        expect(speedLevel).to.eq(0);
         expect(leftEyeColor).to.eq('red');
         expect(rightEyeColor).to.eq('blue');
     });
@@ -53,13 +56,13 @@ describe('State module tests', () => {
 
         const {
             score,
-            levelOfDifficulty,
+            speedLevel,
             leftEyeColor,
             rightEyeColor,
         } = getState();
 
         expect(score).to.eq(0);
-        expect(levelOfDifficulty).to.eq(0);
+        expect(speedLevel).to.eq(0);
         expect(leftEyeColor).to.eq('red');
         expect(rightEyeColor).to.eq('blue');
     });
