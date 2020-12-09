@@ -14,5 +14,8 @@ describe('Color picker', () => {
         const width = 240;
         expect(getColorAtPoint(0, width)).to.eq('rgb(255,0,0)');
         expect(getColorAtPoint(1.222, width)).to.eq('rgb(255,0,0)');
+        expect(getColorAtPoint(120, width)).to.eq('rgb(0,0,0)');
+        expect(getColorAtPoint(231.99, width)).to.eq('rgb(0,0,255)');
+        expect(getColorAtPoint(232, width)).to.eq('rgb(0,0,255)');
     });
 });
