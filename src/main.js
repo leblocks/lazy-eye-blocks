@@ -12,6 +12,7 @@ import {
     createRightEyeColorPickerMenu,
     createRightEyeColorSettingsInfo,
     createMainMenu,
+    createBoardSizeSettingsMenu,
 } from './ui';
 
 import {
@@ -23,6 +24,7 @@ import {
     ABOUT_INFO_STATE,
     LEFT_EYE_COLOR_SETTINGS_INFO_STATE,
     RIGHT_EYE_COLOR_SETTINGS_INFO_STATE,
+    BOARD_SIZE_SETTINGS_STATE,
 } from './state/consts';
 
 window.onload = () => {
@@ -35,5 +37,6 @@ window.onload = () => {
         [ABOUT_INFO_STATE]: createAboutInfo(),
         [LEFT_EYE_COLOR_SETTINGS_INFO_STATE]: createLeftEyeColorSettingsInfo(),
         [RIGHT_EYE_COLOR_SETTINGS_INFO_STATE]: createRightEyeColorSettingsInfo(),
+        [BOARD_SIZE_SETTINGS_STATE]: createBoardSizeSettingsMenu(),
     });
 };
