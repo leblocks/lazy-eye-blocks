@@ -1,21 +1,19 @@
 @import '../../../consts.scss';
 
-
 @mixin menu-base-style {
     width: 60vw;
     color: $base-white;
     margin: 2vh 5vw 2vh 5vw;
     height: 5vh;
-    // TODO font size is no responsive
+    // TODO font size is not responsive
     font-family: 'Press Start 2P', cursive;
     font-size: inherit;
 }
 
-
 .ui-menu-item {
     @include menu-base-style;
+    @include default-border;
 
-    border: 2px solid $base-white;
     background-color: $base-gray;
 
     &:hover { 

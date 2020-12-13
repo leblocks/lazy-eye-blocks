@@ -1,9 +1,14 @@
 @import 'consts.scss';
 
+// reset defaults
+body, div {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     width: 100vw;
     height: 100vh;
-    margin: 0; // reset default body margin
 }
 
 .main {
@@ -17,5 +22,5 @@ body {
 @import 'ui/utils/menu-title/main.scss';
 @import 'ui/speed-settings-menu/main.scss';
 @import 'ui/components/colorpicker/main.scss';
-@import 'ui/components//color-indicator/main.scss';
-
+@import 'ui/components/color-indicator/main.scss';
+@import 'ui/components/info/main.scss';

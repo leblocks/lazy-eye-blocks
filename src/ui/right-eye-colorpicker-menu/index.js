@@ -2,7 +2,7 @@ import { setState } from '../../state';
 import { colorPicker, colorIndicator } from '../components';
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
 
-import { SETTINGS_MENU_STATE } from '../../state/consts';
+import { RIGHT_EYE_COLOR_SETTINGS_INFO_STATE, SETTINGS_MENU_STATE } from '../../state/consts';
 
 export default function () {
     const rightEyeColorIndicatorId = 'rightEyeColorIndicatorId';
@@ -11,6 +11,7 @@ export default function () {
         createMenuTitle('Right eye color'),
         colorIndicator(rightEyeColorIndicatorId, (state) => state.rightEyeColor),
         colorPicker(rightEyeColorPickerId, (color) => setState({ rightEyeColor: color })),
+        createMenuItem('Help', () => setState({ gameState: RIGHT_EYE_COLOR_SETTINGS_INFO_STATE })),
         createMenuItem('Back', () => setState({ gameState: SETTINGS_MENU_STATE })),
     ]);
 }

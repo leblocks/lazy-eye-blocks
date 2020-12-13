@@ -8,6 +8,7 @@ module.exports = {
         main: './src/main.js',
         test: './test/main.js',
     },
+    // TODO do not include on prod
     devtool: 'inline-source-map',
     devServer: {
         contentBase: [
