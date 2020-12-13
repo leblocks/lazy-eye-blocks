@@ -9,6 +9,10 @@ const defaultState = {
     gridEnabled: false,
     speedLevel: 0,
 
+    // game board size
+    rows: 12,
+    columns: 10,
+
     gameState: null,
 };
 
