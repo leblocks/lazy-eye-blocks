@@ -3,13 +3,11 @@ const path = require('path');
 // plugins
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {
+const config = {
     entry: {
         main: './src/main.js',
         test: './test/main.js',
     },
-    // TODO do not include on prod
-    devtool: 'inline-source-map',
     devServer: {
         contentBase: [
             // so test.html will be able to access node_moduels/mocha/ and node_modules/chai
@@ -70,4 +68,12 @@ module.exports = {
             },
         ],
     },
+};
+
+module.exports = (env, argv) => {
+    if (argv.mode === 'development') {
+        config.devtool = 'inline-source-map';
+    }
+
+    return config;
 };
