@@ -1,5 +1,10 @@
 @import 'consts.scss';
 
+html {
+    // make root font size 100%
+    font-size: 100%;
+}
+
 // reset defaults
 body, div {
     margin: 0;
