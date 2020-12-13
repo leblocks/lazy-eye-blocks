@@ -17,7 +17,6 @@ import {
 } from './ui';
 
 import { createMenu, createMenuItem, createMenuTitle } from './ui/utils';
-import { setState } from './state';
 
 import {
     MAIN_MENU_STATE,
@@ -29,14 +28,15 @@ import {
     LEFT_EYE_COLOR_SETTINGS_INFO_STATE,
     RIGHT_EYE_COLOR_SETTINGS_INFO_STATE,
 } from './state/consts';
+import { goto } from './utils';
 
 
 window.onload = () => {
     // TODO refactor main menu as separate component
     const mainMenu = createMenu();
     mainMenu.appendChild(createMenuTitle('Main menu'));
-    mainMenu.appendChild(createMenuItem('Settings', () => setState({ gameState: SETTINGS_MENU_STATE })));
-    mainMenu.appendChild(createMenuItem('About', () => setState({ gameState: ABOUT_INFO_STATE })));
+    mainMenu.appendChild(createMenuItem('Settings', () => goto(SETTINGS_MENU_STATE)));
+    mainMenu.appendChild(createMenuItem('About', () => goto(ABOUT_INFO_STATE)));
 
     const map = {
         [MAIN_MENU_STATE]: mainMenu,

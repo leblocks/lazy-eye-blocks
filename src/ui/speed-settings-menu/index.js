@@ -2,6 +2,7 @@ import { createMenu, createMenuItem, createMenuTitle } from '../utils';
 import { setState, getState, addStateObserver } from '../../state';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
+import { goto } from '../../utils';
 
 // TODO add indicator
 
@@ -35,6 +36,6 @@ export default function () {
         speedLevelIndicator(),
         createMenuItem('Faster', () => changeSpeedLevel(1)),
         createMenuItem('Slower', () => changeSpeedLevel(-1)),
-        createMenuItem('Back', () => setState({ gameState: SETTINGS_MENU_STATE })),
+        createMenuItem('Back', () => goto(SETTINGS_MENU_STATE)),
     ]);
 }
