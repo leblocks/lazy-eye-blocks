@@ -1,8 +1,5 @@
 @import '../../../consts.scss';
 
-// TODO styles can be optimized
-$modal-content-width: 80%;
-
 .info {
     // hide scrollbar so it won't interfere with layout
     overflow: hidden;
@@ -10,12 +7,8 @@ $modal-content-width: 80%;
 }
 
 .info-content {
-    @include default-border;
-    background-color: $light-gray;
-    color: $base-black;
-    margin: 1vh auto;
+    color: $light-gray;
     padding: 1vh 1vw;
-    width: $modal-content-width;
 }
 
 .info-close-button {
