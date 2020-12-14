@@ -16,6 +16,7 @@ const changeSpeedLevel = (delta) => {
 const speedLevelIndicator = () => {
     const element = document.createElement('div');
     element.innerText = 0;
+    element.setAttribute('id', 'speed-level-indicator');
     addStateObserver(({ speedLevel }) => {
         if (element) {
             element.innerText = speedLevel;

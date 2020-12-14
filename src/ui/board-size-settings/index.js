@@ -1,7 +1,12 @@
 import { getState, setState } from '../../state';
 import { goto } from '../../utils';
 import { createPlusMinusButton } from '../components';
-import { createMenu, createMenuItem, createMenuTitle } from '../utils';
+import {
+    createMenu,
+    createMenuItem,
+    createMenuItemText,
+    createMenuTitle,
+} from '../utils';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 
@@ -20,6 +25,7 @@ const changeBoardColCount = (increment) => {
 };
 
 
+// TODO titles
 export default function () {
     const rowCountControl = createPlusMinusButton(() => changeBoardRowCount(1),
         () => changeBoardRowCount(-1), (state) => state.rows);
@@ -29,7 +35,9 @@ export default function () {
 
     return createMenu([
         createMenuTitle('Board size'),
+        createMenuItemText('Rows'),
         rowCountControl,
+        createMenuItemText('Columns'),
         colCountControl,
         createMenuItem('Back', () => goto(SETTINGS_MENU_STATE)),
     ]);
