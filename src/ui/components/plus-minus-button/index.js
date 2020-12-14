@@ -8,11 +8,11 @@ import { addStateObserver } from '../../../state';
  */
 export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
     const plusButton = document.createElement('button');
-    plusButton.innerText = '+';
+    plusButton.innerHTML = '&plus;';
     plusButton.onclick = onPlusClick;
 
     const minusButton = document.createElement('button');
-    minusButton.innerText = '-';
+    minusButton.innerHTML = '&minus;';
     minusButton.onclick = onMinusClick;
 
     const indicator = document.createElement('div');

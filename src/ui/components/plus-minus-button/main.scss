@@ -7,7 +7,7 @@
     // align across main axis
     justify-content: space-evenly;
 
-    // TODO make buttons larger
+    // TODO try to make buttons larger
     & button {
         @include default-border;
         @include default-color;
