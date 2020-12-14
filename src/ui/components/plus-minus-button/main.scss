@@ -1,0 +1,16 @@
+.plus-minus-button {
+    @include menu-base-style;
+    display: flex;
+    flex-flow: row;
+    // align across cross axis
+    align-items: center;
+    // align across main axis
+    justify-content: space-evenly;
+
+    // TODO make buttons larger
+    & button {
+        @include default-border;
+        @include default-color;
+        background-color: $base-gray;
+    }
+}

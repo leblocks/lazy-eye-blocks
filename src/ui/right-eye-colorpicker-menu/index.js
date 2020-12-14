@@ -6,12 +6,10 @@ import { RIGHT_EYE_COLOR_SETTINGS_INFO_STATE, SETTINGS_MENU_STATE } from '../../
 import { goto } from '../../utils';
 
 export default function () {
-    const rightEyeColorIndicatorId = 'rightEyeColorIndicatorId';
-    const rightEyeColorPickerId = 'rightEyeColorPickerId';
     return createMenu([
         createMenuTitle('Right eye color'),
-        colorIndicator(rightEyeColorIndicatorId, (state) => state.rightEyeColor),
-        colorPicker(rightEyeColorPickerId, (color) => setState({ rightEyeColor: color })),
+        colorIndicator((state) => state.rightEyeColor),
+        colorPicker((color) => setState({ rightEyeColor: color })),
         createMenuItem('Help', () => goto(RIGHT_EYE_COLOR_SETTINGS_INFO_STATE)),
         createMenuItem('Back', () => goto(SETTINGS_MENU_STATE)),
     ]);

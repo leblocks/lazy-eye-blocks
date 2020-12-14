@@ -1,13 +1,14 @@
 @import '../../../consts.scss';
 
 @mixin menu-base-style {
+    @include default-color;
     width: 60vw;
-    color: $base-white;
     margin: 2vh 5vw 2vh 5vw;
     height: 5vh;
     font-family: 'Press Start 2P', cursive;
     font-size: calc(0.5rem + 1vw);
 }
+
 
 .ui-menu-item {
     @include menu-base-style;

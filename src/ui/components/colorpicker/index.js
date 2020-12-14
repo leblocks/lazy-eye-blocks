@@ -37,12 +37,10 @@ export const getColorAtPoint = (x, width) => {
 
 /**
  * Creates and cofigures color picker element.
- * @param {string} id Id of the element, that will be used to looked up in the DOM.
  * @param {callback} colorSetCallback Callback that will called with selected color.
  */
-export const colorPicker = (id, colorSetCallback) => {
+export const colorPicker = (colorSetCallback) => {
     const canvas = document.createElement('canvas');
-    canvas.setAttribute('id', id);
     canvas.classList.add('colorpicker');
     const ctx = canvas.getContext('2d');
 
@@ -55,10 +53,9 @@ export const colorPicker = (id, colorSetCallback) => {
 
     // add click handler on the colopicker
     canvas.addEventListener('click', ({ clientX }) => {
-        const actualCanvas = document.getElementById(id);
-        if (actualCanvas) {
+        if (canvas) {
             // get actual canvas dimensions and coordinates
-            const { left, width } = actualCanvas.getBoundingClientRect();
+            const { left, width } = canvas.getBoundingClientRect();
             // make clientX value relative to canvas left corner
             const color = getColorAtPoint(clientX - left, width);
             colorSetCallback(color);

@@ -8,3 +8,7 @@ $light-gray: #D3D3D3;
 @mixin default-border {
     border: 2px solid $base-white;
 }
+
+@mixin default-color {
+    color: $base-white;
+}

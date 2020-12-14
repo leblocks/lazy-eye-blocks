@@ -1,23 +1,16 @@
 import { addStateObserver } from '../../../state';
 
-const repaint = (color, id) => {
-    const canvas = document.getElementById(id);
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = color;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-};
-
-export default function (id, colorExtractor) {
+export default function (colorExtractor) {
     const canvas = document.createElement('canvas');
     canvas.classList.add('color-indicator');
-    canvas.setAttribute('id', id);
-
+    // bind to state changes
     addStateObserver((state) => {
-        const color = colorExtractor(state);
-        repaint(color, id);
+        if (canvas) {
+            const color = colorExtractor(state);
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
     });
-
     return canvas;
 }

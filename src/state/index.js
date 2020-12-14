@@ -2,12 +2,12 @@ import { log } from '../utils';
 
 const defaultState = {
     // game settings
-    leftEyeColor: 'red',
-    rightEyeColor: 'blue',
+    leftEyeColor: 'rgb(255,0,0)',
+    rightEyeColor: 'rgb(0,0,255)',
     score: 0,
     shapesCount: 0,
     gridEnabled: false,
-    speedLevel: 0,
+    speedLevel: 1,
 
     // game board size
     rows: 12,

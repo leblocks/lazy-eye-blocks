@@ -22,6 +22,7 @@ body {
     background-color: $base-black;
 }
 
+// due to my poor configuration of webpack, order of imports is important here
 @import 'ui/utils/menu/main.scss';
 @import 'ui/utils/menu-item/main.scss';
 @import 'ui/utils/menu-title/main.scss';
@@ -29,3 +30,4 @@ body {
 @import 'ui/components/colorpicker/main.scss';
 @import 'ui/components/color-indicator/main.scss';
 @import 'ui/components/info/main.scss';
+@import 'ui/components/plus-minus-button//main.scss';
