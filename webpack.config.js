@@ -6,7 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const config = {
     entry: {
         main: './src/main.js',
-        test: './test/main.js',
     },
     devServer: {
         contentBase: [
@@ -73,6 +72,8 @@ const config = {
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
         config.devtool = 'inline-source-map';
+        // include tests only in development mode
+        config.entry.test = './test/main.js';
     }
 
     return config;
