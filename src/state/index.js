@@ -31,6 +31,7 @@ export function setState(stateUpdates) {
     // update state
     Object.assign(state, stateUpdates);
     // notify observers
+    // TODO probably better to put them in setTimeout(observer(state), 0) wrapper
     stateObservers.forEach((observer) => observer(state));
     // TODO remove
     log(state);

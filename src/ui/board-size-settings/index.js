@@ -25,7 +25,6 @@ const changeBoardColCount = (increment) => {
 };
 
 
-// TODO titles
 export default function () {
     const rowCountControl = createPlusMinusButton(() => changeBoardRowCount(1),
         () => changeBoardRowCount(-1), (state) => state.rows);
