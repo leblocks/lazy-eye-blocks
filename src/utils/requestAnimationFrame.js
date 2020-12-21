@@ -1,5 +1,5 @@
 /**
- * Backup for support of requestAnimationFrame in differnet browsers.
+ * Backup for support of requestAnimationFrame in different browsers.
  */
 const polyfill = window.requestAnimationFrame
     || window.mozRequestAnimationFrame

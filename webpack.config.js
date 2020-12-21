@@ -9,7 +9,7 @@ const config = {
     },
     devServer: {
         contentBase: [
-            // so test.html will be able to access node_moduels/mocha/ and node_modules/chai
+            // so test.html will be able to access node_modules/mocha/ and node_modules/chai
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'dist'),
         ],
@@ -25,7 +25,7 @@ const config = {
         rules: [
             {
                 // check source code with eslint before
-                // tranpilation with babel
+                // transpilation with babel
                 enforce: 'pre',
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -51,7 +51,7 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]', // we have to preseve original file name
+                    name: '[name].[ext]', // we have to preserve original file name
                 },
             },
             {
