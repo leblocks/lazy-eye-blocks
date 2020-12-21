@@ -7,7 +7,7 @@
     "build:prod": "webpack --mode=production",
     "build": "webpack --mode=development",
     "watch": "webpack --watch --mode=development",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "a.f.gurevich@gmail.com",

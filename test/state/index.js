@@ -28,9 +28,9 @@ describe('State module tests', () => {
         } = getState();
 
         expect(score).to.eq(0);
-        expect(speedLevel).to.eq(0);
-        expect(leftEyeColor).to.eq('red');
-        expect(rightEyeColor).to.eq('blue');
+        expect(speedLevel).to.eq(1);
+        expect(leftEyeColor).to.eq('rgb(255,0,0)');
+        expect(rightEyeColor).to.eq('rgb(0,0,255)');
     });
 
     it('remove state observer', () => {
@@ -62,9 +62,9 @@ describe('State module tests', () => {
         } = getState();
 
         expect(score).to.eq(0);
-        expect(speedLevel).to.eq(0);
-        expect(leftEyeColor).to.eq('red');
-        expect(rightEyeColor).to.eq('blue');
+        expect(speedLevel).to.eq(1);
+        expect(leftEyeColor).to.eq('rgb(255,0,0)');
+        expect(rightEyeColor).to.eq('rgb(0,0,255)');
     });
 
     it('set state no observers', () => {

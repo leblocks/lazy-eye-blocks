@@ -4,3 +4,4 @@ import './test.html';
 import './state';
 import './state-view-manager';
 import './components/colorpicker';
+import './utils';

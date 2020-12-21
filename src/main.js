@@ -25,7 +25,10 @@ import {
     LEFT_EYE_COLOR_SETTINGS_INFO_STATE,
     RIGHT_EYE_COLOR_SETTINGS_INFO_STATE,
     BOARD_SIZE_SETTINGS_STATE,
+    BLOCKS_STATE,
 } from './state/consts';
+
+import createBlocksCanvas from './blocks';
 
 window.onload = () => {
     initStateViewManager(MAIN_MENU_STATE, {
@@ -38,5 +41,6 @@ window.onload = () => {
         [LEFT_EYE_COLOR_SETTINGS_INFO_STATE]: createLeftEyeColorSettingsInfo(),
         [RIGHT_EYE_COLOR_SETTINGS_INFO_STATE]: createRightEyeColorSettingsInfo(),
         [BOARD_SIZE_SETTINGS_STATE]: createBoardSizeSettingsMenu(),
+        [BLOCKS_STATE]: createBlocksCanvas(),
     });
 };
