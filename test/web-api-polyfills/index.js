@@ -1,5 +1,4 @@
-
-import { requestAnimationFrame } from '../../src/utils';
+import { requestAnimationFrame } from '../../src/web-api-polyfills';
 
 const { expect } = chai;
 

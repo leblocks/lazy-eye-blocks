@@ -2,15 +2,19 @@ import { addStateObserver, setState } from '../../state';
 import { getMainContainer } from '../../utils';
 
 const stateViewMap = {
-    currentState: null,
-    map: {},
+    currentState: null, // holds name of the current state
+    map: {}, // map of state names to html elements
 };
 
-
 /**
- * Binds currect view that is mounted under main div to the current state;
+ * Updates children of main container according to state changes. On state change
+ * element associated with old state will be unmounted and element associated with new state
+ * will be mounted under root div element.
+ * @param {string} initialState String with initial state name.
+ * @param {Object} initialMap Map of state names to HTMLElements.
  */
 export default function initViewStateManager(initialState, initialMap) {
+    // init map from closure with user provided value
     Object.assign(stateViewMap.map, initialMap);
 
     const onStateChange = ({ gameState }) => {
@@ -21,7 +25,9 @@ export default function initViewStateManager(initialState, initialMap) {
             stateViewMap.currentState = gameState;
         }
     };
+
+    // register as state observer
     addStateObserver(onStateChange);
-    // init state change and component mount
+    // init first state change and component mount
     setState({ gameState: initialState });
 }

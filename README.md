@@ -39,7 +39,7 @@ All tests are located under */test* folder. I've decided to use [mocha](https://
 ### Known issues
 ***Non-consistent usage of various browser features:***
 * Babel loader uses *@babel/preset-env* without any specific configuration.
-* Following WebAPIs are being used: *Element.classList.add*, *document.querySelector*, *document.getElementById*, *document.createElement*. Those APIs are not being transpiled by babel. So correct polyfills should be provided for older browsers.
+* Following WebAPIs are being used: *Element.classList.add*, *document.querySelector*, *document.getElementById*, *document.createElement*, *Element.appendChild*. Those APIs are not being transpiled by babel. So correct polyfills should be provided for older browsers.
 
 ***CSS issues:***
 * There is usage of CSS flexbox property. If it will remain -> need to adjust transpilation level of babel preset. So code won't be transpiled to support browsers of versions that are lower than flexbox support.
