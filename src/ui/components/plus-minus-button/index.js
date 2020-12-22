@@ -4,7 +4,7 @@ import { addStateObserver } from '../../../state';
  * Creates control menu entry which has 3 components: plus button, minus button and value indicator.
  * @param {callback} onPlusClick Called on + button click.
  * @param {callback} onMinusClick Called on - button click.
- * @param {callback} onIndicatorUpdate Called everytime when state is being updated.
+ * @param {callback} onIndicatorUpdate Called every time when state is being updated.
  */
 export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
     const plusButton = document.createElement('button');

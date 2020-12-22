@@ -5,7 +5,7 @@ import { setState } from '../../state';
 
 import { MAIN_MENU_STATE } from '../../state/consts';
 
-// load html as string with html-loader
+// load html as a string with html-loader
 import about from '!html-loader!./index.html';
 
 export default function () {

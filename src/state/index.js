@@ -23,7 +23,6 @@ const stateObservers = [];
 
 /**
  * Updates state and notifies registered state observers.
- *
  * @param {Object} stateUpdates Object containing new values that will be merged in
  * the current state.
  */

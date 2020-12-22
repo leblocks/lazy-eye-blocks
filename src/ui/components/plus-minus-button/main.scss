@@ -1,5 +1,6 @@
 .plus-minus-button {
     @include menu-base-style;
+    // TODO try to get rid of flex box?
     display: flex;
     flex-flow: row;
     // align across cross axis
