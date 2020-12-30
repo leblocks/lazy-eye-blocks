@@ -23,7 +23,7 @@ I have a lazy eye myself. I was born with a huge difference in sight between the
  - make the lazy eye blocks game accessible from maximum amount of devices
 
 ## Development
-Actually this is a huge refactoring\rework of my old version of  [this exercise tool]() *TODO insert here  actual link to the old repo*
+Actually this is a huge refactoring\rework of my old version of  [this exercise tool](https://github.com/leblocks/leblocks.github.io)
 Old version was written when I had no idea about modern web development tools such as eslint, babel and webpack. Now I'm trying to utilise power of those tools to create small, with no external dependencies lazy eye treatment tool.
 
 ### Installation
