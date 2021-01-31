@@ -1,3 +1,5 @@
+import { createElement } from '../../../web-api-polyfills';
+
 // number of red\blue color shades that will be drawn
 const PALETTE_SIZE = 24;
 
@@ -40,7 +42,7 @@ export const getColorAtPoint = (x, width) => {
  * @param {callback} colorSetCallback Callback that will called with selected color.
  */
 export const colorPicker = (colorSetCallback) => {
-    const canvas = document.createElement('canvas');
+    const canvas = createElement('canvas');
     canvas.classList.add('colorpicker');
     const ctx = canvas.getContext('2d');
 

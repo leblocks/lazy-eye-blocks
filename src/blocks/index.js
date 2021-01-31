@@ -1,4 +1,6 @@
+import { createElement } from '../web-api-polyfills';
+
 export default function () {
-    const element = document.createElement('canvas');
+    const element = createElement('canvas');
     return element;
 }

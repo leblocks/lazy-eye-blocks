@@ -3,13 +3,14 @@ import { initStateViewManager } from '../../src/ui';
 import { getMainContainer } from '../../src/utils';
 import { MAIN_MENU_STATE, SETTINGS_MENU_STATE } from '../../src/state/consts';
 import { getState, setState } from '../../src/state';
+import { createElement } from '../web-api-polyfills';
 
 
 const { expect } = chai;
 
 describe('State view manager', () => {
     before('init main container to test page', () => {
-        const main = document.createElement('div');
+        const main = createElement('div');
         main.classList.add('main');
         document.body.appendChild(main);
     });
@@ -18,16 +19,16 @@ describe('State view manager', () => {
         expect(getMainContainer()).to.not.equal(null);
     });
 
-    it('Check state change reflect in componet reload', () => {
+    it('Check state change reflect in component reload', () => {
         const mainContainer = getMainContainer();
 
         // before stateViewManager init it must be empty
         expect(mainContainer.childElementCount).to.eq(0);
 
-        const comp1 = document.createElement('div');
+        const comp1 = createElement('div');
         comp1.innerText = 'comp1';
 
-        const comp2 = document.createElement('div');
+        const comp2 = createElement('div');
         comp2.innerText = 'comp2';
 
         const stateMap = {

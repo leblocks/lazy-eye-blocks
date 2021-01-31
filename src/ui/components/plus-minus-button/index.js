@@ -1,3 +1,4 @@
+import { createElement } from '../../../web-api-polyfills';
 import { addStateObserver } from '../../../state';
 
 /**
@@ -7,15 +8,15 @@ import { addStateObserver } from '../../../state';
  * @param {callback} onIndicatorUpdate Called every time when state is being updated.
  */
 export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
-    const plusButton = document.createElement('button');
+    const plusButton = createElement('button');
     plusButton.innerHTML = '&plus;';
     plusButton.onclick = onPlusClick;
 
-    const minusButton = document.createElement('button');
+    const minusButton = createElement('button');
     minusButton.innerHTML = '&minus;';
     minusButton.onclick = onMinusClick;
 
-    const indicator = document.createElement('div');
+    const indicator = createElement('div');
     indicator.innerText = 0;
 
     // bind state updates
@@ -26,7 +27,7 @@ export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
         }
     });
 
-    const component = document.createElement('div');
+    const component = createElement('div');
     component.classList.add('plus-minus-button');
     component.appendChild(minusButton);
     component.appendChild(indicator);
