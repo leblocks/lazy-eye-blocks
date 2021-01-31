@@ -3,7 +3,7 @@ import { initStateViewManager } from '../../src/ui';
 import { getMainContainer } from '../../src/utils';
 import { MAIN_MENU_STATE, SETTINGS_MENU_STATE } from '../../src/state/consts';
 import { getState, setState } from '../../src/state';
-import { createElement } from '../web-api-polyfills';
+import { createElement, getClassList } from '../../src/web-api-polyfills';
 
 
 const { expect } = chai;
@@ -11,7 +11,8 @@ const { expect } = chai;
 describe('State view manager', () => {
     before('init main container to test page', () => {
         const main = createElement('div');
-        main.classList.add('main');
+        getClassList(main).add('main');
+        main.setAttribute('id', 'root');
         document.body.appendChild(main);
     });
 

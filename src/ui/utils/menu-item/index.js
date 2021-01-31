@@ -1,4 +1,4 @@
-import { createElement } from '../../../web-api-polyfills';
+import { createElement, getClassList } from '../../../web-api-polyfills';
 
 /**
  * Creates menu-item element on top of button HTML element.
@@ -9,6 +9,6 @@ export default function (title, onClick) {
     const element = createElement('button');
     element.innerText = title;
     element.onclick = onClick;
-    element.classList.add('ui-menu-item');
+    getClassList(element).add('ui-menu-item');
     return element;
 }

@@ -1,4 +1,4 @@
-import { createElement } from '../../../web-api-polyfills';
+import { createElement, getClassList } from '../../../web-api-polyfills';
 
 /**
  * Creates new menu.
@@ -6,7 +6,7 @@ import { createElement } from '../../../web-api-polyfills';
  */
 export default function (children) {
     const element = createElement('div');
-    element.classList.add('ui-menu');
+    getClassList(element).add('ui-menu');
 
     if (children) {
         children.forEach((child) => element.appendChild(child));

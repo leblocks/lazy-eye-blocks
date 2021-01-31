@@ -1,4 +1,4 @@
-import { createElement } from '../../../web-api-polyfills';
+import { createElement, getClassList } from '../../../web-api-polyfills';
 import { addStateObserver } from '../../../state';
 
 /**
@@ -28,7 +28,7 @@ export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
     });
 
     const component = createElement('div');
-    component.classList.add('plus-minus-button');
+    getClassList(component).add('plus-minus-button');
     component.appendChild(minusButton);
     component.appendChild(indicator);
     component.appendChild(plusButton);

@@ -1,9 +1,9 @@
 import { addStateObserver } from '../../../state';
-import { createElement } from '../../../web-api-polyfills';
+import { createElement, getClassList } from '../../../web-api-polyfills';
 
 export default function (colorExtractor) {
     const canvas = createElement('canvas');
-    canvas.classList.add('color-indicator');
+    getClassList(canvas).add('color-indicator');
     // bind to state changes
     addStateObserver((state) => {
         if (canvas) {
