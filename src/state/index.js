@@ -13,6 +13,8 @@ const defaultState = {
     rows: 12,
     columns: 10,
 
+    // store reference to canvas element
+    gameCanvas: null,
     gameState: null,
 };
 

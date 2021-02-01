@@ -1,0 +1,5 @@
+@import '../consts.scss';
+
+.game-canvas {
+    @include default-border;
+}
