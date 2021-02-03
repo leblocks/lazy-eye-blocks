@@ -1,14 +1,14 @@
-import { createElement } from '../web-api-polyfills';
+import { createElement, requestAnimationFrame } from '../web-api-polyfills';
 import { getState, setState } from '../state';
-import { createHUD } from './overlay-components';
 import { setCanvasDimensions, getCanvasDimensions } from './utils';
+import { draw } from './draw';
 
 function initCanvas() {
     const element = createElement('canvas');
     element.setAttribute('class', 'game-canvas');
     element.style.position = 'absolute';
     setCanvasDimensions(element, getCanvasDimensions());
-    setState({ gameCanvas: element });
+    setState({ gameCanvas: element, gameCanvasContext: element.getContext('2d') });
     return element;
 }
 
@@ -19,16 +19,16 @@ export default function () {
     // back button
     // control buttons for touch events
     // score
-    const container = createElement('div');
     const canvas = initCanvas();
 
-    container.appendChild(canvas);
-    container.appendChild(createHUD());
+    // TODO think about game state management
+    // This is for tests init draw loop
+    requestAnimationFrame(draw);
 
     // TODO for testing purposes
     window.onresize = () => {
         const { gameCanvas } = getState();
         setCanvasDimensions(gameCanvas, getCanvasDimensions());
     };
-    return container;
+    return canvas;
 }

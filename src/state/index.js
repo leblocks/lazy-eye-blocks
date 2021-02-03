@@ -15,6 +15,7 @@ const defaultState = {
 
     // store reference to canvas element
     gameCanvas: null,
+    gameCanvasContext: null,
     gameState: null,
 };
 
