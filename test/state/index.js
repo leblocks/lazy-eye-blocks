@@ -21,13 +21,11 @@ describe('State module tests', () => {
 
     it('get default state', () => {
         const {
-            score,
             leftEyeColor,
             rightEyeColor,
             speedLevel,
         } = getState();
 
-        expect(score).to.eq(0);
         expect(speedLevel).to.eq(1);
         expect(leftEyeColor).to.eq('rgb(255,0,0)');
         expect(rightEyeColor).to.eq('rgb(0,0,255)');
@@ -46,7 +44,6 @@ describe('State module tests', () => {
 
     it('state reset', () => {
         setState({
-            score: 12,
             levelOfDifficulty: 146,
             leftEyeColor: 'sugoi',
             rightEyeColor: 'weird',
@@ -55,13 +52,11 @@ describe('State module tests', () => {
         resetState();
 
         const {
-            score,
             speedLevel,
             leftEyeColor,
             rightEyeColor,
         } = getState();
 
-        expect(score).to.eq(0);
         expect(speedLevel).to.eq(1);
         expect(leftEyeColor).to.eq('rgb(255,0,0)');
         expect(rightEyeColor).to.eq('rgb(0,0,255)');

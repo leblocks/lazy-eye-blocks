@@ -1,44 +1,38 @@
-import { createElement, requestAnimationFrame } from '../web-api-polyfills';
+import { cancelAnimationFrame, createElement, requestAnimationFrame } from '../web-api-polyfills';
 import { addStateObserver, getState, setState } from '../state';
 import { BLOCKS_STATE } from '../state/consts';
 import { setCanvasDimensions, getCanvasDimensions } from './utils';
 import { draw } from './draw';
+import { getGameState } from './gameState';
 
-function initCanvas() {
-    const element = createElement('canvas');
-    element.setAttribute('class', 'game-canvas');
-    element.style.position = 'absolute';
-    setCanvasDimensions(element, getCanvasDimensions());
-    setState({ gameCanvas: element, gameCanvasContext: element.getContext('2d') });
-    return element;
-}
-
+/**
+ * Inits the game itself. Setups various handlers.
+ */
 export default function () {
-    // TODO
-    // setup here canvas
-    // overlay ui elements also
-    // back button
-    // control buttons for touch events
-    // score
-    const canvas = initCanvas();
+    const canvas = createElement('canvas');
+    canvas.setAttribute('class', 'game-canvas');
+    canvas.style.position = 'absolute';
+    setCanvasDimensions(canvas, getCanvasDimensions());
+    setState({ gameCanvas: canvas, gameCanvasContext: canvas.getContext('2d') });
 
-    // TODO think about game state management
-    // This is for tests init draw loop
-    addStateObserver(({ gameState }) => {
-        if (gameState === BLOCKS_STATE) {
-            // start animation
-            // start game logic
-            requestAnimationFrame(draw);
-        } else {
-            // stop here animation
-            // stop here game logic
-        }
-    });
-
-    // TODO for testing purposes
     window.onresize = () => {
+        // handle windows resize events
         const { gameCanvas } = getState();
         setCanvasDimensions(gameCanvas, getCanvasDimensions());
     };
+
+    addStateObserver(({ gameState }) => {
+        if (gameState === BLOCKS_STATE) {
+            // init or restore game here
+            requestAnimationFrame(draw);
+        } else {
+            // pause or perform cleanup here
+            const { animationId } = getGameState();
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        }
+    });
+
     return canvas;
 }

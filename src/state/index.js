@@ -4,8 +4,6 @@ const defaultState = {
     // game settings
     leftEyeColor: 'rgb(255,0,0)',
     rightEyeColor: 'rgb(0,0,255)',
-    score: 0,
-    shapesCount: 0,
     gridEnabled: false,
     speedLevel: 1,
 
@@ -16,6 +14,7 @@ const defaultState = {
     // TODO rename to UI state
     gameState: null,
 
+    // TODO move to gameState
     // store reference to canvas element
     gameCanvas: null,
     gameCanvasContext: null,

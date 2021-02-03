@@ -6,6 +6,7 @@
  */
 export default function (ctx, cols, rows, width, height) {
     // set grid color
+    // TODO pull out into config file
     ctx.strokeStyle = 'white';
 
     // set grid width

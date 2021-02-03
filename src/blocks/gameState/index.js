@@ -1,4 +1,6 @@
 const defaultState = {
+    score: 0,
+    shapesCount: 0,
     gameState: null,
     // id as returned by requestAnimationFrame
     animationId: null,
