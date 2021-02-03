@@ -1,5 +1,6 @@
 import { getState } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
+import { setGameState } from '../gameState';
 import drawGrid from './drawGrid';
 
 /**
@@ -16,12 +17,9 @@ function draw() {
 
     // clear canvas before next draw iteration
     gameCanvasContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-
     drawGrid(gameCanvasContext, columns, rows, gameCanvas.width, gameCanvas.height);
 
-    // TODO where to store animation id?
-    // TODO store animation id!
-    requestAnimationFrame(draw);
+    setGameState({ animationId: requestAnimationFrame(draw) });
 }
 
 export default draw;

@@ -13,10 +13,12 @@ const defaultState = {
     rows: 12,
     columns: 10,
 
+    // TODO rename to UI state
+    gameState: null,
+
     // store reference to canvas element
     gameCanvas: null,
     gameCanvasContext: null,
-    gameState: null,
 };
 
 const state = { ...defaultState };

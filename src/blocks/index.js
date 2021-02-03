@@ -1,5 +1,6 @@
 import { createElement, requestAnimationFrame } from '../web-api-polyfills';
-import { getState, setState } from '../state';
+import { addStateObserver, getState, setState } from '../state';
+import { BLOCKS_STATE } from '../state/consts';
 import { setCanvasDimensions, getCanvasDimensions } from './utils';
 import { draw } from './draw';
 
@@ -23,7 +24,16 @@ export default function () {
 
     // TODO think about game state management
     // This is for tests init draw loop
-    requestAnimationFrame(draw);
+    addStateObserver(({ gameState }) => {
+        if (gameState === BLOCKS_STATE) {
+            // start animation
+            // start game logic
+            requestAnimationFrame(draw);
+        } else {
+            // stop here animation
+            // stop here game logic
+        }
+    });
 
     // TODO for testing purposes
     window.onresize = () => {
