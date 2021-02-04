@@ -40,11 +40,11 @@ describe('State view manager', () => {
         initStateViewManager(SETTINGS_MENU_STATE, stateMap);
 
         // check initial state params
-        expect(getState().gameState).to.eq(SETTINGS_MENU_STATE);
+        expect(getState().appState).to.eq(SETTINGS_MENU_STATE);
         expect(mainContainer.childElementCount).to.eq(1);
         expect(mainContainer.querySelector('div').innerText).to.eq('comp2');
 
-        setState({ gameState: MAIN_MENU_STATE });
+        setState({ appState: MAIN_MENU_STATE });
         expect(mainContainer.childElementCount).to.eq(1);
         expect(mainContainer.querySelector('div').innerText).to.eq('comp1');
     });

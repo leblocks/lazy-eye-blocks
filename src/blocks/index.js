@@ -1,38 +1,35 @@
-import { cancelAnimationFrame, createElement, requestAnimationFrame } from '../web-api-polyfills';
-import { addStateObserver, getState, setState } from '../state';
-import { BLOCKS_STATE } from '../state/consts';
-import { setCanvasDimensions, getCanvasDimensions } from './utils';
-import { draw } from './draw';
-import { getGameState } from './gameState';
+import { createElement, getClassList } from '../web-api-polyfills';
+import {
+    createBackButton,
+    createFireButton,
+    createRotateButton,
+    createMoveLeftButton,
+    createMoveRightButton,
+} from './components';
 
 /**
  * Inits the game itself. Setups various handlers.
  */
 export default function () {
     const canvas = createElement('canvas');
-    canvas.setAttribute('class', 'game-canvas');
-    canvas.style.position = 'absolute';
-    setCanvasDimensions(canvas, getCanvasDimensions());
-    setState({ gameCanvas: canvas, gameCanvasContext: canvas.getContext('2d') });
+    getClassList(canvas).add('game-canvas');
 
-    window.onresize = () => {
-        // handle windows resize events
-        const { gameCanvas } = getState();
-        setCanvasDimensions(gameCanvas, getCanvasDimensions());
-    };
+    const firstRowOfButtons = createElement('div');
+    getClassList(firstRowOfButtons).add('action-button-row');
+    firstRowOfButtons.appendChild(createRotateButton());
+    firstRowOfButtons.appendChild(createFireButton());
 
-    addStateObserver(({ gameState }) => {
-        if (gameState === BLOCKS_STATE) {
-            // init or restore game here
-            requestAnimationFrame(draw);
-        } else {
-            // pause or perform cleanup here
-            const { animationId } = getGameState();
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-        }
-    });
+    const secondRowOfButtons = createElement('div');
+    getClassList(secondRowOfButtons).add('action-button-row');
+    secondRowOfButtons.appendChild(createMoveLeftButton());
+    secondRowOfButtons.appendChild(createBackButton());
+    secondRowOfButtons.appendChild(createMoveRightButton());
 
-    return canvas;
+    const container = createElement('div');
+    getClassList(container).add('game-container');
+    container.appendChild(canvas);
+    container.appendChild(firstRowOfButtons);
+    container.appendChild(secondRowOfButtons);
+
+    return container;
 }

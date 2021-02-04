@@ -9,5 +9,5 @@ import { MAIN_MENU_STATE } from '../../state/consts';
 import about from '!html-loader!./index.html';
 
 export default function () {
-    return createInfo(about, () => setState({ gameState: MAIN_MENU_STATE }));
+    return createInfo(about, () => setState({ appState: MAIN_MENU_STATE }));
 }

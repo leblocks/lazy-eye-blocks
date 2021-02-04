@@ -4,6 +4,7 @@ import {
     resetState,
     addStateObserver,
     removeStateObservers,
+    setStateAndIgnoreObservers,
 } from '../../src/state';
 
 // chai is loaded in test.html
@@ -76,6 +77,14 @@ describe('State module tests', () => {
         expect(observer.variable).to.eq(10);
         setState({ score: 99 });
         expect(observer.variable).to.eq(99);
+    });
+
+    it('set state and don\'t notify observers', () => {
+        const observer = { variable: 10 };
+        addStateObserver(({ score }) => { observer.variable = score; });
+        expect(observer.variable).to.eq(10);
+        setStateAndIgnoreObservers({ score: 99 });
+        expect(observer.variable).to.eq(10);
     });
 
     it('set state with observers async', (done) => {

@@ -1,0 +1,10 @@
+.action-button {
+    @include default-border;
+    color: $base-white;
+    background-color: $base-gray;
+    height: 5vh;
+    width: 10vw;
+    margin-bottom: 2vh;
+    font-family: 'Press Start 2P', cursive;
+    font-size: calc(0.5rem + 1vw);
+}

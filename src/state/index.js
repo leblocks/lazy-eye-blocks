@@ -12,12 +12,15 @@ const defaultState = {
     columns: 10,
 
     // TODO rename to UI state
-    gameState: null,
+    appState: null,
 
-    // TODO move to gameState
-    // store reference to canvas element
-    gameCanvas: null,
-    gameCanvasContext: null,
+
+    score: 0,
+    shapesCount: 0,
+    // id as returned by requestAnimationFrame
+    animationId: null,
+    // id as returned by requestAnimationFrame
+    gameLogicId: null,
 };
 
 const state = { ...defaultState };
@@ -25,19 +28,33 @@ const state = { ...defaultState };
 // on each state change -> notify observers
 const stateObservers = [];
 
+function updateState(stateUpdates, notifyObservers) {
+    // update state
+    Object.assign(state, stateUpdates);
+    if (notifyObservers) {
+        // TODO probably better to put them in setTimeout(observer(state), 0) wrapper
+        stateObservers.forEach((observer) => observer(state));
+    }
+    // TODO remove
+    log(state);
+}
+
 /**
  * Updates state and notifies registered state observers.
  * @param {Object} stateUpdates Object containing new values that will be merged in
  * the current state.
  */
 export function setState(stateUpdates) {
-    // update state
-    Object.assign(state, stateUpdates);
-    // notify observers
-    // TODO probably better to put them in setTimeout(observer(state), 0) wrapper
-    stateObservers.forEach((observer) => observer(state));
-    // TODO remove
-    log(state);
+    updateState(stateUpdates, true);
+}
+
+/**
+ * Updates state.
+ * @param {Object} stateUpdates Object containing new values that will be merged in
+ * the current state.
+ */
+export function setStateAndIgnoreObservers(stateUpdates) {
+    updateState(stateUpdates, false);
 }
 
 export function getState() {

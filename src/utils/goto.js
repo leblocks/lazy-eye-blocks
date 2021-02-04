@@ -5,5 +5,5 @@ import { setState } from '../state';
  * @param {string} targetState State to change to.
  */
 export default function (targetState) {
-    setState({ gameState: targetState });
+    setState({ appState: targetState });
 }
