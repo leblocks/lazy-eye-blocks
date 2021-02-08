@@ -1,4 +1,5 @@
 import { log } from '../utils';
+import { BLOCKS_GAME_PAUSE } from './consts';
 
 const defaultState = {
     // game settings
@@ -11,11 +12,11 @@ const defaultState = {
     rows: 12,
     columns: 10,
 
-    // TODO rename to UI state
     appState: null,
 
-
     score: 0,
+    gameCanvas: null,
+    gameState: BLOCKS_GAME_PAUSE,
     shapesCount: 0,
     // id as returned by requestAnimationFrame
     animationId: null,

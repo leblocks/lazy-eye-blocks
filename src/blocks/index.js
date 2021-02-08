@@ -1,4 +1,9 @@
-import { createElement, getClassList } from '../web-api-polyfills';
+import { setState } from '../state';
+import {
+    getClassList,
+    createElement,
+} from '../web-api-polyfills';
+
 import {
     createBackButton,
     createFireButton,
@@ -6,13 +11,14 @@ import {
     createMoveLeftButton,
     createMoveRightButton,
 } from './components';
+import { initGame } from './game';
 
 /**
  * Inits the game itself. Setups various handlers.
  */
 export default function () {
-    const canvas = createElement('canvas');
-    getClassList(canvas).add('game-canvas');
+    const gameCanvas = createElement('canvas');
+    getClassList(gameCanvas).add('game-canvas');
 
     const firstRowOfButtons = createElement('div');
     getClassList(firstRowOfButtons).add('action-button-row');
@@ -27,9 +33,13 @@ export default function () {
 
     const container = createElement('div');
     getClassList(container).add('game-container');
-    container.appendChild(canvas);
+    container.appendChild(gameCanvas);
     container.appendChild(firstRowOfButtons);
     container.appendChild(secondRowOfButtons);
+
+    // store reference to the canvas in the state
+    setState({ gameCanvas });
+    initGame();
 
     return container;
 }
