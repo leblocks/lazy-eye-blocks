@@ -2,39 +2,38 @@ import { getState, setStateAndIgnoreObservers } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 
 /**
- * TODO check where it should be placed
  * Draws grid on the canvas.
- * @param {*} ctx Canvas 2D context.
+ * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
  * @param {number} columns Number of rows.
  * @param {number} rows  Number of columns.
  */
 function drawGrid(ctx, cols, rows, width, height) {
     // set grid color
-    // TODO pull out into config file
-    ctx.strokeStyle = 'white';
-
+    ctx.strokeStyle = '#ffffff';
     // set grid width
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
 
-    // calculate number of rows
-    const d = width / cols;
+    const gridFacetSize = Math.min(width, height) / Math.max(cols, rows);
 
+    const xMargin = (width - gridFacetSize * cols) / 2;
+    const yMargin = (height - gridFacetSize * rows) / 2;
+
+    ctx.beginPath();
     // draw vertical lines
-    for (let i = 0; i < cols; i += 1) {
-        ctx.beginPath();
-        ctx.moveTo(i * d, 0);
-        ctx.lineTo(i * d, height);
-        ctx.stroke();
+    for (let i = 0; i <= cols; i += 1) {
+        const x = xMargin + i * gridFacetSize;
+        ctx.moveTo(x, yMargin);
+        ctx.lineTo(x, height - yMargin);
     }
-
 
     // draw horizontal lines
-    for (let i = height / d; i > 0; i -= 1) {
-        ctx.beginPath();
-        ctx.moveTo(0, i * d);
-        ctx.lineTo(width, i * d);
-        ctx.stroke();
+    for (let i = rows; i >= 0; i -= 1) {
+        const y = yMargin + i * gridFacetSize;
+        ctx.moveTo(xMargin, y);
+        ctx.lineTo(width - xMargin, y);
     }
+    ctx.closePath();
+    ctx.stroke();
 }
 
 
@@ -50,7 +49,7 @@ function draw() {
         gridEnabled,
     } = getState();
 
-    // TODO think about storing it in state
+    // TODO think about storing it in the state
     const ctx = gameCanvas.getContext('2d');
 
     // clear canvas before next draw iteration

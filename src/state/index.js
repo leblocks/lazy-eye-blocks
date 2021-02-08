@@ -5,7 +5,7 @@ const defaultState = {
     // game settings
     leftEyeColor: 'rgb(255,0,0)',
     rightEyeColor: 'rgb(0,0,255)',
-    gridEnabled: false,
+    gridEnabled: true,
     speedLevel: 1,
 
     // game board size
