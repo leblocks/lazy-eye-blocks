@@ -13,6 +13,10 @@ import {
     BLOCKS_GAME_PLAYING,
 } from '../../state/consts';
 
+/**
+ * This method is being called on each state update.
+ * @param {Object} state Current state.
+ */
 const gameStateMachine = (state) => {
     const { appState, gameState, animationId } = state;
 

@@ -1,5 +1,6 @@
 import { getState, setStateAndIgnoreObservers } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
+import { calculateCanvasDimensions } from '../utils';
 
 /**
  * Draws grid on the canvas.
@@ -11,7 +12,7 @@ function drawGrid(ctx, cols, rows, width, height) {
     // set grid color
     ctx.strokeStyle = '#ffffff';
     // set grid width
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 2;
 
     const gridFacetSize = Math.min(width, height) / Math.max(cols, rows);
 
@@ -47,16 +48,22 @@ function draw() {
         columns,
         gameCanvas,
         gridEnabled,
+        canvasContext,
+        gameCanvasWrapper,
     } = getState();
 
-    // TODO think about storing it in the state
-    const ctx = gameCanvas.getContext('2d');
+    // TODO solve this issue
+    // recalculate on first render
+    const { height } = gameCanvasWrapper.getBoundingClientRect();
+    if (Math.abs(gameCanvas.height - height) > 10) {
+        calculateCanvasDimensions();
+    }
 
     // clear canvas before next draw iteration
-    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    canvasContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
 
     if (gridEnabled) {
-        drawGrid(ctx, columns, rows, gameCanvas.width, gameCanvas.height);
+        drawGrid(canvasContext, columns, rows, gameCanvas.width, gameCanvas.height);
     }
 
     // call itself in an animation loop and preserve new animation id

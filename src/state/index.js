@@ -1,5 +1,5 @@
 import { log } from '../utils';
-import { BLOCKS_GAME_PAUSE } from './consts';
+import { BLOCKS_GAME_INITIAL } from './consts';
 
 const defaultState = {
     // game settings
@@ -16,7 +16,9 @@ const defaultState = {
 
     score: 0,
     gameCanvas: null,
-    gameState: BLOCKS_GAME_PAUSE,
+    gameCanvasWrapper: null,
+    canvasContext: null,
+    gameState: BLOCKS_GAME_INITIAL,
     shapesCount: 0,
     // id as returned by requestAnimationFrame
     animationId: null,
