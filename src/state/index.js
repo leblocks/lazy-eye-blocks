@@ -8,7 +8,6 @@ const defaultState = {
     gridEnabled: true,
     speedLevel: 1,
 
-    // game board size
     rows: 12,
     columns: 10,
 
@@ -18,6 +17,10 @@ const defaultState = {
     gameCanvas: null,
     gameCanvasWrapper: null,
     canvasContext: null,
+    xMargin: 0,
+    yMargin: 0,
+    gridFacetSize: 0,
+    gameBoard: null,
     gameState: BLOCKS_GAME_INITIAL,
     shapesCount: 0,
     // id as returned by requestAnimationFrame

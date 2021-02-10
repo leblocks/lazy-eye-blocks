@@ -74,3 +74,8 @@ export const SHAPE_FORMS = {
         [[-2, 0], [-1, 0], [0, 0], [1, 0]]],
 
 };
+
+// empty board cell
+export const EMPTY_BOARD_CELL = 0;
+// represents board cell with something in it
+export const FILLED_BOARD_CELL = 1;
