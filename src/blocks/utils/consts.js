@@ -77,5 +77,5 @@ export const SHAPE_FORMS = {
 
 // empty board cell
 export const EMPTY_BOARD_CELL = 0;
-// represents board cell with something in it
-export const FILLED_BOARD_CELL = 1;
+export const LEFT_EYE_BOARD_CELL = 1;
+export const RIGHT_EYE_BOARD_CELL = 2;

@@ -1,7 +1,7 @@
 import { getState, setStateAndIgnoreObservers } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 import { calculateCanvasDimensions, setGameBoardGridSizeAndMargins } from '../utils';
-import { FILLED_BOARD_CELL } from '../utils/consts';
+import { LEFT_EYE_BOARD_CELL } from '../utils/consts';
 
 
 const GRID_COLOR = '#ffffff';
@@ -69,7 +69,7 @@ function drawBoard(ctx, board, xMargin, yMargin, gridFacetSize, leftEyeColor, ri
             // square on a canvas
             // ctx.fillRect(j*d, i*d, d + 1, d + 1); +1 is to provide
             // seamless picture
-            ctx.fillStyle = board[i][j] === FILLED_BOARD_CELL ? leftEyeColor : rightEyeColor;
+            ctx.fillStyle = board[i][j] === LEFT_EYE_BOARD_CELL ? leftEyeColor : rightEyeColor;
             ctx.fillRect(xMargin + j * gridFacetSize,
                 yMargin + i * gridFacetSize, gridFacetSize + 1, gridFacetSize + 1);
         }
