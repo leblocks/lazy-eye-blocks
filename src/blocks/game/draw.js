@@ -1,7 +1,7 @@
 import { getState, setStateAndIgnoreObservers } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 import { calculateCanvasDimensions, setGameBoardGridSizeAndMargins } from '../utils';
-import { LEFT_EYE_BOARD_CELL } from '../utils/consts';
+import { LEFT_EYE_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
 
 const GRID_COLOR = '#ffffff';
@@ -65,11 +65,21 @@ function drawBoard(ctx, board, xMargin, yMargin, gridFacetSize, leftEyeColor, ri
     // loop through board array
     for (let i = 0; i < rows; i += 1) {
         for (let j = 0; j < columns; j += 1) {
+            // select correct cell color
+            switch (board[i][j]) {
+            case LEFT_EYE_BOARD_CELL:
+                ctx.fillStyle = leftEyeColor;
+                break;
+            case RIGHT_EYE_BOARD_CELL:
+                ctx.fillStyle = rightEyeColor;
+                break;
+            default:
+                ctx.fillStyle = BACKGROUND_COLOR;
+            }
             // for each element containing CELL fill corresponding
             // square on a canvas
             // ctx.fillRect(j*d, i*d, d + 1, d + 1); +1 is to provide
             // seamless picture
-            ctx.fillStyle = board[i][j] === LEFT_EYE_BOARD_CELL ? leftEyeColor : rightEyeColor;
             ctx.fillRect(xMargin + j * gridFacetSize,
                 yMargin + i * gridFacetSize, gridFacetSize + 1, gridFacetSize + 1);
         }
@@ -78,8 +88,8 @@ function drawBoard(ctx, board, xMargin, yMargin, gridFacetSize, leftEyeColor, ri
 
 
 /**
- * Main draw method.
- * Draws everything on a canvas.
+ * Main draw method. Draws everything on a canvas.
+ * Calls itself recursively via requestAnimationFrame.
  */
 function draw() {
     const {

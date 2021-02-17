@@ -1,6 +1,6 @@
-import { getState, setStateAndIgnoreObservers } from '../../../state';
+import { setStateAndIgnoreObservers } from '../../../state';
 import { getClassList, createElement } from '../../../web-api-polyfills';
-import { calculateCanvasDimensions, createEmptyBoard, setGameBoardGridSizeAndMargins } from '../../utils';
+import { calculateCanvasDimensions, setGameBoardGridSizeAndMargins } from '../../utils';
 
 export default function () {
     const gameCanvas = createElement('canvas');
@@ -22,19 +22,6 @@ export default function () {
         calculateCanvasDimensions();
         setGameBoardGridSizeAndMargins();
     };
-
-    const { columns: c, rows: r } = getState();
-    setStateAndIgnoreObservers({ gameBoard: createEmptyBoard(c, r) });
-
-    const testStuff = () => {
-        setTimeout(() => {
-            const { columns, rows } = getState();
-            setStateAndIgnoreObservers({ gameBoard: createEmptyBoard(columns, rows) });
-            testStuff();
-        }, 1000);
-    };
-
-    testStuff();
 
     return wrapper;
 }

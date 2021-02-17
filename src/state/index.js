@@ -6,27 +6,33 @@ const defaultState = {
     leftEyeColor: 'rgb(255,0,0)',
     rightEyeColor: 'rgb(0,0,255)',
     gridEnabled: true,
+    score: 0,
     speedLevel: 1,
-
     rows: 12,
     columns: 10,
 
     appState: null,
 
-    score: 0,
     gameCanvas: null,
     gameCanvasWrapper: null,
     canvasContext: null,
     xMargin: 0,
     yMargin: 0,
     gridFacetSize: 0,
+
+    currentShape: null,
+    nextShape: null,
+
     gameBoard: null,
     gameState: BLOCKS_GAME_INITIAL,
     shapesCount: 0,
+    // number of ms between calls to game logic ticks
+    gameLogicTicksInterval: 1000,
     // id as returned by requestAnimationFrame
     animationId: null,
     // id as returned by requestAnimationFrame
     gameLogicId: null,
+    gameLogicTimeoutId: null,
 };
 
 const state = { ...defaultState };
