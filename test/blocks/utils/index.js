@@ -1,4 +1,9 @@
-import { createEmptyBoard, resizeGameBoard } from '../../../src/blocks/utils';
+import {
+    createShape,
+    checkCollisions,
+    resizeGameBoard,
+    createEmptyBoard,
+} from '../../../src/blocks/utils';
 
 // chai is loaded in test.html
 const { expect } = chai;
@@ -43,5 +48,14 @@ describe('Blocks utility method tests', () => {
             [0, 0, 1, 1, 1],
         ];
         expect(resizeGameBoard(original, 5, 5)).to.deep.eq(expected);
+    });
+
+    it('create shape', () => {
+        // TODO
+    });
+
+    it('check collisions', () => {
+        // TODO with walls
+        // TODO with various board elements
     });
 });
