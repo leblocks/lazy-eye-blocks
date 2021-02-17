@@ -16,7 +16,17 @@ export default function (board, columns, rows) {
     const newBoard = createEmptyBoard(columns, rows);
     for (let i = rows - 1; i >= 0; i -= 1) {
         for (let j = columns - 1; j >= 0; j -= 1) {
-            newBoard[i][j] = board[i - rowDiff][j - columnDiff];
+            const originalRowIndex = i - rowDiff;
+            const originalColumnIndex = j - columnDiff;
+
+            const isValidRowIndex = originalRowIndex >= 0
+                && originalRowIndex < oldRowCount;
+            const isValidColumnIndex = originalColumnIndex >= 0
+                && originalColumnIndex < oldColumnCount;
+
+            if (isValidColumnIndex && isValidRowIndex) {
+                newBoard[i][j] = board[i - rowDiff][j - columnDiff];
+            }
         }
     }
     return newBoard;

@@ -1,5 +1,4 @@
 import { createEmptyBoard, resizeGameBoard } from '../../../src/blocks/utils';
-import { EMPTY_BOARD_CELL, LEFT_EYE_BOARD_CELL } from '../../../src/blocks/utils/consts';
 
 // chai is loaded in test.html
 const { expect } = chai;
@@ -7,26 +6,42 @@ const { expect } = chai;
 describe('Blocks utility method tests', () => {
     it('create empty board', () => {
         const expected = [
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
         ];
         expect(createEmptyBoard(3, 3)).to.deep.eq(expected);
     });
 
-    it('resize existing board', () => {
-        // TODO write more cases
+    it('shrink existing board', () => {
         const original = [
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
-            [EMPTY_BOARD_CELL, LEFT_EYE_BOARD_CELL, EMPTY_BOARD_CELL],
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
+            [0, 0, 1],
+            [0, 1, 0],
+            [1, 1, 1],
         ];
 
         const expected = [
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
-            [LEFT_EYE_BOARD_CELL, EMPTY_BOARD_CELL],
-            [EMPTY_BOARD_CELL, EMPTY_BOARD_CELL],
+            [0, 1],
+            [1, 0],
+            [1, 1],
         ];
         expect(resizeGameBoard(original, 2, 3)).to.deep.eq(expected);
+    });
+
+    it('extend existing board', () => {
+        const original = [
+            [0, 0, 1],
+            [0, 1, 0],
+            [1, 1, 1],
+        ];
+
+        const expected = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1],
+            [0, 0, 0, 1, 0],
+            [0, 0, 1, 1, 1],
+        ];
+        expect(resizeGameBoard(original, 5, 5)).to.deep.eq(expected);
     });
 });
