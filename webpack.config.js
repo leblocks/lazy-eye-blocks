@@ -2,6 +2,7 @@ const path = require('path');
 
 // plugins
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
     entry: {
@@ -21,6 +22,7 @@ const config = {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
+
     module: {
         rules: [
             {
@@ -76,5 +78,11 @@ module.exports = (env, argv) => {
         config.entry.test = './test/main.js';
     }
 
+    if (argv.mode === 'production') {
+        config.optimization = {
+            minimize: true,
+            minimizer: [new TerserPlugin()],
+        };
+    }
     return config;
 };
