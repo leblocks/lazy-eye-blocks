@@ -6,11 +6,19 @@
 //       XX   XX    XX  XX   XX   X
 //                                x
 //
+export const T_SHAPE = 'T';
+export const J_SHAPE = 'J';
+export const L_SHAPE = 'L';
+export const S_SHAPE = 'S';
+export const Z_SHAPE = 'Z';
+export const O_SHAPE = 'O';
+export const I_SHAPE = 'I';
+
 //  this array is being used in random shape generation
 //  in order to generate random type we need to choose
 //  random element from that array:
 //  var randomShapeType = SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
-export const SHAPE_TYPES = ['T', 'J', 'L', 'S', 'Z', 'O', 'I'];
+export const SHAPE_TYPES = [T_SHAPE, J_SHAPE, L_SHAPE, S_SHAPE, Z_SHAPE, O_SHAPE, I_SHAPE];
 
 // this object stores possible shape forms for rotation function
 // for example, 'T' shape has possible forms:
