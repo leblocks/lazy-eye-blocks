@@ -45,6 +45,67 @@ function drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, width, he
 }
 
 /**
+ * Draws falling shape on a canvas.
+ * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
+ * @param {string} color Color of the shape.
+ * @param {Object} shape Shape descriptor object with information about current shape,
+ * see createShape()
+ * @param {number} xMargin X margin between canvas left border and content to draw.
+ * @param {number} yMargin Y margin between canvas top border and content to draw.
+ * @param {number} gridFacetSize Size of the grid.
+ */
+function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
+    const {
+        // current shape position
+        x,
+        y,
+        possibleShapeForms,
+        currentShapeFormIndex,
+    } = shape;
+
+    // set color of the shape to draw
+    ctx.fillStyle = color;
+
+    // possibleShapeForms is an array with shape coordinate offsets
+    // form is a number of current set of offsets
+    // for example, assume that shape type is 'T' and form = 0, x = 4, y = 2
+    // that means that possibleShapeForms[currentShapeFormIndex] = [[0,0], [-1,0], [1,0], [0,-1]]
+    // (look at SHAPE_FORMS)
+    // so on the 'offset matrix' it looks like this:
+    //
+    //     +-----+-----+-----+
+    //     |     |-1, 0|     |
+    //     +-----+-----+-----+
+    //     | 0,-1| 0, 0|     |
+    //     +-----+-----+-----+
+    //     |     | 1, 0|     |
+    //     +-----+-----+-----+
+    //
+    // and in order to get actual coordinates of it cells on a board array
+    // we need to add x and y to each cell of shape:
+    //
+    //     +-----+-----+-----+
+    //     |     | 3, 2|     |
+    //     +-----+-----+-----+
+    //     | 4, 1| 4, 2|     |
+    //     +-----+-----+-----+
+    //     |     | 5, 2|     |
+    //     +-----+-----+-----+
+    //
+    // possibleShapeForms[currentShapeFormIndex][i][0] - x part of the i'th offset
+    // possibleShapeForms[currentShapeFormIndex][i][1] - y part of the i'th offset
+    // loop through all possible offsets for current form (rotation)
+    //  calculate their coordinates and draw them on a canvas
+    for (let k = 0; k < possibleShapeForms[currentShapeFormIndex].length; k += 1) {
+        // again we add +1 to d in order to get "seamless" picture on the screen
+        const actualX = x + possibleShapeForms[currentShapeFormIndex][k][0];
+        const actualY = y + possibleShapeForms[currentShapeFormIndex][k][1];
+        ctx.fillRect(xMargin + actualX * gridFacetSize,
+            yMargin + actualY * gridFacetSize, gridFacetSize + 1, gridFacetSize + 1);
+    }
+}
+
+/**
  * Draws game board.
  * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
  * @param {number[][]} 2d array with numbers that define game board.
@@ -100,6 +161,7 @@ function draw() {
         gameBoard,
         gridEnabled,
         leftEyeColor,
+        currentShape,
         rightEyeColor,
         gridFacetSize,
         gameCanvasWrapper,
@@ -118,8 +180,11 @@ function draw() {
     // clear canvas before next draw iteration
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
     drawBoard(ctx, gameBoard, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
+
+    if (currentShape) {
+        drawShape(ctx, leftEyeColor, currentShape, xMargin, yMargin, gridFacetSize);
+    }
 
     if (gridEnabled) {
         drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, canvas.width, canvas.height);

@@ -1,4 +1,5 @@
 import { setStateAndIgnoreObservers } from '../../state';
+import { createEmptyBoard, createRandomShape } from '../utils';
 
 import {
     cancelAnimationFrame,
@@ -14,7 +15,7 @@ import {
     BLOCKS_GAME_INITIAL,
     BLOCKS_GAME_OVER,
 } from '../../state/consts';
-import { createEmptyBoard } from '../utils';
+
 
 /**
  * This method is being called on each state update.
@@ -35,7 +36,10 @@ const gameStateMachine = (state) => {
     switch (gameState) {
     case BLOCKS_GAME_INITIAL:
         // initialize game
-        setStateAndIgnoreObservers({ gameBoard: createEmptyBoard(rows, columns) });
+        setStateAndIgnoreObservers({
+            nextShape: createRandomShape(columns),
+            gameBoard: createEmptyBoard(columns, rows),
+        });
         break;
     case BLOCKS_GAME_PLAYING:
         // start animations and logic loops

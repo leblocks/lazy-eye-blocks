@@ -11,7 +11,6 @@ import { EMPTY_BOARD_CELL } from './consts';
 export default function (shape, board) {
     // get number of columns
     const cols = board[0].length;
-
     // get number of rows
     const rows = board.length;
 

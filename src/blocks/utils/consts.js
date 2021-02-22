@@ -17,7 +17,7 @@ export const I_SHAPE = 'I';
 //  this array is being used in random shape generation
 //  in order to generate random type we need to choose
 //  random element from that array:
-//  var randomShapeType = SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
+//  const randomShapeType = SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
 export const SHAPE_TYPES = [T_SHAPE, J_SHAPE, L_SHAPE, S_SHAPE, Z_SHAPE, O_SHAPE, I_SHAPE];
 
 // this object stores possible shape forms for rotation function
