@@ -72,3 +72,54 @@ export const setGameBoardGridSizeAndMargins = () => {
         gridFacetSize,
     });
 };
+
+/**
+ * // TODO write tests!
+ * Calculates coordinates of shape cells on a board.
+ * @param {Object} shape Shape object representation.
+ * @param {number[][]} board 2d array that represents game board.
+ * @return {number[][]} Arrays of shape cells coordinates on a board.
+ * Relatively to left upper corner of the board.
+ */
+export const getShapeCoordinatesOnBoard = (shape) => {
+    // possibleShapeForms is an array with shape coordinate offsets
+    // form is a number of current set of offsets
+    // for example, assume that shape type is 'T' and form = 0, x = 4, y = 2
+    // that means that possibleShapeForms[currentShapeFormIndex] = [[0,0], [-1,0], [1,0], [0,-1]]
+    // (look at SHAPE_FORMS)
+    // so on the 'offset matrix' it looks like this:
+    //
+    //     +-----+-----+-----+
+    //     |     |-1, 0|     |
+    //     +-----+-----+-----+
+    //     | 0,-1| 0, 0|     |
+    //     +-----+-----+-----+
+    //     |     | 1, 0|     |
+    //     +-----+-----+-----+
+    //
+    // and in order to get actual coordinates of it cells on a board array
+    // we need to add x and y to each cell of shape:
+    //
+    //     +-----+-----+-----+
+    //     |     | 3, 2|     |
+    //     +-----+-----+-----+
+    //     | 4, 1| 4, 2|     |
+    //     +-----+-----+-----+
+    //     |     | 5, 2|     |
+    //     +-----+-----+-----+
+    //
+    // possibleShapeForms[currentShapeFormIndex][i][0] - x part of the i'th offset
+    // possibleShapeForms[currentShapeFormIndex][i][1] - y part of the i'th offset
+    // loop through all possible offsets for current form (rotation)
+    //  calculate their coordinates and draw them on a canvas
+    const {
+        // current shape position
+        x,
+        y,
+        possibleShapeForms,
+        currentShapeFormIndex,
+    } = shape;
+
+    return possibleShapeForms[currentShapeFormIndex]
+        .map((shapeCell) => [x + shapeCell[0], y + shapeCell[1]]);
+};

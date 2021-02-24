@@ -1,6 +1,6 @@
 import { getState, setStateAndIgnoreObservers } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
-import { calculateCanvasDimensions, setGameBoardGridSizeAndMargins } from '../utils';
+import { calculateCanvasDimensions, getShapeCoordinatesOnBoard, setGameBoardGridSizeAndMargins } from '../utils';
 import { LEFT_EYE_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
 
@@ -55,54 +55,14 @@ function drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, width, he
  * @param {number} gridFacetSize Size of the grid.
  */
 function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
-    const {
-        // current shape position
-        x,
-        y,
-        possibleShapeForms,
-        currentShapeFormIndex,
-    } = shape;
-
     // set color of the shape to draw
     ctx.fillStyle = color;
-
-    // possibleShapeForms is an array with shape coordinate offsets
-    // form is a number of current set of offsets
-    // for example, assume that shape type is 'T' and form = 0, x = 4, y = 2
-    // that means that possibleShapeForms[currentShapeFormIndex] = [[0,0], [-1,0], [1,0], [0,-1]]
-    // (look at SHAPE_FORMS)
-    // so on the 'offset matrix' it looks like this:
-    //
-    //     +-----+-----+-----+
-    //     |     |-1, 0|     |
-    //     +-----+-----+-----+
-    //     | 0,-1| 0, 0|     |
-    //     +-----+-----+-----+
-    //     |     | 1, 0|     |
-    //     +-----+-----+-----+
-    //
-    // and in order to get actual coordinates of it cells on a board array
-    // we need to add x and y to each cell of shape:
-    //
-    //     +-----+-----+-----+
-    //     |     | 3, 2|     |
-    //     +-----+-----+-----+
-    //     | 4, 1| 4, 2|     |
-    //     +-----+-----+-----+
-    //     |     | 5, 2|     |
-    //     +-----+-----+-----+
-    //
-    // possibleShapeForms[currentShapeFormIndex][i][0] - x part of the i'th offset
-    // possibleShapeForms[currentShapeFormIndex][i][1] - y part of the i'th offset
-    // loop through all possible offsets for current form (rotation)
-    //  calculate their coordinates and draw them on a canvas
-    for (let k = 0; k < possibleShapeForms[currentShapeFormIndex].length; k += 1) {
-        // again we add +1 to d in order to get "seamless" picture on the screen
-        const actualX = x + possibleShapeForms[currentShapeFormIndex][k][0];
-        const actualY = y + possibleShapeForms[currentShapeFormIndex][k][1];
-        ctx.fillRect(xMargin + actualX * gridFacetSize,
-            yMargin + actualY * gridFacetSize, gridFacetSize + 1, gridFacetSize + 1);
-    }
+    getShapeCoordinatesOnBoard(shape)
+        .forEach(([x, y]) => {
+            const actualX = xMargin + x * gridFacetSize;
+            const actualY = yMargin + y * gridFacetSize;
+            ctx.fillRect(actualX, actualY, gridFacetSize + 1, gridFacetSize + 1);
+        });
 }
 
 /**

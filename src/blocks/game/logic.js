@@ -9,8 +9,6 @@ import { createRandomShape } from '../utils';
 function logic() {
     const {
         columns,
-        nextShape,
-        currentShape,
         gameLogicTicksInterval,
     } = getState();
     // gameLogic calls itself via requestAnimationFrame AND setTimeout function
@@ -22,7 +20,12 @@ function logic() {
     const gameLogicTimeoutId = setTimeout(() => {
         // we have to check against most relevant game state value
         // that is why here is call to getState
-        const { gameState } = getState();
+        const {
+            gameState,
+            nextShape,
+            currentShape,
+        } = getState();
+
         if (gameState !== BLOCKS_GAME_PLAYING) {
             return;
         }
@@ -32,6 +35,8 @@ function logic() {
                 currentShape: nextShape,
                 nextShape: createRandomShape(columns),
             });
+            // skip whole iteration?
+            return;
         }
 
         // call itself recursively and update logic and timeout id

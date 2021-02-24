@@ -1,3 +1,4 @@
+import { getShapeCoordinatesOnBoard } from './board-utils';
 import { EMPTY_BOARD_CELL } from './consts';
 
 /**
@@ -14,25 +15,35 @@ export default function (shape, board) {
     // get number of rows
     const rows = board.length;
 
-    const { possibleShapeForms, currentShapeFormIndex } = shape;
-    const currentForm = possibleShapeForms[currentShapeFormIndex];
-    // loop through coordinates of the shape
-    for (let i = 0; i < currentForm.length; i += 1) {
-        // for coordinates calculation explanation
-        // check drawShape() function
-        const x = shape.x + currentForm[i][0];
-        const y = shape.y + currentForm[i][1];
 
-        // check for collision with walls
-        if (x > cols - 1 || x < 0 || y > rows - 1) {
-            return true;
-        }
+    return getShapeCoordinatesOnBoard(shape)
+        .reduce(([x, y], acc) => {
+            if (x > cols - 1 || x < 0 || y > rows - 1) {
+                return true || acc;
+            }
 
-        // check for collision with ground blocks
-        if (y > 0 && board[y][x] !== EMPTY_BOARD_CELL) {
-            return true;
-        }
-    }
-    // if nothing collided return false
-    return false;
+            // check for collision with ground blocks
+            if (y > 0 && board[y][x] !== EMPTY_BOARD_CELL) {
+                return true || acc;
+            }
+            return acc || false;
+        }, false);
+
+    // // TODO rewrite with reduce
+    // const shapeCellCoords = getShapeCoordinatesOnBoard(shape);
+    // for (let i = 0; i < shapeCellCoords.length; i += 1) {
+    //     const [x, y] = shapeCellCoords[i];
+    //     // check for collision with walls
+    //     if (x > cols - 1 || x < 0 || y > rows - 1) {
+    //         return true;
+    //     }
+
+    //     // check for collision with ground blocks
+    //     if (y > 0 && board[y][x] !== EMPTY_BOARD_CELL) {
+    //         return true;
+    //     }
+    // }
+
+    // // if nothing collided return false
+    // return false;
 }
