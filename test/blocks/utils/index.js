@@ -3,8 +3,14 @@ import {
     resizeGameBoard,
     createEmptyBoard,
     checkCollisions,
+    getShapeCoordinatesOnBoard,
 } from '../../../src/blocks/utils';
-import { L_SHAPE, SHAPE_FORMS, T_SHAPE } from '../../../src/blocks/utils/consts';
+import {
+    L_SHAPE,
+    T_SHAPE,
+    O_SHAPE,
+    SHAPE_FORMS,
+} from '../../../src/blocks/utils/consts';
 
 // chai is loaded in test.html
 const { expect } = chai;
@@ -100,5 +106,16 @@ describe('Blocks utility method tests', () => {
         shape.x = 2;
         shape.y = 5;
         expect(checkCollisions(shape, board)).to.eq(false, 'no collisions');
+    });
+
+    it('get shape coordinates on board', () => {
+        const shape = createShape(O_SHAPE, 7);
+        const coords = getShapeCoordinatesOnBoard(shape);
+
+        const expectedCoords = [
+            [2, 1], [2, 2], [3, 1], [3, 2],
+        ];
+
+        expect(coords).to.deep.eq(expectedCoords);
     });
 });

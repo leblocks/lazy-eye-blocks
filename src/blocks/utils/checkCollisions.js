@@ -15,35 +15,20 @@ export default function (shape, board) {
     // get number of rows
     const rows = board.length;
 
-
     return getShapeCoordinatesOnBoard(shape)
-        .reduce(([x, y], acc) => {
+        // we collide even on one cell collision
+        .some(([x, y]) => {
+            // check for collision with walls
             if (x > cols - 1 || x < 0 || y > rows - 1) {
-                return true || acc;
+                return true;
             }
 
             // check for collision with ground blocks
             if (y > 0 && board[y][x] !== EMPTY_BOARD_CELL) {
-                return true || acc;
+                return true;
             }
-            return acc || false;
-        }, false);
 
-    // // TODO rewrite with reduce
-    // const shapeCellCoords = getShapeCoordinatesOnBoard(shape);
-    // for (let i = 0; i < shapeCellCoords.length; i += 1) {
-    //     const [x, y] = shapeCellCoords[i];
-    //     // check for collision with walls
-    //     if (x > cols - 1 || x < 0 || y > rows - 1) {
-    //         return true;
-    //     }
-
-    //     // check for collision with ground blocks
-    //     if (y > 0 && board[y][x] !== EMPTY_BOARD_CELL) {
-    //         return true;
-    //     }
-    // }
-
-    // // if nothing collided return false
-    // return false;
+            // no collisions at all
+            return false;
+        });
 }

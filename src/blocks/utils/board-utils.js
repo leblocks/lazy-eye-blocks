@@ -74,7 +74,6 @@ export const setGameBoardGridSizeAndMargins = () => {
 };
 
 /**
- * // TODO write tests!
  * Calculates coordinates of shape cells on a board.
  * @param {Object} shape Shape object representation.
  * @param {number[][]} board 2d array that represents game board.
