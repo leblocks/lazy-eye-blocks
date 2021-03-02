@@ -38,6 +38,7 @@ const gameStateMachine = (state) => {
         // initialize game
         setStateAndIgnoreObservers({
             nextShape: createRandomShape(columns),
+            currentShape: createRandomShape(columns),
             gameBoard: createEmptyBoard(columns, rows),
         });
         break;

@@ -1,10 +1,12 @@
 import {
     createShape,
+    getRowsToRemove,
     resizeGameBoard,
-    createEmptyBoard,
     checkCollisions,
+    createEmptyBoard,
     getShapeCoordinatesOnBoard,
 } from '../../../src/blocks/utils';
+
 import {
     L_SHAPE,
     T_SHAPE,
@@ -117,5 +119,33 @@ describe('Blocks utility method tests', () => {
         ];
 
         expect(coords).to.deep.eq(expectedCoords);
+    });
+
+    it('get rows to remove empty board', () => {
+        const board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ];
+        expect(getRowsToRemove(board)).to.deep.eq([]);
+    });
+
+    it('get rows to remove filled board', () => {
+        const board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1],
+        ];
+        expect(getRowsToRemove(board)).to.deep.eq([1, 7, 8]);
     });
 });

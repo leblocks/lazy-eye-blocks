@@ -122,3 +122,18 @@ export const getShapeCoordinatesOnBoard = (shape) => {
     return possibleShapeForms[currentShapeFormIndex]
         .map((shapeCell) => [x + shapeCell[0], y + shapeCell[1]]);
 };
+
+/**
+ * Check if there are lines to clear on a board.
+ * @param {number[][]} board 2d array which represents board.
+ * @return {number[]} Array with row numbers that should be removed.
+ */
+export const getRowsToRemove = (board) => {
+    const rowsToClear = [];
+    for (let i = 0; i < board.length; i += 1) {
+        if (board[i].every((cell) => cell !== EMPTY_BOARD_CELL)) {
+            rowsToClear.push(i);
+        }
+    }
+    return rowsToClear;
+};
