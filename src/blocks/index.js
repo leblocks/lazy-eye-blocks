@@ -4,6 +4,7 @@ import {
 } from '../web-api-polyfills';
 
 import {
+    createScoreInfo,
     createBackButton,
     createFireButton,
     createGameCanvas,
@@ -21,6 +22,7 @@ export default function () {
     const firstRowOfButtons = createElement('div');
     getClassList(firstRowOfButtons).add('action-button-row');
     firstRowOfButtons.appendChild(createRotateButton());
+    firstRowOfButtons.appendChild(createScoreInfo());
     firstRowOfButtons.appendChild(createFireButton());
 
     const secondRowOfButtons = createElement('div');

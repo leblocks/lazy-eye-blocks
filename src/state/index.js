@@ -8,6 +8,9 @@ const defaultState = {
     gridEnabled: true,
     score: 0,
     speedLevel: 1,
+    speedLevelIncrementStep: 5,
+    linesCleared: 0,
+
     rows: 12,
     columns: 10,
 

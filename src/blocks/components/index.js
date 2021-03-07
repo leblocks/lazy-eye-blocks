@@ -5,3 +5,4 @@ export { default as createMoveRightButton } from './move-right-button';
 export { default as createMoveLeftButton } from './move-left-button';
 export { default as createBackButton } from './back-button';
 export { default as createGameCanvas } from './game-canvas';
+export { default as createScoreInfo } from './score-info-button';

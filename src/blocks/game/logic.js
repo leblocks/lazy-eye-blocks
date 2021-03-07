@@ -1,7 +1,14 @@
 import { getState, setStateAndIgnoreObservers } from '../../state';
 import { BLOCKS_GAME_PLAYING } from '../../state/consts';
 import { requestAnimationFrame } from '../../web-api-polyfills';
-import { checkCollisions, createRandomShape, getShapeCoordinatesOnBoard } from '../utils';
+
+import {
+    clearBoard,
+    checkCollisions,
+    createRandomShape,
+    getShapeCoordinatesOnBoard,
+} from '../utils';
+
 import { RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
 /**
@@ -21,11 +28,13 @@ function logic() {
         // we have to check against most relevant game state value
         // that is why here is call to getState
         const {
+            score,
             columns,
             gameState,
             gameBoard,
             nextShape,
             currentShape,
+            linesCleared,
         } = getState();
 
         if (gameState !== BLOCKS_GAME_PLAYING) {
@@ -44,11 +53,19 @@ function logic() {
                     gameBoard[y][x] = RIGHT_EYE_BOARD_CELL;
                 });
 
-            // check board state
-            // clear lines if needed
 
-            // update shapes
+            // clear lines if needed
+            // TODO update score
+            const clearedLines = clearBoard(gameBoard);
+
+            // update stats
             setStateAndIgnoreObservers({
+                // TODO linesCleared and score updates are rare -> must inform observers
+                // about those
+                gameLogicTicksInterval: gameLogicTicksInterval - 100,
+                linesCleared: linesCleared + clearedLines,
+                // if 4 lines were cleared in a row -> give tetris bonus
+                score: score + (clearedLines === 4) ? 10 : clearedLines,
                 currentShape: nextShape,
                 nextShape: createRandomShape(columns),
             });
