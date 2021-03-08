@@ -1,3 +1,4 @@
+export * from './game-utils';
 export * from './board-utils';
 export * from './shape-movement-utils';
 export * from './shape-creation-utils';

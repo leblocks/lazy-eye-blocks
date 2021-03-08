@@ -1,6 +1,7 @@
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
 import { setState, getState, addStateObserver } from '../../state';
 import { createElement } from '../../web-api-polyfills';
+import { getGameTicksInterval } from '../../blocks/utils';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 import { goto } from '../../utils';
@@ -11,7 +12,12 @@ const changeSpeedLevel = (delta) => {
     if (speedLevel + delta < 0) {
         return;
     }
-    setState({ speedLevel: speedLevel + delta });
+
+    const newSpeedLevel = speedLevel + delta;
+    setState({
+        speedLevel: newSpeedLevel,
+        gameLogicTicksInterval: getGameTicksInterval(newSpeedLevel),
+    });
 };
 
 const speedLevelIndicator = () => {

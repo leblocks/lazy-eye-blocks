@@ -1,4 +1,5 @@
-import { getState, setStateSilently } from '../../state';
+import { TETRIS_BONUS } from '../../config';
+import { getState, setState, setStateSilently } from '../../state';
 import { BLOCKS_GAME_PLAYING } from '../../state/consts';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 
@@ -55,22 +56,30 @@ function logic() {
 
 
             // clear lines if needed
-            // TODO update score
-            const clearedLines = clearBoard(gameBoard);
+            const linesClearedInACurrentTick = clearBoard(gameBoard);
+            if (linesClearedInACurrentTick > 0) {
+                // check total lines cleared -> adjust speedLevel
+                const newScore = score + (linesClearedInACurrentTick === 4)
+                    ? TETRIS_BONUS : linesClearedInACurrentTick;
 
-            // update stats
+                const totalClearedLines = linesCleared + linesClearedInACurrentTick;
+
+                setStateSilently({
+                    // update speed level also
+                    linesCleared: totalClearedLines,
+                });
+
+                // notify score observer
+                setState({ score: newScore });
+            }
+
+
+            // spawn new shape
             setStateSilently({
-                // TODO linesCleared and score updates are rare -> must inform observers
-                // about those
-                gameLogicTicksInterval: gameLogicTicksInterval - 100,
-                linesCleared: linesCleared + clearedLines,
-                // if 4 lines were cleared in a row -> give tetris bonus
-                score: score + (clearedLines === 4) ? 10 : clearedLines,
                 currentShape: nextShape,
                 nextShape: createRandomShape(columns),
             });
         }
-
         // call itself recursively and update logic and timeout id
         setStateSilently({
             gameLogicTimeoutId,

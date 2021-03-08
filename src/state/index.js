@@ -7,8 +7,7 @@ const defaultState = {
     rightEyeColor: 'rgb(0,0,255)',
     gridEnabled: true,
     score: 0,
-    speedLevel: 1,
-    speedLevelIncrementStep: 5,
+    speedLevel: 0,
     linesCleared: 0,
 
     rows: 12,

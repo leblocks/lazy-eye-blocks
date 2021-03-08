@@ -3,11 +3,12 @@ import { requestAnimationFrame } from '../../web-api-polyfills';
 import { calculateCanvasDimensions, getShapeCoordinatesOnBoard, setGameBoardGridSizeAndMargins } from '../utils';
 import { LEFT_EYE_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
+import {
+    GRID_COLOR,
+    GRID_WIDTH,
+    BACKGROUND_COLOR,
+} from '../../config';
 
-const GRID_COLOR = '#ffffff';
-const GRID_WIDTH = 1;
-
-const BACKGROUND_COLOR = '#000000';
 
 /**
  * Draws grid on a canvas.
