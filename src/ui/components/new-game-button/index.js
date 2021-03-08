@@ -15,7 +15,7 @@ export default function () {
     const button = createMenuItem('New Game', onClick);
 
     // handle state updates
-    addStateObserver(({ gameState }) => {
+    addStateObserver(['gameState'], ({ gameState }) => {
         if (button) {
             button.innerText = `${gameState === BLOCKS_GAME_INITIAL ? 'New' : 'Continue'} game`;
         }

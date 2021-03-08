@@ -10,7 +10,7 @@ export default function () {
     const button = createMenuItem('Enable grid', onClick);
 
     // handle state updates
-    addStateObserver(({ gridEnabled }) => {
+    addStateObserver(['gridEnabled'], ({ gridEnabled }) => {
         if (button) {
             button.innerText = `${gridEnabled ? 'Disable' : 'Enable'} grid`;
         }

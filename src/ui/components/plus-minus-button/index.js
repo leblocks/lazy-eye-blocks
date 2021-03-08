@@ -20,7 +20,9 @@ export default function (onPlusClick, onMinusClick, onIndicatorUpdate) {
     indicator.innerText = 0;
 
     // bind state updates
-    addStateObserver((state) => {
+    // we don't know for sure on which properties it should be updated
+    // so will sign it on all updates
+    addStateObserver([], (state) => {
         const valueToSet = onIndicatorUpdate(state);
         if (indicator) {
             indicator.innerText = valueToSet;

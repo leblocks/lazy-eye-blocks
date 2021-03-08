@@ -2,9 +2,9 @@ import {
     setState,
     getState,
     resetState,
+    setStateSilently,
     addStateObserver,
     removeStateObservers,
-    setStateAndIgnoreObservers,
 } from '../../src/state';
 
 // chai is loaded in test.html
@@ -37,7 +37,7 @@ describe('State module tests', () => {
             throw new Error('should not happen');
         };
 
-        addStateObserver(throwingObserver);
+        addStateObserver([], throwingObserver);
         removeStateObservers();
 
         expect(() => setState({ score: 1 })).to.not.throw();
@@ -72,29 +72,65 @@ describe('State module tests', () => {
     });
 
     it('set state with observers', () => {
-        const observer = { variable: 10 };
-        addStateObserver(({ score }) => { observer.variable = score; });
-        expect(observer.variable).to.eq(10);
+        const observer = { callCount: 0 };
+        // disabled for this case of the unit test
+        // eslint-disable-next-line no-unused-vars
+        addStateObserver(['score'], (state) => { observer.callCount += 1; });
+        expect(observer.callCount).to.eq(0);
         setState({ score: 99 });
-        expect(observer.variable).to.eq(99);
+        expect(observer.callCount).to.eq(1);
     });
 
+    it('set state with observers listening on different property', () => {
+        const observer = { callCount: 0 };
+        // register observer on 'score' property
+        // disabled for this case of the unit test
+        // eslint-disable-next-line no-unused-vars
+        addStateObserver(['score'], ({ score }) => { observer.callCount += 1; });
+        setState({ speedLevel: 10 });
+        // assert that observer were not called
+        expect(observer.callCount).to.eq(0);
+    });
+
+    it('set state with observers on 2 properties', () => {
+        const observer = { callCount: 0 };
+        // register observer on 'score' and 'speedLevel' property
+        // disabled for this case of the unit test
+        // eslint-disable-next-line no-unused-vars
+        addStateObserver(['score', 'speedLevel'], ({ score }) => { observer.callCount += 1; });
+        setState({ speedLevel: 10 }); // should notify
+        setState({ score: 122 }); // should notify
+        setState({ leftEyeColor: 'red' }); // must not notify
+        expect(observer.callCount).to.eq(2);
+    });
+
+
     it('set state and don\'t notify observers', () => {
-        const observer = { variable: 10 };
-        addStateObserver(({ score }) => { observer.variable = score; });
-        expect(observer.variable).to.eq(10);
-        setStateAndIgnoreObservers({ score: 99 });
-        expect(observer.variable).to.eq(10);
+        const observer = { callCount: 0 };
+        // register observer on 'score' property
+        // disabled for this case of the unit test
+        // eslint-disable-next-line no-unused-vars
+        addStateObserver(['score'], ({ score }) => { observer.callCount += 1; });
+        expect(observer.callCount).to.eq(0);
+        setStateSilently({ score: 99 });
+        expect(observer.callCount).to.eq(0);
     });
 
     it('set state with observers async', (done) => {
         // this observer will be invoked by setState function
-        addStateObserver(({ score }) => {
+        addStateObserver(['score'], ({ score }) => {
             expect(score).to.eq(234);
             done();
         });
 
         // update state in an async way
         setTimeout(() => setState({ score: 234 }), 50);
+    });
+
+    it('add observer on wrong property', () => {
+        const mustThrow = () => {
+            addStateObserver(['non_existing_property'], () => 'dumb string');
+        };
+        expect(mustThrow).to.throw('non_existing_property is not key in the state.');
     });
 });

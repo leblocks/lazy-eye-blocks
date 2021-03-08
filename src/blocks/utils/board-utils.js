@@ -1,5 +1,5 @@
 import { EMPTY_BOARD_CELL } from './consts';
-import { getState, setStateAndIgnoreObservers } from '../../state';
+import { getState, setStateSilently } from '../../state';
 
 /**
  * Creates empty game board.
@@ -66,7 +66,7 @@ export const setGameBoardGridSizeAndMargins = () => {
     const xMargin = (width - gridFacetSize * columns) / 2;
     const yMargin = (height - gridFacetSize * rows) / 2;
 
-    setStateAndIgnoreObservers({
+    setStateSilently({
         yMargin,
         xMargin,
         gridFacetSize,

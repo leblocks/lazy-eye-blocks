@@ -1,4 +1,4 @@
-import { getState, setStateAndIgnoreObservers } from '../../state';
+import { getState, setStateSilently } from '../../state';
 import { BLOCKS_GAME_PLAYING } from '../../state/consts';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 
@@ -59,7 +59,7 @@ function logic() {
             const clearedLines = clearBoard(gameBoard);
 
             // update stats
-            setStateAndIgnoreObservers({
+            setStateSilently({
                 // TODO linesCleared and score updates are rare -> must inform observers
                 // about those
                 gameLogicTicksInterval: gameLogicTicksInterval - 100,
@@ -72,7 +72,7 @@ function logic() {
         }
 
         // call itself recursively and update logic and timeout id
-        setStateAndIgnoreObservers({
+        setStateSilently({
             gameLogicTimeoutId,
             gameLogicId: requestAnimationFrame(logic),
         });

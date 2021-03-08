@@ -1,4 +1,4 @@
-import { getState, setStateAndIgnoreObservers } from '../../state';
+import { getState, setStateSilently } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 import { calculateCanvasDimensions, getShapeCoordinatesOnBoard, setGameBoardGridSizeAndMargins } from '../utils';
 import { LEFT_EYE_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
@@ -151,7 +151,7 @@ function draw() {
     }
 
     // call itself in an animation loop and preserve new animation id
-    setStateAndIgnoreObservers({ animationId: requestAnimationFrame(draw) });
+    setStateSilently({ animationId: requestAnimationFrame(draw) });
 }
 
 export default draw;

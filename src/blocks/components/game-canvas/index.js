@@ -1,4 +1,4 @@
-import { setStateAndIgnoreObservers } from '../../../state';
+import { setStateSilently } from '../../../state';
 import { getClassList, createElement } from '../../../web-api-polyfills';
 import { calculateCanvasDimensions, setGameBoardGridSizeAndMargins } from '../../utils';
 
@@ -7,7 +7,7 @@ export default function () {
     getClassList(gameCanvas).add('game-canvas');
 
     // store canvas instance and its context in state
-    setStateAndIgnoreObservers({
+    setStateSilently({
         gameCanvas,
         canvasContext: gameCanvas.getContext('2d'),
     });
@@ -15,7 +15,7 @@ export default function () {
     const wrapper = createElement('div');
     getClassList(wrapper).add('game-canvas-wrapper');
     wrapper.appendChild(gameCanvas);
-    setStateAndIgnoreObservers({ gameCanvasWrapper: wrapper });
+    setStateSilently({ gameCanvasWrapper: wrapper });
 
     // update canvas dimensions on each resize
     window.onresize = () => {

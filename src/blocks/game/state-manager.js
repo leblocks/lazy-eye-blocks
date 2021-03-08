@@ -1,4 +1,4 @@
-import { setStateAndIgnoreObservers } from '../../state';
+import { setStateSilently } from '../../state';
 import { createEmptyBoard, createRandomShape } from '../utils';
 
 import {
@@ -36,7 +36,7 @@ const gameStateMachine = (state) => {
     switch (gameState) {
     case BLOCKS_GAME_INITIAL:
         // initialize game
-        setStateAndIgnoreObservers({
+        setStateSilently({
             nextShape: createRandomShape(columns),
             currentShape: createRandomShape(columns),
             gameBoard: createEmptyBoard(columns, rows),
@@ -52,7 +52,7 @@ const gameStateMachine = (state) => {
         cancelAnimationFrame(gameLogicId);
         clearInterval(gameLogicTimeoutId);
         // game logic loop end is being handled inside logic method itself
-        setStateAndIgnoreObservers({
+        setStateSilently({
             animationId: null,
             gameLogicId: null,
             gameLogicTimeoutId: null,

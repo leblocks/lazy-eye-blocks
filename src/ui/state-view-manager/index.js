@@ -26,8 +26,8 @@ export default function initViewStateManager(initialState, initialMap) {
         }
     };
 
-    // register as state observer
-    addStateObserver(onStateChange);
+    // register as a state observer
+    addStateObserver(['appState'], onStateChange);
     // init first state change and component mount
     setState({ appState: initialState });
 }

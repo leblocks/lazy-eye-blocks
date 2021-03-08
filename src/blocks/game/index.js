@@ -6,5 +6,5 @@ import gameStateMachine from './state-manager';
  * Inits game animation and logic.
  */
 export default function () {
-    addStateObserver((state) => gameStateMachine(state));
+    addStateObserver(['gameState', 'appState'], (state) => gameStateMachine(state));
 }
