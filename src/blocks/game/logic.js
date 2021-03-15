@@ -59,8 +59,8 @@ function logic() {
             const linesClearedInACurrentTick = clearBoard(gameBoard);
             if (linesClearedInACurrentTick > 0) {
                 // check total lines cleared -> adjust speedLevel
-                const newScore = score + (linesClearedInACurrentTick === 4)
-                    ? TETRIS_BONUS : linesClearedInACurrentTick;
+                const newScore = score + ((linesClearedInACurrentTick === 4)
+                    ? TETRIS_BONUS : linesClearedInACurrentTick);
 
                 const totalClearedLines = linesCleared + linesClearedInACurrentTick;
 
