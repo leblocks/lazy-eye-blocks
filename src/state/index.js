@@ -62,8 +62,8 @@ function updateState(stateUpdates, notifyObservers) {
                 callback(state);
             }
         });
+        log(state);
     }
-    log(state);
 }
 
 /**

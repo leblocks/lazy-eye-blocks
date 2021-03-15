@@ -10,4 +10,6 @@ export const TETRIS_BONUS = 10;
 
 export const BACKGROUND_COLOR = '#000000';
 export const GRID_COLOR = '#ffffff';
+export const NEXT_SHAPE_COLOR = '#f5eace';
+export const NEXT_SHAPE_DRAW_SCALE = 0.25;
 export const GRID_WIDTH = 1;

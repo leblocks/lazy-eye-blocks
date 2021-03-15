@@ -7,8 +7,11 @@ import {
     GRID_COLOR,
     GRID_WIDTH,
     BACKGROUND_COLOR,
+    NEXT_SHAPE_COLOR,
+    NEXT_SHAPE_DRAW_SCALE,
 } from '../../config';
 
+const ACTUAL_DRAW_SCALE = 1 / NEXT_SHAPE_DRAW_SCALE;
 
 /**
  * Draws grid on a canvas.
@@ -29,20 +32,36 @@ function drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, width, he
 
     ctx.beginPath();
     // draw vertical lines
-    for (let i = 0; i <= columns; i += 1) {
+    for (let i = 1; i < columns; i += 1) {
         const x = xMargin + i * gridFacetSize;
         ctx.moveTo(x, yMargin);
         ctx.lineTo(x, height - yMargin);
     }
 
     // draw horizontal lines
-    for (let i = rows; i >= 0; i -= 1) {
+    for (let i = rows - 1; i > 0; i -= 1) {
         const y = yMargin + i * gridFacetSize;
         ctx.moveTo(xMargin, y);
         ctx.lineTo(width - xMargin, y);
     }
     ctx.closePath();
     ctx.stroke();
+}
+
+/**
+ * Draws game area border on a canvas.
+ * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
+ * @param {number} columns Number of rows.
+ * @param {number} rows  Number of columns.
+ * @param {number} xMargin X margin between canvas left border and content to draw.
+ * @param {number} yMargin Y margin between canvas top border and content to draw.
+ * @param {number} gridFacetSize Size of the grid.
+ */
+function drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize) {
+    // same as grid style
+    ctx.strokeStyle = GRID_COLOR;
+    ctx.lineWidth = GRID_WIDTH;
+    ctx.strokeRect(xMargin, yMargin, columns * gridFacetSize, rows * gridFacetSize);
 }
 
 /**
@@ -64,6 +83,22 @@ function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
             const actualY = yMargin + y * gridFacetSize;
             ctx.fillRect(actualX, actualY, gridFacetSize + 1, gridFacetSize + 1);
         });
+}
+
+/**
+ * Draws next shape on a canvas.
+ * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
+ * @param {Object} shape Shape descriptor object with information about next shape,
+ * see createShape()
+ * @param {number} xMargin X margin between canvas left border and content to draw.
+ * @param {number} yMargin Y margin between canvas top border and content to draw.
+ * @param {number} gridFacetSize Size of the grid.
+ */
+function drawNextShape(ctx, shape, xMargin, yMargin, gridFacetSize) {
+    ctx.scale(NEXT_SHAPE_DRAW_SCALE, NEXT_SHAPE_DRAW_SCALE);
+    drawShape(ctx, NEXT_SHAPE_COLOR, { ...shape, x: 3, y: 3 },
+        xMargin * ACTUAL_DRAW_SCALE, yMargin * ACTUAL_DRAW_SCALE, gridFacetSize);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 /**
@@ -120,6 +155,7 @@ function draw() {
         yMargin,
         xMargin,
         gameBoard,
+        nextShape,
         gridEnabled,
         leftEyeColor,
         currentShape,
@@ -142,9 +178,14 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawBoard(ctx, gameBoard, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
+    drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize);
 
     if (currentShape) {
         drawShape(ctx, leftEyeColor, currentShape, xMargin, yMargin, gridFacetSize);
+    }
+
+    if (nextShape) {
+        drawNextShape(ctx, nextShape, xMargin, yMargin, gridFacetSize);
     }
 
     if (gridEnabled) {
