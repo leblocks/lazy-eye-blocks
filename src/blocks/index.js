@@ -5,6 +5,7 @@ import {
 
 import {
     createScoreInfo,
+    createLevelInfo,
     createBackButton,
     createFireButton,
     createGameCanvas,
@@ -23,6 +24,7 @@ export default function () {
     getClassList(firstRowOfButtons).add('action-button-row');
     firstRowOfButtons.appendChild(createRotateButton());
     firstRowOfButtons.appendChild(createScoreInfo());
+    firstRowOfButtons.appendChild(createLevelInfo());
     firstRowOfButtons.appendChild(createFireButton());
 
     const secondRowOfButtons = createElement('div');

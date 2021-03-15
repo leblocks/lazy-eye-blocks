@@ -78,12 +78,8 @@ function logic() {
 
                 Object.assign(stateUpdates, { score: newScore });
 
-                setStateSilently({
-                    // update speed level also
-                    linesCleared: totalClearedLines,
-                });
-
-                // notify score observer
+                // update state
+                setStateSilently({ linesCleared: totalClearedLines });
                 setState({ ...stateUpdates });
             }
 
