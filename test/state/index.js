@@ -27,7 +27,7 @@ describe('State module tests', () => {
             speedLevel,
         } = getState();
 
-        expect(speedLevel).to.eq(1);
+        expect(speedLevel).to.eq(0);
         expect(leftEyeColor).to.eq('rgb(255,0,0)');
         expect(rightEyeColor).to.eq('rgb(0,0,255)');
     });
@@ -58,7 +58,7 @@ describe('State module tests', () => {
             rightEyeColor,
         } = getState();
 
-        expect(speedLevel).to.eq(1);
+        expect(speedLevel).to.eq(0);
         expect(leftEyeColor).to.eq('rgb(255,0,0)');
         expect(rightEyeColor).to.eq('rgb(0,0,255)');
     });

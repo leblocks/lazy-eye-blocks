@@ -8,6 +8,8 @@ import {
     checkCollisions,
     createRandomShape,
     getShapeCoordinatesOnBoard,
+    getSpeedLevel,
+    getGameTicksInterval,
 } from '../utils';
 
 import { RIGHT_EYE_BOARD_CELL } from '../utils/consts';
@@ -34,6 +36,7 @@ function logic() {
             gameState,
             gameBoard,
             nextShape,
+            speedLevel,
             currentShape,
             linesCleared,
         } = getState();
@@ -58,11 +61,22 @@ function logic() {
             // clear lines if needed
             const linesClearedInACurrentTick = clearBoard(gameBoard);
             if (linesClearedInACurrentTick > 0) {
+                const stateUpdates = {};
                 // check total lines cleared -> adjust speedLevel
                 const newScore = score + ((linesClearedInACurrentTick === 4)
                     ? TETRIS_BONUS : linesClearedInACurrentTick);
 
                 const totalClearedLines = linesCleared + linesClearedInACurrentTick;
+                const newSpeedLevel = getSpeedLevel(totalClearedLines);
+
+                if (speedLevel !== newSpeedLevel) {
+                    Object.assign(stateUpdates, {
+                        speedLevel: newSpeedLevel,
+                        gameLogicTicksInterval: getGameTicksInterval(newSpeedLevel),
+                    });
+                }
+
+                Object.assign(stateUpdates, { score: newScore });
 
                 setStateSilently({
                     // update speed level also
@@ -70,7 +84,7 @@ function logic() {
                 });
 
                 // notify score observer
-                setState({ score: newScore });
+                setState({ ...stateUpdates });
             }
 
 

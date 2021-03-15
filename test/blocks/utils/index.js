@@ -1,10 +1,11 @@
 import {
+    clearBoard,
     createShape,
     resizeGameBoard,
     checkCollisions,
     createEmptyBoard,
+    getGameTicksInterval,
     getShapeCoordinatesOnBoard,
-    clearBoard,
 } from '../../../src/blocks/utils';
 
 import {
@@ -13,6 +14,7 @@ import {
     O_SHAPE,
     SHAPE_FORMS,
 } from '../../../src/blocks/utils/consts';
+import { DECENT_RATE_DECREMENT_STEP, MINIMUM_DESCENT_RATE } from '../../../src/config';
 
 // chai is loaded in test.html
 const { expect } = chai;
@@ -63,7 +65,7 @@ describe('Blocks utility method tests', () => {
         const shape = createShape(L_SHAPE, 10);
         expect(shape.type).to.eq(L_SHAPE);
         expect(shape.x).to.eq(5);
-        expect(shape.y).to.eq(2);
+        expect(shape.y).to.eq(-4);
         expect(shape.possibleShapeForms).to.deep.eq(SHAPE_FORMS[L_SHAPE]);
     });
 
@@ -112,6 +114,7 @@ describe('Blocks utility method tests', () => {
 
     it('get shape coordinates on board', () => {
         const shape = createShape(O_SHAPE, 7);
+        shape.y = 2;
         const coords = getShapeCoordinatesOnBoard(shape);
 
         const expectedCoords = [
@@ -149,5 +152,15 @@ describe('Blocks utility method tests', () => {
 
         expect(clearBoard(board)).to.eq(3);
         expect(board).to.deep.eq(expected);
+    });
+
+    it('game ticks interval is not going below minimum value', () => {
+        expect(getGameTicksInterval(10000)).to.be.eq(MINIMUM_DESCENT_RATE);
+    });
+
+    it('game ticks interval is decrement by provided value', () => {
+        const levelOneDecrement = getGameTicksInterval(1);
+        const levelTwoDecrement = getGameTicksInterval(2);
+        expect(levelOneDecrement - levelTwoDecrement).to.eq(DECENT_RATE_DECREMENT_STEP);
     });
 });
