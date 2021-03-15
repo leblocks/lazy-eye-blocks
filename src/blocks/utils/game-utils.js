@@ -20,3 +20,12 @@ export const getGameTicksInterval = (speedLevel) => {
  * @return {number} Level of difficulty.
  */
 export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(clearedLinesCount));
+
+
+/**
+ * Calcualtes correct number of lines to clear from provided speed level.
+ *
+ * @param {number} speedLevel Level of difficulty.
+ * @return {number} Number of lines needed to clear for given speed level.
+ */
+export const getNumberOfLinesNeeded = (speedLevel) => speedLevel * speedLevel;

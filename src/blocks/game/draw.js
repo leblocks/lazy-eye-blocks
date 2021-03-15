@@ -9,6 +9,7 @@ import {
     BACKGROUND_COLOR,
     NEXT_SHAPE_COLOR,
     NEXT_SHAPE_DRAW_SCALE,
+    NEXT_LEVEL_INDICATOR_COLOR,
 } from '../../config';
 
 const ACTUAL_DRAW_SCALE = 1 / NEXT_SHAPE_DRAW_SCALE;
@@ -62,6 +63,24 @@ function drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize) {
     ctx.strokeStyle = GRID_COLOR;
     ctx.lineWidth = GRID_WIDTH;
     ctx.strokeRect(xMargin, yMargin, columns * gridFacetSize, rows * gridFacetSize);
+}
+
+/**
+ * Draws game area border on a canvas.
+ * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
+ * @param {number} columns Number of rows.
+ * @param {number} xMargin X margin between canvas left border and content to draw.
+ * @param {number} yMargin Y margin between canvas top border and content to draw.
+ * @param {number} gridFacetSize Size of the grid.
+ * @param {number} currentSpeedLevel Current speed level.
+ * @param {number} linesCleared Number of lines cleared.
+ */
+function drawLevelProgressBar(ctx, columns, xMargin, yMargin, gridFacetSize, 
+    currentSpeedLevel, linesCleared) {
+    // TODO
+    // get number of lines
+    ctx.fillStyle = NEXT_LEVEL_INDICATOR_COLOR;
+    // calculate percentage to fill level inicator
 }
 
 /**
@@ -161,8 +180,10 @@ function draw() {
         xMargin,
         gameBoard,
         nextShape,
+        speedLevel,
         gridEnabled,
         leftEyeColor,
+        linesCleared,
         currentShape,
         rightEyeColor,
         gridFacetSize,
@@ -184,6 +205,7 @@ function draw() {
 
     drawBoard(ctx, gameBoard, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
     drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize);
+    drawLevelProgressBar(ctx, columns, xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
 
     if (currentShape) {
         drawShape(ctx, leftEyeColor, currentShape, xMargin, yMargin, gridFacetSize);
