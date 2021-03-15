@@ -10,8 +10,8 @@ export const createShape = (type, columCount) => ({
     type,
     // sets x - coordinate, new shape must be in the middle of the game field
     x: Math.floor(columCount / 2),
-    // set y - coordinate, new shape must be at the top of game field
-    y: 2,
+    // set y - coordinate, new shape must be out of game field
+    y: -4,
     // sets basic form of the shape, new shape must not be rotated
     currentShapeFormIndex: 0,
     // possible rotations of the shape, see SHAPE_FORMS

@@ -79,6 +79,11 @@ function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
     ctx.fillStyle = color;
     getShapeCoordinatesOnBoard(shape)
         .forEach(([x, y]) => {
+            if (y < 0) {
+                // do not draw shape parts that are not on the board
+                return;
+            }
+
             const actualX = xMargin + x * gridFacetSize;
             const actualY = yMargin + y * gridFacetSize;
             ctx.fillRect(actualX, actualY, gridFacetSize + 1, gridFacetSize + 1);
