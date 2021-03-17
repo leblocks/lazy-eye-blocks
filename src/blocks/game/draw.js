@@ -1,6 +1,11 @@
 import { getState, setStateSilently } from '../../state';
 import { requestAnimationFrame } from '../../web-api-polyfills';
-import { calculateCanvasDimensions, getShapeCoordinatesOnBoard, setGameBoardGridSizeAndMargins } from '../utils';
+import {
+    getNumberOfLinesNeeded,
+    calculateCanvasDimensions,
+    getShapeCoordinatesOnBoard,
+    setGameBoardGridSizeAndMargins,
+} from '../utils';
 import { LEFT_EYE_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
 import {
@@ -9,7 +14,7 @@ import {
     BACKGROUND_COLOR,
     NEXT_SHAPE_COLOR,
     NEXT_SHAPE_DRAW_SCALE,
-    NEXT_LEVEL_INDICATOR_COLOR,
+    PROGRESS_BAR_WIDTH,
 } from '../../config';
 
 const ACTUAL_DRAW_SCALE = 1 / NEXT_SHAPE_DRAW_SCALE;
@@ -69,18 +74,36 @@ function drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize) {
  * Draws game area border on a canvas.
  * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
  * @param {number} columns Number of rows.
+ * @param {number} rows  Number of columns.
  * @param {number} xMargin X margin between canvas left border and content to draw.
  * @param {number} yMargin Y margin between canvas top border and content to draw.
  * @param {number} gridFacetSize Size of the grid.
  * @param {number} currentSpeedLevel Current speed level.
  * @param {number} linesCleared Number of lines cleared.
  */
-function drawLevelProgressBar(ctx, columns, xMargin, yMargin, gridFacetSize, 
-    currentSpeedLevel, linesCleared) {
-    // TODO
-    // get number of lines
-    ctx.fillStyle = NEXT_LEVEL_INDICATOR_COLOR;
-    // calculate percentage to fill level inicator
+function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
+    xMargin, yMargin, gridFacetSize, currentSpeedLevel, linesCleared) {
+    const height = rows * gridFacetSize;
+    const width = columns * gridFacetSize;
+    const completedPart = width
+        - width * (getNumberOfLinesNeeded(currentSpeedLevel) / linesCleared);
+
+    // draw whole progress bar
+    ctx.beginPath();
+    ctx.lineWidth = PROGRESS_BAR_WIDTH;
+    ctx.strokeStyle = leftEyeColor;
+    ctx.moveTo(xMargin, height);
+    ctx.lineTo(xMargin + width, height);
+    ctx.closePath();
+    ctx.stroke();
+
+    // draw completed part only
+    ctx.beginPath();
+    ctx.strokeStyle = rightEyeColor;
+    ctx.moveTo(xMargin, height);
+    ctx.lineTo(xMargin + completedPart, height);
+    ctx.closePath();
+    ctx.stroke();
 }
 
 /**
@@ -205,7 +228,6 @@ function draw() {
 
     drawBoard(ctx, gameBoard, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
     drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize);
-    drawLevelProgressBar(ctx, columns, xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
 
     if (currentShape) {
         drawShape(ctx, leftEyeColor, currentShape, xMargin, yMargin, gridFacetSize);
@@ -218,6 +240,9 @@ function draw() {
     if (gridEnabled) {
         drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, canvas.width, canvas.height);
     }
+
+    drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
+        xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
 
     // call itself in an animation loop and preserve new animation id
     setStateSilently({ animationId: requestAnimationFrame(draw) });
