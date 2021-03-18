@@ -1,5 +1,5 @@
 import { getState, setState } from '../../state';
-import { BLOCKS_STATE } from '../../state/consts';
+import { BLOCKS_GAME_PLAYING, BLOCKS_STATE } from '../../state/consts';
 import {
     fireDown,
     rotateShape,
@@ -31,12 +31,13 @@ const PAUSE_BUTTON_KEY_CODE = 19;
 const keyboardEventListener = (e) => {
     const {
         appState,
+        gameState,
         gameBoard,
         gridEnabled,
         currentShape,
     } = getState();
 
-    if (appState !== BLOCKS_STATE) {
+    if (appState !== BLOCKS_STATE || gameState !== BLOCKS_GAME_PLAYING) {
         // nothing to do here
         return;
     }
