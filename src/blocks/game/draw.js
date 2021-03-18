@@ -92,16 +92,16 @@ function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
     ctx.beginPath();
     ctx.lineWidth = PROGRESS_BAR_WIDTH;
     ctx.strokeStyle = leftEyeColor;
-    ctx.moveTo(xMargin, height);
-    ctx.lineTo(xMargin + width, height);
+    ctx.moveTo(xMargin, yMargin + height);
+    ctx.lineTo(xMargin + width, yMargin + height);
     ctx.closePath();
     ctx.stroke();
 
     // draw completed part only
     ctx.beginPath();
     ctx.strokeStyle = rightEyeColor;
-    ctx.moveTo(xMargin, height);
-    ctx.lineTo(xMargin + completedPart, height);
+    ctx.moveTo(xMargin, yMargin + height);
+    ctx.lineTo(xMargin + completedPart, yMargin + height);
     ctx.closePath();
     ctx.stroke();
 }
