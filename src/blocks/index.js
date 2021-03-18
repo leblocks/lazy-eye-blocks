@@ -12,6 +12,7 @@ import {
     createRotateButton,
     createMoveLeftButton,
     createMoveRightButton,
+    createPlayPauseButton,
 } from './components';
 
 import initGame from './game';
@@ -31,6 +32,7 @@ export default function () {
     getClassList(secondRowOfButtons).add('action-button-row');
     secondRowOfButtons.appendChild(createMoveLeftButton());
     secondRowOfButtons.appendChild(createBackButton());
+    secondRowOfButtons.appendChild(createPlayPauseButton());
     secondRowOfButtons.appendChild(createMoveRightButton());
 
     const container = createElement('div');
