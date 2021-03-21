@@ -5,5 +5,6 @@ export { default as createRotateButton } from './rotate-button';
 export { default as createScoreInfo } from './score-info-button';
 export { default as createLevelInfo } from './level-info-button';
 export { default as createPlayPauseButton } from './pause-button';
+export { default as createRestartGameButton } from './restart-button';
 export { default as createMoveLeftButton } from './move-left-button';
 export { default as createMoveRightButton } from './move-right-button';

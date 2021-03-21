@@ -5,6 +5,8 @@ import {
 } from '../../config';
 
 import {
+    MAIN_MENU_STATE,
+    BLOCKS_GAME_INITIAL,
     BLOCKS_GAME_PAUSE,
     BLOCKS_GAME_PLAYING,
 } from '../../state/consts';
@@ -12,7 +14,11 @@ import {
 import {
     getState,
     setState,
+    setStateSilently,
 } from '../../state';
+
+import { createEmptyBoard } from './board-utils';
+import { createRandomShape } from './shape-creation-utils';
 
 /**
  * Calculates interval duration between game ticks.
@@ -51,6 +57,7 @@ export const getNumberOfLinesNeeded = (speedLevel) => speedLevel * speedLevel;
 export const toggleGamePause = () => {
     const { gameState } = getState();
     switch (gameState) {
+    case BLOCKS_GAME_INITIAL:
     case BLOCKS_GAME_PAUSE:
         setState({ gameState: BLOCKS_GAME_PLAYING });
         break;
@@ -60,4 +67,51 @@ export const toggleGamePause = () => {
     default:
         // do nothing;
     }
+};
+
+/**
+ * Stops game logic and draw loops.
+ */
+export const stopGameTicks = () => {
+    const {
+        animationId,
+        gameLogicId,
+        gameLogicTimeoutId,
+    } = getState();
+
+    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(gameLogicId);
+    clearInterval(gameLogicTimeoutId);
+
+    setStateSilently({
+        animationId: null,
+        gameLogicId: null,
+        gameLogicTimeoutId: null,
+    });
+};
+
+/**
+ * Sets initial stats for a new game.
+ */
+export const initGameStats = () => {
+    const { columns, rows } = getState();
+
+    setStateSilently({
+        score: 0,
+        speedLevel: 0,
+        linesCleared: 0,
+        nextShape: createRandomShape(columns),
+        currentShape: createRandomShape(columns),
+        gameBoard: createEmptyBoard(columns, rows),
+    });
+};
+
+
+/**
+ * Resets game and sets state to show main menu.
+ */
+export const resetGame = () => {
+    stopGameTicks();
+    initGameStats();
+    setState({ appState: MAIN_MENU_STATE, gameState: BLOCKS_GAME_INITIAL });
 };

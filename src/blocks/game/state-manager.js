@@ -1,8 +1,6 @@
-import { setStateSilently } from '../../state';
-import { createEmptyBoard, createRandomShape } from '../utils';
+import { initGameStats, stopGameTicks } from '../utils';
 
 import {
-    cancelAnimationFrame,
     requestAnimationFrame,
 } from '../../web-api-polyfills';
 
@@ -26,19 +24,12 @@ const gameStateMachine = (state) => {
         rows,
         columns,
         gameState,
-        animationId,
-        gameLogicId,
-        gameLogicTimeoutId,
     } = state;
 
     switch (gameState) {
     case BLOCKS_GAME_INITIAL:
         // initialize game
-        setStateSilently({
-            nextShape: createRandomShape(columns),
-            currentShape: createRandomShape(columns),
-            gameBoard: createEmptyBoard(columns, rows),
-        });
+        initGameStats(columns, rows);
         break;
     case BLOCKS_GAME_PLAYING:
         // start animations and logic loops
@@ -46,15 +37,7 @@ const gameStateMachine = (state) => {
         requestAnimationFrame(logic);
         break;
     case BLOCKS_GAME_PAUSE:
-        cancelAnimationFrame(animationId);
-        cancelAnimationFrame(gameLogicId);
-        clearInterval(gameLogicTimeoutId);
-        // game logic loop end is being handled inside logic method itself
-        setStateSilently({
-            animationId: null,
-            gameLogicId: null,
-            gameLogicTimeoutId: null,
-        });
+        stopGameTicks();
         break;
     case BLOCKS_GAME_OVER:
         // TODO handle game over

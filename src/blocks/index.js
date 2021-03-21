@@ -13,6 +13,7 @@ import {
     createMoveLeftButton,
     createMoveRightButton,
     createPlayPauseButton,
+    createRestartGameButton,
 } from './components';
 
 import initGame from './game';
@@ -32,6 +33,7 @@ export default function () {
     getClassList(secondRowOfButtons).add('action-button-row');
     secondRowOfButtons.appendChild(createMoveLeftButton());
     secondRowOfButtons.appendChild(createBackButton());
+    secondRowOfButtons.appendChild(createRestartGameButton());
     secondRowOfButtons.appendChild(createPlayPauseButton());
     secondRowOfButtons.appendChild(createMoveRightButton());
 

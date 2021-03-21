@@ -1,6 +1,6 @@
 import { getState, setState } from '../../state';
 import { BLOCKS_GAME_PLAYING, BLOCKS_STATE } from '../../state/consts';
-import { toggleGamePause } from './game-utils';
+import { resetGame, toggleGamePause } from './game-utils';
 import {
     fireDown,
     rotateShape,
@@ -41,6 +41,7 @@ const keyboardEventListener = (e) => {
     // pressed key code
     const { keyCode } = e;
 
+    // TODO refactor
     // keys allowed in any state
     switch (keyCode) {
     case P_KEY_CODE:
@@ -52,7 +53,7 @@ const keyboardEventListener = (e) => {
         break;
     case ESC_BUTTON_KEY_CODE:
     case Q_KEY_CODE:
-        // TODO implement exit to menu
+        resetGame();
         break;
     default:
         // do nothing

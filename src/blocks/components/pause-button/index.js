@@ -1,13 +1,17 @@
 import { addStateObserver, getState } from '../../../state';
-import { BLOCKS_GAME_PAUSE, BLOCKS_GAME_PLAYING } from '../../../state/consts';
+import { BLOCKS_GAME_PAUSE, BLOCKS_GAME_INITIAL, BLOCKS_GAME_PLAYING } from '../../../state/consts';
 import { toggleGamePause } from '../../utils';
 import createActionButton from '../action-button';
 
 const getButtonTitle = (gameState) => {
-    if (gameState === BLOCKS_GAME_PLAYING) {
+    switch (gameState) {
+    case BLOCKS_GAME_PLAYING:
         return 'pause';
-    } if (gameState === BLOCKS_GAME_PAUSE) {
+    case BLOCKS_GAME_INITIAL:
+    case BLOCKS_GAME_PAUSE:
         return 'play';
+    default:
+            // do nothing
     }
     return null;
 };
