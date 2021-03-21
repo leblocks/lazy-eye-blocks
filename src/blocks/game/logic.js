@@ -1,6 +1,6 @@
 import { TETRIS_BONUS } from '../../config';
 import { getState, setState, setStateSilently } from '../../state';
-import { BLOCKS_GAME_PLAYING } from '../../state/consts';
+import { BLOCKS_GAME_OVER, BLOCKS_GAME_PLAYING } from '../../state/consts';
 import { requestAnimationFrame } from '../../web-api-polyfills';
 
 import {
@@ -12,7 +12,7 @@ import {
     getGameTicksInterval,
 } from '../utils';
 
-import { RIGHT_EYE_BOARD_CELL } from '../utils/consts';
+import { EMPTY_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
 
 /**
  * Main game logic function.
@@ -57,6 +57,15 @@ function logic() {
                     gameBoard[y][x] = RIGHT_EYE_BOARD_CELL;
                 });
 
+            // if there are blocks on a first row
+            // -> game over
+            const isGameOver = gameBoard[0]
+                .some((cell) => cell !== EMPTY_BOARD_CELL);
+
+            if (isGameOver) {
+                setState({ gameState: BLOCKS_GAME_OVER });
+                return;
+            }
 
             // clear lines if needed
             const linesClearedInACurrentTick = clearBoard(gameBoard);
@@ -82,7 +91,6 @@ function logic() {
                 setStateSilently({ linesCleared: totalClearedLines });
                 setState({ ...stateUpdates });
             }
-
 
             // spawn new shape
             setStateSilently({

@@ -12,7 +12,9 @@ import {
     BLOCKS_GAME_PLAYING,
     BLOCKS_GAME_INITIAL,
     BLOCKS_GAME_OVER,
+    GAME_OVER_STATE,
 } from '../../state/consts';
+import { setState } from '../../state';
 
 
 /**
@@ -40,7 +42,8 @@ const gameStateMachine = (state) => {
         stopGameTicks();
         break;
     case BLOCKS_GAME_OVER:
-        // TODO handle game over
+        stopGameTicks();
+        setState({ appState: GAME_OVER_STATE, gameState: BLOCKS_GAME_INITIAL });
         break;
     default:
         // should not be here
