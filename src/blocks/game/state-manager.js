@@ -18,9 +18,7 @@ import {
 
 
 /**
- * This method is being called on each state update.
  * Core game state management logic.
- * Use here only `setStateAndIgnoreObservers` so it won't enter endless loop.
  * @param {Object} state Current state.
  */
 const gameStateMachine = (state) => {

@@ -1,5 +1,6 @@
 import { getState, setState } from '../../state';
 import { BLOCKS_GAME_PLAYING, BLOCKS_STATE } from '../../state/consts';
+import { toggleGamePause } from './game-utils';
 import {
     fireDown,
     rotateShape,
@@ -37,12 +38,32 @@ const keyboardEventListener = (e) => {
         currentShape,
     } = getState();
 
+    // pressed key code
+    const { keyCode } = e;
+
+    // keys allowed in any state
+    switch (keyCode) {
+    case P_KEY_CODE:
+    case PAUSE_BUTTON_KEY_CODE:
+        toggleGamePause();
+        break;
+    case G_KEY_CODE:
+        setState({ gridEnabled: !gridEnabled });
+        break;
+    case ESC_BUTTON_KEY_CODE:
+    case Q_KEY_CODE:
+        // TODO implement exit to menu
+        break;
+    default:
+        // do nothing
+    }
+
     if (appState !== BLOCKS_STATE || gameState !== BLOCKS_GAME_PLAYING) {
         // nothing to do here
         return;
     }
 
-    const { keyCode } = e;
+    // keys allowed only in playing state
     switch (keyCode) {
     case LEFT_KEY_CODE:
     case H_KEY_CODE:
@@ -62,17 +83,6 @@ const keyboardEventListener = (e) => {
         break;
     case SPACE_KEY_CODE:
         fireDown(currentShape, gameBoard);
-        break;
-    case P_KEY_CODE:
-    case PAUSE_BUTTON_KEY_CODE:
-        // TODO implement pause here
-        break;
-    case G_KEY_CODE:
-        setState({ gridEnabled: !gridEnabled });
-        break;
-    case ESC_BUTTON_KEY_CODE:
-    case Q_KEY_CODE:
-        // TODO implement exit to menu
         break;
     default:
         // do nothing

@@ -1,20 +1,7 @@
-import { addStateObserver, getState, setState } from '../../../state';
+import { addStateObserver, getState } from '../../../state';
 import { BLOCKS_GAME_PAUSE, BLOCKS_GAME_PLAYING } from '../../../state/consts';
+import { toggleGamePause } from '../../utils';
 import createActionButton from '../action-button';
-
-const onClick = () => {
-    const { gameState } = getState();
-    switch (gameState) {
-    case BLOCKS_GAME_PAUSE:
-        setState({ gameState: BLOCKS_GAME_PLAYING });
-        break;
-    case BLOCKS_GAME_PLAYING:
-        setState({ gameState: BLOCKS_GAME_PAUSE });
-        break;
-    default:
-        // do nothing;
-    }
-};
 
 const getButtonTitle = (gameState) => {
     if (gameState === BLOCKS_GAME_PLAYING) {
@@ -27,7 +14,7 @@ const getButtonTitle = (gameState) => {
 
 export default function () {
     const { gameState: currentGameState } = getState();
-    const button = createActionButton(getButtonTitle(currentGameState), onClick);
+    const button = createActionButton(getButtonTitle(currentGameState), toggleGamePause);
     addStateObserver(['gameState'], ({ gameState }) => {
         button.innerHTML = getButtonTitle(gameState);
     });

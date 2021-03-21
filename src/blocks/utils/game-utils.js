@@ -1,4 +1,18 @@
-import { BASE_DESCENT_RATE, DECENT_RATE_DECREMENT_STEP, MINIMUM_DESCENT_RATE } from '../../config';
+import {
+    BASE_DESCENT_RATE,
+    DECENT_RATE_DECREMENT_STEP,
+    MINIMUM_DESCENT_RATE,
+} from '../../config';
+
+import {
+    BLOCKS_GAME_PAUSE,
+    BLOCKS_GAME_PLAYING,
+} from '../../state/consts';
+
+import {
+    getState,
+    setState,
+} from '../../state';
 
 /**
  * Calculates interval duration between game ticks.
@@ -29,3 +43,21 @@ export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(cleared
  * @return {number} Number of lines needed to clear for given speed level.
  */
 export const getNumberOfLinesNeeded = (speedLevel) => speedLevel * speedLevel;
+
+
+/**
+ * Pauses or resumes game, depending on currnet game state.
+ */
+export const toggleGamePause = () => {
+    const { gameState } = getState();
+    switch (gameState) {
+    case BLOCKS_GAME_PAUSE:
+        setState({ gameState: BLOCKS_GAME_PLAYING });
+        break;
+    case BLOCKS_GAME_PLAYING:
+        setState({ gameState: BLOCKS_GAME_PAUSE });
+        break;
+    default:
+        // do nothing;
+    }
+};
