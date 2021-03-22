@@ -1,8 +1,12 @@
 import { addStateObserver, getState } from '../../state';
 import { MAIN_MENU_STATE } from '../../state/consts';
 import { goto } from '../../utils';
+
 import {
-    createMenu, createMenuItem, createMenuItemText, createMenuTitle,
+    createMenu,
+    createMenuItem,
+    createMenuTitle,
+    createMenuItemText,
 } from '../utils';
 
 

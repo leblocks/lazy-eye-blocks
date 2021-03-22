@@ -15,6 +15,8 @@ const defaultState = {
 
     appState: null,
 
+    // kinda hack, see draw method and boar-size-settings component
+    shouldCallResizeOnDraw: false,
     gameCanvas: null,
     gameCanvasWrapper: null,
     canvasContext: null,

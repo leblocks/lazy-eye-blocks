@@ -213,6 +213,7 @@ function draw() {
         gameCanvasWrapper,
         canvasContext: ctx,
         gameCanvas: canvas,
+        shouldCallResizeOnDraw,
     } = getState();
 
     // TODO I have an issue here with canvas resizing. Needs to be solved.
@@ -221,6 +222,12 @@ function draw() {
     if (Math.abs(canvas.height - height) > 10) {
         calculateCanvasDimensions();
         setGameBoardGridSizeAndMargins();
+    }
+
+    // call window resize in case if board was resized
+    // to adjust to a new board size
+    if (shouldCallResizeOnDraw) {
+        window.onresize();
     }
 
     // clear canvas before next draw iteration
@@ -245,7 +252,10 @@ function draw() {
         xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
 
     // call itself in an animation loop and preserve new animation id
-    setStateSilently({ animationId: requestAnimationFrame(draw) });
+    setStateSilently({
+        animationId: requestAnimationFrame(draw),
+        shouldCallResizeOnDraw: false,
+    });
 }
 
 export default draw;
