@@ -1,3 +1,4 @@
+import { INITIAL_BOARD_COLUMNS_COUNT, INITIAL_BOARD_ROWS_COUNT } from '../config';
 import { log } from '../utils';
 import { BLOCKS_GAME_INITIAL } from './consts';
 
@@ -10,8 +11,8 @@ const defaultState = {
     speedLevel: 0,
     linesCleared: 0,
 
-    rows: 12,
-    columns: 10,
+    rows: INITIAL_BOARD_ROWS_COUNT,
+    columns: INITIAL_BOARD_COLUMNS_COUNT,
 
     appState: null,
 
