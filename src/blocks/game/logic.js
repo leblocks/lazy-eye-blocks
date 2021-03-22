@@ -32,6 +32,7 @@ function logic() {
         // that is why here is call to getState
         const {
             score,
+            rows,
             columns,
             gameState,
             gameBoard,
@@ -53,6 +54,9 @@ function logic() {
             currentShape.y -= 1;
             getShapeCoordinatesOnBoard(currentShape)
                 .forEach(([x, y]) => {
+                    if (x < 0 || y < 0 || x > columns || y > rows) {
+                        return;
+                    }
                     // on board array y is for rows and x is for columns
                     gameBoard[y][x] = RIGHT_EYE_BOARD_CELL;
                 });
