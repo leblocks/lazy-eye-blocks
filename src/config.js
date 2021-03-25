@@ -22,3 +22,9 @@ export const PROGRESS_BAR_WIDTH = 5;
 
 export const INITIAL_BOARD_COLUMNS_COUNT = 12;
 export const INITIAL_BOARD_ROWS_COUNT = 19;
+
+// specifies approximately how much of the shapes/cells should be
+// colored for specific eye
+// this number must be between 0 and 1 exclusively
+// check blocks/utils/shape-creation-utils.js
+export const LEFT_RIGHT_DISTRIBUTION = 0.5;

@@ -16,3 +16,9 @@ export const BLOCKS_GAME_INITIAL = 'BLOCKS_GAME_INITIAL';
 export const BLOCKS_GAME_PLAYING = 'BLOCKS_GAME_PLAYING';
 export const BLOCKS_GAME_PAUSE = 'BLOCKS_GAME_PAUSE';
 export const BLOCKS_GAME_OVER = 'BLOCKS_GAME_OVER';
+
+// coloring modes
+// each shape has different color
+export const MODE_ALTERNATE_SHAPES = 'MODE_ALTERNATE_SHAPES';
+// each cell of the shape has different color
+export const MODE_ALTERNATE_CELLS = 'MODE_ALTERNATE_CELLS';
