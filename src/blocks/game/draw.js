@@ -97,8 +97,7 @@ function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
     xMargin, yMargin, gridFacetSize, currentSpeedLevel, linesCleared) {
     const height = rows * gridFacetSize;
     const width = columns * gridFacetSize;
-    const completedPart = width
-        - width * (getNumberOfLinesNeeded(currentSpeedLevel) / linesCleared);
+    const completedPart = width * (linesCleared / getNumberOfLinesNeeded(currentSpeedLevel));
 
     // draw whole progress bar
     ctx.beginPath();

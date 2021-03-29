@@ -39,7 +39,7 @@ export const getGameTicksInterval = (speedLevel) => {
  * @param {number} clearedLinesCount Number of cleared lines.
  * @return {number} Level of difficulty.
  */
-export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(clearedLinesCount));
+export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(clearedLinesCount)) + 1;
 
 
 /**
@@ -98,7 +98,6 @@ export const initGameStats = () => {
 
     setStateSilently({
         score: 0,
-        speedLevel: 0,
         linesCleared: 0,
         nextShape: createRandomShape(columns, coloringMode),
         currentShape: createRandomShape(columns, coloringMode),

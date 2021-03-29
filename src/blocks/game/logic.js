@@ -83,7 +83,7 @@ function logic() {
                 const totalClearedLines = linesCleared + linesClearedInACurrentTick;
                 const newSpeedLevel = getSpeedLevel(totalClearedLines);
 
-                if (speedLevel !== newSpeedLevel) {
+                if (speedLevel < newSpeedLevel) {
                     Object.assign(stateUpdates, {
                         speedLevel: newSpeedLevel,
                         gameLogicTicksInterval: getGameTicksInterval(newSpeedLevel),
