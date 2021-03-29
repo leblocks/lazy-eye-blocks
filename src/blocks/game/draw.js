@@ -19,6 +19,18 @@ import {
 
 const ACTUAL_DRAW_SCALE = 1 / NEXT_SHAPE_DRAW_SCALE;
 
+
+const cellToColor = (cell, leftEyeColor, rightEyeColor) => {
+    switch (cell) {
+    case LEFT_EYE_BOARD_CELL:
+        return leftEyeColor;
+    case RIGHT_EYE_BOARD_CELL:
+        return rightEyeColor;
+    default:
+        return BACKGROUND_COLOR;
+    }
+};
+
 /**
  * Draws grid on a canvas.
  * @param {CanvasRenderingContext2D} ctx Canvas 2D context.
@@ -116,11 +128,10 @@ function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
  * @param {number} yMargin Y margin between canvas top border and content to draw.
  * @param {number} gridFacetSize Size of the grid.
  */
-function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
-    // set color of the shape to draw
-    ctx.fillStyle = color;
+function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize,
+    leftEyeColor, rightEyeColor) {
     getShapeCoordinatesOnBoard(shape)
-        .forEach(([x, y]) => {
+        .forEach(([x, y], cellIndex) => {
             if (y < 0) {
                 // do not draw shape parts that are not on the board
                 return;
@@ -128,6 +139,8 @@ function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
 
             const actualX = xMargin + x * gridFacetSize;
             const actualY = yMargin + y * gridFacetSize;
+            const cell = shape.colors[cellIndex];
+            ctx.fillStyle = color || cellToColor(cell, leftEyeColor, rightEyeColor);
             ctx.fillRect(actualX, actualY, gridFacetSize + 1, gridFacetSize + 1);
         });
 }
@@ -141,10 +154,10 @@ function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize) {
  * @param {number} yMargin Y margin between canvas top border and content to draw.
  * @param {number} gridFacetSize Size of the grid.
  */
-function drawNextShape(ctx, shape, xMargin, yMargin, gridFacetSize) {
+function drawNextShape(ctx, shape, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor) {
     ctx.scale(NEXT_SHAPE_DRAW_SCALE, NEXT_SHAPE_DRAW_SCALE);
-    drawShape(ctx, NEXT_SHAPE_COLOR, { ...shape, x: 3, y: 3 },
-        xMargin * ACTUAL_DRAW_SCALE, yMargin * ACTUAL_DRAW_SCALE, gridFacetSize);
+    drawShape(ctx, NEXT_SHAPE_COLOR, { ...shape, x: 3, y: 3 }, xMargin * ACTUAL_DRAW_SCALE,
+        yMargin * ACTUAL_DRAW_SCALE, gridFacetSize, leftEyeColor, rightEyeColor);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
@@ -170,16 +183,7 @@ function drawBoard(ctx, board, xMargin, yMargin, gridFacetSize, leftEyeColor, ri
     for (let i = 0; i < rows; i += 1) {
         for (let j = 0; j < columns; j += 1) {
             // select correct cell color
-            switch (board[i][j]) {
-            case LEFT_EYE_BOARD_CELL:
-                ctx.fillStyle = leftEyeColor;
-                break;
-            case RIGHT_EYE_BOARD_CELL:
-                ctx.fillStyle = rightEyeColor;
-                break;
-            default:
-                ctx.fillStyle = BACKGROUND_COLOR;
-            }
+            ctx.fillStyle = cellToColor(board[i][j], leftEyeColor, rightEyeColor);
             // for each element containing CELL fill corresponding
             // square on a canvas
             // ctx.fillRect(j*d, i*d, d + 1, d + 1); +1 is to provide
@@ -237,11 +241,12 @@ function draw() {
     drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize);
 
     if (currentShape) {
-        drawShape(ctx, leftEyeColor, currentShape, xMargin, yMargin, gridFacetSize);
+        drawShape(ctx, null, currentShape, xMargin, yMargin,
+            gridFacetSize, leftEyeColor, rightEyeColor);
     }
 
     if (nextShape) {
-        drawNextShape(ctx, nextShape, xMargin, yMargin, gridFacetSize);
+        drawNextShape(ctx, nextShape, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
     }
 
     if (gridEnabled) {

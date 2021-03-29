@@ -94,14 +94,14 @@ export const stopGameTicks = () => {
  * Sets initial stats for a new game.
  */
 export const initGameStats = () => {
-    const { columns, rows } = getState();
+    const { columns, rows, coloringMode } = getState();
 
     setStateSilently({
         score: 0,
         speedLevel: 0,
         linesCleared: 0,
-        nextShape: createRandomShape(columns),
-        currentShape: createRandomShape(columns),
+        nextShape: createRandomShape(columns, coloringMode),
+        currentShape: createRandomShape(columns, coloringMode),
         gameBoard: createEmptyBoard(columns, rows),
     });
 };

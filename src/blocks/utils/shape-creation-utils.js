@@ -8,21 +8,25 @@ import {
 } from './consts';
 
 
-const isLeftEye = () => Math.random() < LEFT_RIGHT_DISTRIBUTION;
+const getRandomCellColor = () => {
+    if (Math.random() < LEFT_RIGHT_DISTRIBUTION) {
+        return LEFT_EYE_BOARD_CELL;
+    }
+    return RIGHT_EYE_BOARD_CELL;
+};
 
 const initShapeColors = (coloringMode) => {
     switch (coloringMode) {
     case MODE_ALTERNATE_CELLS:
         return [1, 1, 1, 1]
-            // eslint-disable-next-line no-confusing-arrow
-            .map(() => isLeftEye() ? LEFT_EYE_BOARD_CELL : RIGHT_EYE_BOARD_CELL);
+            .map(getRandomCellColor);
     case MODE_ALTERNATE_SHAPES:
         // eslint-disable-next-line no-case-declarations
-        const cell = isLeftEye() ? LEFT_EYE_BOARD_CELL : RIGHT_EYE_BOARD_CELL;
+        const cell = getRandomCellColor();
         return [cell, cell, cell, cell];
     default:
         // do nothing
-        throw new Error(`Unsupported coloring mode: ${coloringMode}`);
+        return null;
     }
 };
 
@@ -30,7 +34,7 @@ const initShapeColors = (coloringMode) => {
  * Creates new shape object.
  * @param {string} type String that denotes type of the shape. See SHAPE_TYPES.
  * @param {number} columCount Column count of the game border.
- * @param {string} colorinMode Defines coloring of the shapes.
+ * @param {string} coloringMode Defines coloring of the shapes.
  */
 export const createShape = (type, columCount, coloringMode) => ({
     // type of the shape T, L ...
@@ -50,8 +54,9 @@ export const createShape = (type, columCount, coloringMode) => ({
 /**
  * Creates random shape.
  * @param {number} columCount Column count of the game border.
+ * @param {string} coloringMode Defines coloring of the shapes.
  */
-export const createRandomShape = (columnCount) => {
+export const createRandomShape = (columnCount, coloringMode) => {
     const randomShapeType = SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
-    return createShape(randomShapeType, columnCount);
+    return createShape(randomShapeType, columnCount, coloringMode);
 };

@@ -12,7 +12,7 @@ import {
     getGameTicksInterval,
 } from '../utils';
 
-import { EMPTY_BOARD_CELL, RIGHT_EYE_BOARD_CELL } from '../utils/consts';
+import { EMPTY_BOARD_CELL } from '../utils/consts';
 
 /**
  * Main game logic function.
@@ -40,6 +40,7 @@ function logic() {
             speedLevel,
             currentShape,
             linesCleared,
+            coloringMode,
         } = getState();
 
         if (gameState !== BLOCKS_GAME_PLAYING) {
@@ -53,12 +54,12 @@ function logic() {
             // and put it on a game board
             currentShape.y -= 1;
             getShapeCoordinatesOnBoard(currentShape)
-                .forEach(([x, y]) => {
+                .forEach(([x, y], cellIndex) => {
                     if (x < 0 || y < 0 || x > columns || y > rows) {
                         return;
                     }
                     // on board array y is for rows and x is for columns
-                    gameBoard[y][x] = RIGHT_EYE_BOARD_CELL;
+                    gameBoard[y][x] = currentShape.colors[cellIndex];
                 });
 
             // if there are blocks on a first row
@@ -99,7 +100,7 @@ function logic() {
             // spawn new shape
             setStateSilently({
                 currentShape: nextShape,
-                nextShape: createRandomShape(columns),
+                nextShape: createRandomShape(columns, coloringMode),
             });
         }
         // call itself recursively and update logic and timeout id
