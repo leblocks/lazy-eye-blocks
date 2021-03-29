@@ -1,6 +1,6 @@
 import { INITIAL_BOARD_COLUMNS_COUNT, INITIAL_BOARD_ROWS_COUNT } from '../config';
 import { log } from '../utils';
-import { BLOCKS_GAME_INITIAL, MODE_ALTERNATE_CELLS } from './consts';
+import { BLOCKS_GAME_INITIAL, MODE_ALTERNATE_SHAPES } from './consts';
 
 const defaultState = {
     // game settings
@@ -25,7 +25,7 @@ const defaultState = {
     yMargin: 0,
     gridFacetSize: 0,
 
-    coloringMode: MODE_ALTERNATE_CELLS,
+    coloringMode: MODE_ALTERNATE_SHAPES,
     currentShape: null,
     nextShape: null,
 

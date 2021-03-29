@@ -1,5 +1,5 @@
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
-import { createGridButton } from '../components';
+import { createColoringModeButton, createGridButton } from '../components';
 
 
 import {
@@ -18,6 +18,7 @@ export default function () {
     return createMenu([
         createMenuTitle('Settings'),
         createGridButton(),
+        createColoringModeButton(),
         createMenuItem('Speed level', () => goto(SPEED_SETTINGS_MENU_STATE)),
         createMenuItem('Left eye color', () => goto(LEFT_EYE_COLOR_PICKER_MENU_STATE)),
         createMenuItem('Right eye color', () => goto(RIGHT_EYE_COLOR_PICKER_MENU_STATE)),
