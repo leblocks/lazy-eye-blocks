@@ -216,6 +216,7 @@ function draw() {
         gameCanvasWrapper,
         canvasContext: ctx,
         gameCanvas: canvas,
+        increaseSpeedLevel,
         shouldCallResizeOnDraw,
     } = getState();
 
@@ -252,8 +253,11 @@ function draw() {
         drawGrid(ctx, columns, rows, xMargin, yMargin, gridFacetSize, canvas.width, canvas.height);
     }
 
-    drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
-        xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
+    if (increaseSpeedLevel) {
+        // no need to draw progress bar if speed level is locked
+        drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
+            xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
+    }
 
     // call itself in an animation loop and preserve new animation id
     setStateSilently({

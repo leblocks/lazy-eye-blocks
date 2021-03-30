@@ -5,6 +5,7 @@ import { getGameTicksInterval } from '../../blocks/utils';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 import { goto } from '../../utils';
+import { createSpeedLevelBlockButton } from '../components';
 
 const changeSpeedLevel = (delta) => {
     const { speedLevel } = getState();
@@ -39,5 +40,6 @@ export default function () {
         createMenuItem('Faster', () => changeSpeedLevel(1)),
         createMenuItem('Slower', () => changeSpeedLevel(-1)),
         createMenuItem('Back', () => goto(SETTINGS_MENU_STATE)),
+        createSpeedLevelBlockButton(),
     ]);
 }

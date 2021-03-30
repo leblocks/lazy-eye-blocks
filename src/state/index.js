@@ -9,6 +9,7 @@ const defaultState = {
     gridEnabled: true,
     score: 0,
     speedLevel: 0,
+    increaseSpeedLevel: true,
     linesCleared: 0,
 
     rows: INITIAL_BOARD_ROWS_COUNT,

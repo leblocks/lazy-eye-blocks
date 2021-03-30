@@ -31,7 +31,7 @@ Old version was written when I had no idea about modern web development tools su
 * Run development server: ```npm run start```
 
 ### Testing
-All tests are located under */test* folder. I've decided to use [mocha](https://mochajs.org/) as test runner and [chai](https://www.chaijs.com/) as an assertion library.
+All tests are located under */test* folder. I've decided to use [mocha](https://mochajs.org/) as a test runner and [chai](https://www.chaijs.com/) as an assertion library.
 * */test/main.js* is a test entry point for the webpack bundling, all tests should be included here.
 * */test/test.html* html template with browser setup of mocha.
 * To run tests start development server and go to *http://localhost:port/test.html*

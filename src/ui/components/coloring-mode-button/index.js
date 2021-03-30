@@ -16,7 +16,7 @@ const getButtonTitle = (coloringMode) => {
     default:
         // do nothing
     }
-    return `Coloring by ${title}`;
+    return `Color by ${title}`;
 };
 
 const onClick = () => {

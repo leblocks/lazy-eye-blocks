@@ -18,9 +18,7 @@ import { EMPTY_BOARD_CELL } from '../utils/consts';
  * Main game logic function.
  */
 function logic() {
-    const {
-        gameLogicTicksInterval,
-    } = getState();
+    const { gameLogicTicksInterval } = getState();
     // gameLogic calls itself via requestAnimationFrame AND setTimeout function
     // we need setTimeout because we need to change from time to time frequency of some
     // events that happen in game
@@ -41,6 +39,7 @@ function logic() {
             currentShape,
             linesCleared,
             coloringMode,
+            increaseSpeedLevel,
         } = getState();
 
         if (gameState !== BLOCKS_GAME_PLAYING) {
@@ -85,7 +84,8 @@ function logic() {
 
                 if (speedLevel < newSpeedLevel) {
                     Object.assign(stateUpdates, {
-                        speedLevel: newSpeedLevel,
+                        // block speed level increase if needed
+                        speedLevel: increaseSpeedLevel ? newSpeedLevel : speedLevel,
                         gameLogicTicksInterval: getGameTicksInterval(newSpeedLevel),
                     });
                 }
