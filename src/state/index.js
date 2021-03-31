@@ -1,5 +1,4 @@
 import { INITIAL_BOARD_COLUMNS_COUNT, INITIAL_BOARD_ROWS_COUNT } from '../config';
-import { log } from '../utils';
 import { BLOCKS_GAME_INITIAL, MODE_ALTERNATE_SHAPES } from './consts';
 
 const defaultState = {
@@ -66,7 +65,6 @@ function updateState(stateUpdates, notifyObservers) {
                 callback(state);
             }
         });
-        log(state);
     }
 }
 

@@ -5,4 +5,6 @@ import './state';
 import './state-view-manager';
 import './components/colorpicker';
 import './web-api-polyfills';
-import './blocks/utils';
+import './blocks/board-utils';
+import './blocks/shape-utils';
+import './blocks/game-utils';

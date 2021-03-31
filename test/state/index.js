@@ -10,7 +10,7 @@ import {
 // chai is loaded in test.html
 const { expect } = chai;
 
-describe('State module tests', () => {
+describe('state module tests', () => {
     // cleanup state after each test
     afterEach(() => {
         removeStateObservers();

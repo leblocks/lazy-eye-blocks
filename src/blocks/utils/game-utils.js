@@ -34,7 +34,7 @@ export const getGameTicksInterval = (speedLevel) => {
 };
 
 /**
- * Calcualtes correct speed level from provided total count of cleared lines.
+ * Calculates correct speed level from provided total count of cleared lines.
  *
  * @param {number} clearedLinesCount Number of cleared lines.
  * @return {number} Level of difficulty.
@@ -43,7 +43,7 @@ export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(cleared
 
 
 /**
- * Calcualtes correct number of lines to clear from provided speed level.
+ * Calculates correct number of lines to clear from provided speed level.
  *
  * @param {number} speedLevel Level of difficulty.
  * @return {number} Number of lines needed to clear for given speed level.
@@ -95,7 +95,6 @@ export const stopGameTicks = () => {
  */
 export const initGameStats = () => {
     const { columns, rows, coloringMode } = getState();
-
     setStateSilently({
         score: 0,
         linesCleared: 0,
