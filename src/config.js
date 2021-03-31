@@ -28,3 +28,6 @@ export const INITIAL_BOARD_ROWS_COUNT = 19;
 // this number must be between 0 and 1 exclusively
 // check blocks/utils/shape-creation-utils.js
 export const LEFT_RIGHT_DISTRIBUTION = 0.5;
+
+// key to lookup in a local storage during save\load of settings
+export const LOCAL_STORAGE_SETTINGS_KEY = 'c8d6669b-2153-4780-b345-9be69d36fc9d';

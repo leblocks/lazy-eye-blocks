@@ -3,10 +3,8 @@
 @mixin menu-base-style {
     @include default-color;
     width: 60vw;
-    margin: 2vh 5vw 2vh 5vw;
-    height: 5vh;
+    margin: 1vh 3vw 3vh 1vw;
     font-family: 'Press Start 2P', cursive;
-    font-size: calc(0.5rem + 1vw);
 }
 
 

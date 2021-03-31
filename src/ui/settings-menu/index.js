@@ -1,5 +1,10 @@
 import { createMenu, createMenuItem, createMenuTitle } from '../utils';
-import { createColoringModeButton, createGridButton } from '../components';
+import {
+    createGridButton,
+    createSaveSettingsButton,
+    createColoringModeButton,
+    createLoadSettingsButton,
+} from '../components';
 
 
 import {
@@ -23,6 +28,8 @@ export default function () {
         createMenuItem('Left eye color', () => goto(LEFT_EYE_COLOR_PICKER_MENU_STATE)),
         createMenuItem('Right eye color', () => goto(RIGHT_EYE_COLOR_PICKER_MENU_STATE)),
         createMenuItem('Board size', () => goto(BOARD_SIZE_SETTINGS_STATE)),
+        createSaveSettingsButton(),
+        createLoadSettingsButton(),
         createMenuItem('Back', () => goto(MAIN_MENU_STATE)),
     ]);
 }

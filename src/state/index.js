@@ -32,7 +32,6 @@ const defaultState = {
 
     gameBoard: null,
     gameState: BLOCKS_GAME_INITIAL,
-    shapesCount: 0,
     // number of ms between calls to game logic ticks
     gameLogicTicksInterval: 1000,
     // id as returned by requestAnimationFrame
