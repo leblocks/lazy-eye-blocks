@@ -110,7 +110,11 @@ export const initGameStats = () => {
  * Resets game and sets state to show main menu.
  */
 export const resetGame = () => {
-    stopGameTicks();
-    initGameStats();
-    setState({ appState: MAIN_MENU_STATE, gameState: BLOCKS_GAME_INITIAL });
+    // eslint-disable-next-line no-restricted-globals, no-alert
+    const ok = confirm('Do you want to reset game?');
+    if (ok) {
+        stopGameTicks();
+        initGameStats();
+        setState({ appState: MAIN_MENU_STATE, gameState: BLOCKS_GAME_INITIAL });
+    }
 };
