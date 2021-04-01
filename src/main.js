@@ -1,16 +1,16 @@
 import './icon.ico';
 import './main.scss';
-import './index.html';
+// import './index.html';
+
+import './handlebars/pages/landing-page/index.hjs';
+import './handlebars/pages/exercise-page/exercise.hjs';
 
 import {
     createSpeedMenu,
     createSettingsMenu,
     initStateViewManager,
-    createAboutInfo,
-    createLeftEyeColorSettingsInfo,
     createLeftEyeColorPickerMenu,
     createRightEyeColorPickerMenu,
-    createRightEyeColorSettingsInfo,
     createMainMenu,
     createBoardSizeSettingsMenu,
     createGameOverMenu,
@@ -22,9 +22,6 @@ import {
     SPEED_SETTINGS_MENU_STATE,
     LEFT_EYE_COLOR_PICKER_MENU_STATE,
     RIGHT_EYE_COLOR_PICKER_MENU_STATE,
-    ABOUT_INFO_STATE,
-    LEFT_EYE_COLOR_SETTINGS_INFO_STATE,
-    RIGHT_EYE_COLOR_SETTINGS_INFO_STATE,
     BOARD_SIZE_SETTINGS_STATE,
     BLOCKS_STATE,
     GAME_OVER_STATE,
@@ -39,9 +36,6 @@ window.onload = () => {
         [SPEED_SETTINGS_MENU_STATE]: createSpeedMenu(),
         [LEFT_EYE_COLOR_PICKER_MENU_STATE]: createLeftEyeColorPickerMenu(),
         [RIGHT_EYE_COLOR_PICKER_MENU_STATE]: createRightEyeColorPickerMenu(),
-        [ABOUT_INFO_STATE]: createAboutInfo(),
-        [LEFT_EYE_COLOR_SETTINGS_INFO_STATE]: createLeftEyeColorSettingsInfo(),
-        [RIGHT_EYE_COLOR_SETTINGS_INFO_STATE]: createRightEyeColorSettingsInfo(),
         [BOARD_SIZE_SETTINGS_STATE]: createBoardSizeSettingsMenu(),
         [BLOCKS_STATE]: createBlocksCanvas(),
         [GAME_OVER_STATE]: createGameOverMenu(),

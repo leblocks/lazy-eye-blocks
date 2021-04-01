@@ -1,0 +1,8 @@
+const { resolve } = require('path');
+const { getCompiledTemplate } = require('../../handlebars-helper');
+
+module.exports = () => {
+    const root = getCompiledTemplate(resolve(__dirname, '..', '..', 'templates', 'root.hbs'));
+    const page = getCompiledTemplate(resolve(__dirname, 'page.hbs'));
+    return { code: root({ body: page() }) };
+};

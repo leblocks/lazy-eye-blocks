@@ -67,6 +67,17 @@ const config = {
                     { loader: 'sass-loader' }, // transpile with sass first
                 ],
             },
+            // handle template file conversion to html from hbs
+            {
+                test: /\.hjs$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: { name: '[name].html' },
+                    },
+                    { loader: 'val-loader' },
+                ],
+            },
         ],
     },
 };
@@ -75,7 +86,7 @@ module.exports = (env, argv) => {
     if (argv.mode === 'development') {
         config.devtool = 'inline-source-map';
         // include tests only in development mode
-        config.entry.test = './test/main.js';
+        config.entry.test = path.resolve(__dirname, 'test', 'main.js');
     }
 
     if (argv.mode === 'production') {
