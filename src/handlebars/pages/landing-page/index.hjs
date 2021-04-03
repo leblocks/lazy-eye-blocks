@@ -1,8 +1,7 @@
-const { resolve } = require('path');
-const { getCompiledTemplate } = require('../../handlebars-helper');
+const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
 
 module.exports = () => {
-    const root = getCompiledTemplate(resolve(__dirname, '..', '..', 'templates', 'root.hbs'));
-    const page = getCompiledTemplate(resolve(__dirname, 'page.hbs'));
-    return { code: root({ body: page() }) };
+    const root = getRootTemplate();
+    const page = getCompiledTemplate(`${__dirname}/page.hbs`);
+    return { code: root({ title: 'Lazy eye exercise tool', body: page() }) };
 };

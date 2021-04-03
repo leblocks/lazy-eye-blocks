@@ -1,8 +1,14 @@
-const { resolve } = require('path');
-const { getCompiledTemplate } = require('../../handlebars-helper');
+const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
+
+const scripts = [{ src: 'js/main.js' }];
+
+const links = [
+    { rel: 'stylesheet,', href: 'https://fonts.googleapis.com/css?family=Press+Start+2P' },
+    { rel: 'stylesheet', href: 'css/main.css' },
+];
 
 module.exports = () => {
-    const root = getCompiledTemplate(resolve(__dirname, '..', '..', 'templates', 'root.hbs'));
-    const page = getCompiledTemplate(resolve(__dirname, 'page.hbs'));
-    return { code: root({ body: page() }) };
+    const root = getRootTemplate();
+    const page = getCompiledTemplate(`${__dirname}/page.hbs`);
+    return { code: root({ links, scripts, title: 'Exercise', body: page() }) };
 };
