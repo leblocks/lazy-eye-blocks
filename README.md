@@ -22,10 +22,6 @@ The color of the falling blocks and the ground blocks is adjustable, hence, usin
 I have a lazy eye myself. I was born with a huge difference in sight between the eyes. It was only diagnosed, when I was seven. Now I'm an adult, and, as a result of brain suppression, my right eye is working on just 60% of its ability. Once, I stumbled upon an [article](https://www.medicalnewstoday.com/articles/259547.php) on the lazy eye treatment, recommending a game that helps. After a proper search, I found a few apps for mobile devices, but nothing to use online and free of charge. And so I decided to do it myself. Here are my goals:
  - make the lazy eye blocks game accessible from maximum amount of devices
 
-## Development
-Actually this is a huge refactoring\rework of my old version of  [this exercise tool](https://github.com/leblocks/leblocks.github.io)
-Old version was written when I had no idea about modern web development tools such as eslint, babel and webpack. Now I'm trying to utilise power of those tools to create small, with no external dependencies lazy eye treatment tool.
-
 ### Installation
 * Install dependencies with ```npm install```
 * Run development server: ```npm run start```
@@ -42,5 +38,5 @@ All tests are located under */test* folder. I've decided to use [mocha](https://
 * Following WebAPIs are being used: *Element.classList.add*, *document.querySelector*, *document.getElementById*, *document.createElement*, *Element.appendChild*. Those APIs are not being transpiled by babel. So correct polyfills should be provided for older browsers.
 
 ***CSS issues:***
-* There is usage of CSS flexbox property. If it will remain -> need to adjust transpilation level of babel preset. So code won't be transpiled to support browsers of versions that are lower than flexbox support.
+* There is a usage of CSS flexbox property. If it will remain -> need to adjust transpilation level of babel preset. So code won't be transpiled to support browsers of versions that are lower than flexbox support.
 * Order of *@import* statements in *src/mains.scss* is important. This probably can be solved with proper webpack configuration.
