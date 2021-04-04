@@ -20,7 +20,7 @@ export const NEXT_SHAPE_DRAW_SCALE = 0.25;
 export const GRID_WIDTH = 1;
 export const PROGRESS_BAR_WIDTH = 5;
 
-export const INITIAL_BOARD_COLUMNS_COUNT = 15;
+export const INITIAL_BOARD_COLUMNS_COUNT = 17;
 export const INITIAL_BOARD_ROWS_COUNT = 20;
 
 // specifies approximately how much of the shapes/cells should be
