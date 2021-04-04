@@ -71,10 +71,12 @@ const config = {
             {
                 test: /\.hjs$/,
                 use: [
+                    // put it in a dist folder
                     {
                         loader: 'file-loader',
                         options: { name: '[name].html' },
                     },
+                    // execute script on a module
                     { loader: 'val-loader' },
                 ],
             },

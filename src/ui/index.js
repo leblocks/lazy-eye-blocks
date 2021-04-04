@@ -1,5 +1,3 @@
-export { default as createLeftEyeColorSettingsInfo } from './left-eye-color-settings-info';
-export { default as createRightEyeColorSettingsInfo } from './right-eye-color-settings-info';
 
 export { default as initStateViewManager } from './state-view-manager';
 

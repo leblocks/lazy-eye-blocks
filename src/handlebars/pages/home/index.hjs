@@ -3,5 +3,5 @@ const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helpe
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
-    return { code: root({ title: 'Lazy eye exercise tool', body: page() }) };
+    return { code: root({ showNavigation: true, title: 'Lazy eye exercise tool', body: page() }) };
 };

@@ -4,18 +4,19 @@ const scripts = [{ src: 'js/main.js' }];
 
 const links = [
     { rel: 'stylesheet,', href: 'https://fonts.googleapis.com/css?family=Press+Start+2P' },
-    { rel: 'stylesheet', href: 'css/main.css' },
 ];
 
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
+
     const data = {
         links,
         scripts,
-        title: 'Exercise',
-        showNavigation: false,
+        title: 'About',
+        showNavigation: true,
         body: page(),
     };
+
     return { code: root(data) };
 };

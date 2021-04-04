@@ -1,8 +1,10 @@
 import './icon.ico';
 import './main.scss';
-// import './index.html';
 
-import './handlebars/pages/landing-page/index.hjs';
+// generate pages from templates (see val-loader in the webpack configuration)
+import './handlebars/pages/help/help.hjs';
+import './handlebars/pages/home/index.hjs';
+import './handlebars/pages/about/about.hjs';
 import './handlebars/pages/exercise-page/exercise.hjs';
 
 import {
