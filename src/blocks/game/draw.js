@@ -246,7 +246,9 @@ function draw() {
     }
 
     if (nextShape) {
-        drawNextShape(ctx, nextShape, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor);
+        const shapeToDraw = currentShape.y < 0 ? currentShape : nextShape;
+        drawNextShape(ctx, shapeToDraw, xMargin, yMargin,
+            gridFacetSize, leftEyeColor, rightEyeColor);
     }
 
     if (gridEnabled) {
