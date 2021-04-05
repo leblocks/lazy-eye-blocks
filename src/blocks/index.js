@@ -31,11 +31,11 @@ export default function () {
 
     const secondRowOfButtons = createElement('div');
     getClassList(secondRowOfButtons).add('action-button-row');
-    secondRowOfButtons.appendChild(createMoveLeftButton());
     secondRowOfButtons.appendChild(createBackButton());
-    secondRowOfButtons.appendChild(createRestartGameButton());
+    secondRowOfButtons.appendChild(createMoveLeftButton());
     secondRowOfButtons.appendChild(createPlayPauseButton());
     secondRowOfButtons.appendChild(createMoveRightButton());
+    secondRowOfButtons.appendChild(createRestartGameButton());
 
     const container = createElement('div');
     getClassList(container).add('game-container');

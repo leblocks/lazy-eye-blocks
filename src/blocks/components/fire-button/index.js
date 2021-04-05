@@ -9,5 +9,5 @@ const onClick = () => {
 };
 
 export default function () {
-    return createActionButton('&#8659;', onClick);
+    return createActionButton('&#8681;', onClick);
 }

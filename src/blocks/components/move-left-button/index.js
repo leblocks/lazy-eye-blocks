@@ -9,5 +9,5 @@ const onClick = () => {
 
 export default function () {
     // html entity sign for left arrow
-    return createActionButton('&#8656;', onClick);
+    return createActionButton('&#8678;', onClick);
 }
