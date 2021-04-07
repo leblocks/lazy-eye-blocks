@@ -1,7 +1,7 @@
 import { getState } from '../../state';
 
 // percent of the wrapper space to take
-const FACTOR = 1;
+const FACTOR = 0.9;
 
 /**
  * Adjust canvas size according to its outer container.
