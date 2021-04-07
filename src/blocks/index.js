@@ -17,6 +17,7 @@ import {
 } from './components';
 
 import initGame from './game';
+import { registerTouchEventListener } from './utils';
 
 /**
  * Inits the game itself. Setups various handlers.
@@ -37,13 +38,15 @@ export default function () {
     secondRowOfButtons.appendChild(createMoveRightButton());
     secondRowOfButtons.appendChild(createRestartGameButton());
 
+    const canvas = createGameCanvas();
+    registerTouchEventListener(canvas);
+
     const container = createElement('div');
     getClassList(container).add('game-container');
-    container.appendChild(createGameCanvas());
+    container.appendChild(canvas);
     container.appendChild(firstRowOfButtons);
     container.appendChild(secondRowOfButtons);
 
     initGame();
-
     return container;
 }

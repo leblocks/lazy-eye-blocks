@@ -31,3 +31,5 @@ export const LEFT_RIGHT_DISTRIBUTION = 0.5;
 
 // key to lookup in a local storage during save\load of settings
 export const LOCAL_STORAGE_SETTINGS_KEY = 'c8d6669b-2153-4780-b345-9be69d36fc9d';
+
+export const MINIMAL_SWIPE_DISTANCE = 5;

@@ -8,3 +8,4 @@ import './web-api-polyfills';
 import './blocks/board-utils';
 import './blocks/shape-utils';
 import './blocks/game-utils';
+import './blocks/canvas-swipe-utils';
