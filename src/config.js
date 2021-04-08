@@ -12,7 +12,7 @@ export const SPEED_LEVEL_INCREMENT = 5;
 export const TETRIS_BONUS = 10;
 
 export const BACKGROUND_COLOR = '#000000';
-export const GRID_COLOR = '#ffffff';
+export const GRID_COLOR = '#8f99a8';
 export const NEXT_SHAPE_COLOR = '#f5eace';
 export const NEXT_LEVEL_INDICATOR_COLOR = '#f8fc03';
 

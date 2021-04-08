@@ -10,5 +10,5 @@ const onClick = () => {
 };
 
 export default function () {
-    return createActionButton('back', onClick);
+    return createActionButton('Back', onClick);
 }

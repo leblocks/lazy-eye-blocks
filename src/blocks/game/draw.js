@@ -223,7 +223,7 @@ function draw() {
     // TODO I have an issue here with canvas resizing. Needs to be solved.
     // recalculate on first render
     const { height } = gameCanvasWrapper.getBoundingClientRect();
-    if (Math.abs(canvas.height - height) > 10) {
+    if (Math.abs(canvas.height - height) > 100) {
         calculateCanvasDimensions();
         setGameBoardGridSizeAndMargins();
     }

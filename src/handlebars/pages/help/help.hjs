@@ -2,16 +2,11 @@ const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helpe
 
 const scripts = [{ src: 'js/main.js' }];
 
-const links = [
-    { rel: 'stylesheet,', href: 'https://fonts.googleapis.com/css?family=Press+Start+2P' },
-];
-
 module.exports = () => {
     const root = getRootTemplate();
     const page = getCompiledTemplate(`${__dirname}/page.hbs`);
 
     const data = {
-        links,
         scripts,
         title: 'Help',
         showNavigation: true,

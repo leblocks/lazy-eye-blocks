@@ -6,10 +6,10 @@ import createActionButton from '../action-button';
 const getButtonTitle = (gameState) => {
     switch (gameState) {
     case BLOCKS_GAME_PLAYING:
-        return 'pause';
+        return 'Pause';
     case BLOCKS_GAME_INITIAL:
     case BLOCKS_GAME_PAUSE:
-        return 'play';
+        return 'Play';
     default:
             // do nothing
     }

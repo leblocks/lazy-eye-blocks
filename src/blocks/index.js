@@ -7,11 +7,7 @@ import {
     createScoreInfo,
     createLevelInfo,
     createBackButton,
-    createFireButton,
     createGameCanvas,
-    createRotateButton,
-    createMoveLeftButton,
-    createMoveRightButton,
     createPlayPauseButton,
     createRestartGameButton,
 } from './components';
@@ -23,29 +19,21 @@ import { registerTouchEventListener } from './utils';
  * Inits the game itself. Setups various handlers.
  */
 export default function () {
-    const firstRowOfButtons = createElement('div');
-    getClassList(firstRowOfButtons).add('action-button-row');
-    firstRowOfButtons.appendChild(createRotateButton());
-    firstRowOfButtons.appendChild(createScoreInfo());
-    firstRowOfButtons.appendChild(createLevelInfo());
-    firstRowOfButtons.appendChild(createFireButton());
-
-    const secondRowOfButtons = createElement('div');
-    getClassList(secondRowOfButtons).add('action-button-row');
-    secondRowOfButtons.appendChild(createBackButton());
-    secondRowOfButtons.appendChild(createMoveLeftButton());
-    secondRowOfButtons.appendChild(createPlayPauseButton());
-    secondRowOfButtons.appendChild(createMoveRightButton());
-    secondRowOfButtons.appendChild(createRestartGameButton());
-
     const canvas = createGameCanvas();
     registerTouchEventListener(canvas);
 
+    const actionButtons = createElement('div');
+    getClassList(actionButtons).add('action-button-row');
+    actionButtons.appendChild(createPlayPauseButton());
+    actionButtons.appendChild(createRestartGameButton());
+    actionButtons.appendChild(createBackButton());
+    actionButtons.appendChild(createScoreInfo());
+    actionButtons.appendChild(createLevelInfo());
+
     const container = createElement('div');
     getClassList(container).add('game-container');
+    container.appendChild(actionButtons);
     container.appendChild(canvas);
-    container.appendChild(firstRowOfButtons);
-    container.appendChild(secondRowOfButtons);
 
     initGame();
     return container;

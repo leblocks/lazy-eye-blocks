@@ -3,7 +3,6 @@ const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helpe
 const scripts = [{ src: 'js/main.js' }];
 
 const links = [
-    { rel: 'stylesheet,', href: 'https://fonts.googleapis.com/css?family=Press+Start+2P' },
     { rel: 'stylesheet', href: 'css/main.css' },
 ];
 

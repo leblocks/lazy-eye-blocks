@@ -1,8 +1,5 @@
 .action-button {
-    @include default-border;
     color: $base-white;
+    margin-left: 2vw;
     background-color: $base-gray;
-    margin-bottom: 2vh;
-    font-family: 'Press Start 2P', cursive;
-    font-size: calc(1rem + 1vw);
 }

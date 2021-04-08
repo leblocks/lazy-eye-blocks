@@ -8,9 +8,14 @@
 }
 
 .action-button-row {
-    margin-top: 1vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    opacity: 0.5;
 }
