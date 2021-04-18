@@ -34,6 +34,11 @@ All tests are located under */test* folder. I've decided to use [mocha](https://
 
 ### Known issues
 
+***Swipe support***
+I've developed custom swipe support instead of using
+3rd party library (to reduce size of the resulting bundle) therefore there are
+several bugs on various screens. Have to be handled properly.
+
 ***Outdated nodejs version***
 I've used 8.12.0 version of node, due to some constraints. Hence I have a lot of outdated dependencies that make a lot of things harder to do.
 
