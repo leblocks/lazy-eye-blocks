@@ -10,10 +10,11 @@ import {
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 import { resizeGameBoard } from '../../blocks/utils/board-utils';
+import { MINIMUM_BOARD_COLUMNS_COUNT, MINIMUM_BOARD_ROWS_COUNT } from '../../config';
 
 const changeBoardRowCount = (increment) => {
     const { rows, columns, gameBoard } = getState();
-    if ((rows + increment) >= 12) {
+    if ((rows + increment) >= MINIMUM_BOARD_ROWS_COUNT) {
         setState({
             rows: rows + increment,
             gameBoard: resizeGameBoard(gameBoard, columns, rows + increment),
@@ -25,7 +26,7 @@ const changeBoardRowCount = (increment) => {
 
 const changeBoardColCount = (increment) => {
     const { rows, columns, gameBoard } = getState();
-    if ((columns + increment) >= 10) {
+    if ((columns + increment) >= MINIMUM_BOARD_COLUMNS_COUNT) {
         setState({
             columns: columns + increment,
             gameBoard: resizeGameBoard(gameBoard, columns + increment, rows),

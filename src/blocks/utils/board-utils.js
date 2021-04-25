@@ -1,5 +1,6 @@
 import { EMPTY_BOARD_CELL } from './consts';
 import { getState, setStateSilently } from '../../state';
+import { DEFAULT_MARGIN } from '../../config';
 
 /**
  * Creates empty game board.
@@ -58,18 +59,24 @@ export const setGameBoardGridSizeAndMargins = () => {
     const {
         rows,
         columns,
+        gameBoard,
         gameCanvas: { width, height },
     } = getState();
 
-    const gridFacetSize = Math.min(width, height) / Math.max(columns, rows);
+    // try to always fit all rows
+    const gridFacetSize = Math.floor((height - DEFAULT_MARGIN) / rows);
+    const maximumPossibleColumnCount = Math.floor((width - DEFAULT_MARGIN) / gridFacetSize);
+    const newColumnCount = Math.min(columns, maximumPossibleColumnCount);
 
-    const xMargin = (width - gridFacetSize * columns) / 2;
+    const xMargin = (width - gridFacetSize * newColumnCount) / 2;
     const yMargin = (height - gridFacetSize * rows) / 2;
 
     setStateSilently({
         yMargin,
         xMargin,
         gridFacetSize,
+        columns: newColumnCount,
+        gameBoard: resizeGameBoard(gameBoard, newColumnCount, rows),
     });
 };
 

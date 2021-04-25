@@ -21,7 +21,10 @@ export const GRID_WIDTH = 1;
 export const PROGRESS_BAR_WIDTH = 5;
 
 export const INITIAL_BOARD_COLUMNS_COUNT = 12;
+export const MINIMUM_BOARD_COLUMNS_COUNT = 4;
 export const INITIAL_BOARD_ROWS_COUNT = 15;
+export const MINIMUM_BOARD_ROWS_COUNT = 4;
+export const DEFAULT_MARGIN = 10;
 
 // specifies approximately how much of the shapes/cells should be
 // colored for specific eye
