@@ -1,6 +1,9 @@
 const { getCompiledTemplate, getRootTemplate } = require('../../handlebars-helper');
 
-const scripts = [{ src: 'js/main.js' }];
+const scripts = [
+    { src: 'js/main.js' },
+    { src: 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js' },
+];
 
 const links = [
     { rel: 'stylesheet', href: 'css/main.css' },
