@@ -96,6 +96,9 @@ module.exports = (env, argv) => {
             minimize: true,
             minimizer: [new TerserPlugin()],
         };
+
+        // publish to docs folder for github pages
+        config.output.path = path.resolve(__dirname, 'docs');
     }
     return config;
 };
