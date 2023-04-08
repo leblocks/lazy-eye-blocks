@@ -41,7 +41,6 @@ export const getGameTicksInterval = (speedLevel) => {
  */
 export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(clearedLinesCount)) + 1;
 
-
 /**
  * Calculates correct number of lines to clear from provided speed level.
  *
@@ -49,7 +48,6 @@ export const getSpeedLevel = (clearedLinesCount) => Math.floor(Math.sqrt(cleared
  * @return {number} Number of lines needed to clear for given speed level.
  */
 export const getNumberOfLinesNeeded = (speedLevel) => speedLevel * speedLevel;
-
 
 /**
  * Pauses or resumes game, depending on currnet game state.
@@ -103,7 +101,6 @@ export const initGameStats = () => {
         gameBoard: createEmptyBoard(columns, rows),
     });
 };
-
 
 /**
  * Resets game and sets state to show main menu.

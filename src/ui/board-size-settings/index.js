@@ -37,11 +37,17 @@ const changeBoardColCount = (increment) => {
 };
 
 export default function () {
-    const rowCountControl = createPlusMinusButton(() => changeBoardRowCount(1),
-        () => changeBoardRowCount(-1), (state) => state.rows);
+    const rowCountControl = createPlusMinusButton(
+        () => changeBoardRowCount(1),
+        () => changeBoardRowCount(-1),
+        (state) => state.rows,
+    );
 
-    const colCountControl = createPlusMinusButton(() => changeBoardColCount(1),
-        () => changeBoardColCount(-1), (state) => state.columns);
+    const colCountControl = createPlusMinusButton(
+        () => changeBoardColCount(1),
+        () => changeBoardColCount(-1),
+        (state) => state.columns,
+    );
 
     return createMenu([
         createMenuTitle('Board size'),

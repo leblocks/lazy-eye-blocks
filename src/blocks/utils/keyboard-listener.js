@@ -28,7 +28,6 @@ const P_KEY_CODE = 80;
 const ESC_BUTTON_KEY_CODE = 27;
 const PAUSE_BUTTON_KEY_CODE = 19;
 
-
 const keyboardEventListener = (e) => {
     const {
         appState,

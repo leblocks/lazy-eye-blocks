@@ -2,7 +2,6 @@ import { getColorForPaletteNumber, getColorAtPoint } from '../../../src/ui/compo
 
 const { expect } = chai;
 
-
 describe('Color picker', () => {
     it('getColorForPaletteNumber', () => {
         expect(getColorForPaletteNumber(0)).to.eq('rgb(255,0,0)');

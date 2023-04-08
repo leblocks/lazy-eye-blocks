@@ -6,7 +6,6 @@ import {
     createLoadSettingsButton,
 } from '../components';
 
-
 import {
     MAIN_MENU_STATE,
     SPEED_SETTINGS_MENU_STATE,

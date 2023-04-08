@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { EMPTY_BOARD_CELL } from './consts';
 
-
 /**
  * Calculates coordinates of shape cells on a board.
  * @param {Object} shape Shape object representation.

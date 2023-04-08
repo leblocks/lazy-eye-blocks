@@ -10,7 +10,6 @@ const polyfill = window.requestAnimationFrame
     // simulate calling code 60 times per second
     || ((f) => setTimeout(f, 1000 / 60));
 
-
 /**
  * Polyfill for https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
  * @param {callback} callbackThe function to call

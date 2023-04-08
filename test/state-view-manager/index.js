@@ -1,10 +1,8 @@
-
 import { initStateViewManager } from '../../src/ui';
 import { getMainContainer } from '../../src/utils';
 import { MAIN_MENU_STATE, SETTINGS_MENU_STATE } from '../../src/state/consts';
 import { getState, setState } from '../../src/state';
 import { createElement, getClassList } from '../../src/web-api-polyfills';
-
 
 const { expect } = chai;
 

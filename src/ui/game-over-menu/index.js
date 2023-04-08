@@ -9,7 +9,6 @@ import {
     createMenuItemText,
 } from '../utils';
 
-
 const getLevelMenuTitle = (speedLevel) => `Level: ${speedLevel}`;
 const getScoreMenuTitle = (score) => `Score: ${score}`;
 

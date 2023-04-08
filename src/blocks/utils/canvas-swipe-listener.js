@@ -10,7 +10,6 @@ import {
     rotateShape,
 } from './shape-movement-utils';
 
-
 const handleAction = (callback) => {
     const { gameBoard, currentShape } = getState();
     callback(currentShape, gameBoard);

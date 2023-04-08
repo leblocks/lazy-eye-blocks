@@ -1,4 +1,3 @@
-
 export { default as initStateViewManager } from './state-view-manager';
 
 export { default as createMainMenu } from './main-menu';

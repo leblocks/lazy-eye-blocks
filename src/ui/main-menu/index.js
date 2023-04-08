@@ -5,7 +5,6 @@ import { createNewGameButton } from '../components';
 
 import { SETTINGS_MENU_STATE } from '../../state/consts';
 
-
 export default function () {
     const mainMenu = createMenu();
     mainMenu.appendChild(createMenuTitle('Lazy eye blocks'));

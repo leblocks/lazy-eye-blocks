@@ -19,7 +19,6 @@ import {
 
 const ACTUAL_DRAW_SCALE = 1 / NEXT_SHAPE_DRAW_SCALE;
 
-
 const cellToColor = (cell, leftEyeColor, rightEyeColor) => {
     switch (cell) {
     case LEFT_EYE_BOARD_CELL:
@@ -93,8 +92,18 @@ function drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize) {
  * @param {number} currentSpeedLevel Current speed level.
  * @param {number} linesCleared Number of lines cleared.
  */
-function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
-    xMargin, yMargin, gridFacetSize, currentSpeedLevel, linesCleared) {
+function drawLevelProgressBar(
+    ctx,
+    columns,
+    rows,
+    leftEyeColor,
+    rightEyeColor,
+    xMargin,
+    yMargin,
+    gridFacetSize,
+    currentSpeedLevel,
+    linesCleared,
+) {
     const height = rows * gridFacetSize;
     const width = columns * gridFacetSize;
     const completedPart = width * (linesCleared / getNumberOfLinesNeeded(currentSpeedLevel));
@@ -127,8 +136,16 @@ function drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
  * @param {number} yMargin Y margin between canvas top border and content to draw.
  * @param {number} gridFacetSize Size of the grid.
  */
-function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize,
-    leftEyeColor, rightEyeColor) {
+function drawShape(
+    ctx,
+    color,
+    shape,
+    xMargin,
+    yMargin,
+    gridFacetSize,
+    leftEyeColor,
+    rightEyeColor,
+) {
     getShapeCoordinatesOnBoard(shape)
         .forEach(([x, y], cellIndex) => {
             if (y < 0) {
@@ -155,8 +172,16 @@ function drawShape(ctx, color, shape, xMargin, yMargin, gridFacetSize,
  */
 function drawNextShape(ctx, shape, xMargin, yMargin, gridFacetSize, leftEyeColor, rightEyeColor) {
     ctx.scale(NEXT_SHAPE_DRAW_SCALE, NEXT_SHAPE_DRAW_SCALE);
-    drawShape(ctx, NEXT_SHAPE_COLOR, { ...shape, x: 3, y: 3 }, xMargin * ACTUAL_DRAW_SCALE,
-        yMargin * ACTUAL_DRAW_SCALE, gridFacetSize, leftEyeColor, rightEyeColor);
+    drawShape(
+        ctx,
+        NEXT_SHAPE_COLOR,
+        { ...shape, x: 3, y: 3 },
+        xMargin * ACTUAL_DRAW_SCALE,
+        yMargin * ACTUAL_DRAW_SCALE,
+        gridFacetSize,
+        leftEyeColor,
+        rightEyeColor,
+    );
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
@@ -187,12 +212,15 @@ function drawBoard(ctx, board, xMargin, yMargin, gridFacetSize, leftEyeColor, ri
             // square on a canvas
             // ctx.fillRect(j*d, i*d, d + 1, d + 1); +1 is to provide
             // seamless picture
-            ctx.fillRect(xMargin + j * gridFacetSize,
-                yMargin + i * gridFacetSize, gridFacetSize + 1, gridFacetSize + 1);
+            ctx.fillRect(
+                xMargin + j * gridFacetSize,
+                yMargin + i * gridFacetSize,
+                gridFacetSize + 1,
+                gridFacetSize + 1,
+            );
         }
     }
 }
-
 
 /**
  * Main draw method. Draws everything on a canvas.
@@ -241,14 +269,29 @@ function draw() {
     drawBorder(ctx, columns, rows, xMargin, yMargin, gridFacetSize);
 
     if (currentShape) {
-        drawShape(ctx, null, currentShape, xMargin, yMargin,
-            gridFacetSize, leftEyeColor, rightEyeColor);
+        drawShape(
+            ctx,
+            null,
+            currentShape,
+            xMargin,
+            yMargin,
+            gridFacetSize,
+            leftEyeColor,
+            rightEyeColor,
+        );
     }
 
     if (nextShape) {
         const shapeToDraw = currentShape.y < 0 ? currentShape : nextShape;
-        drawNextShape(ctx, shapeToDraw, xMargin, yMargin,
-            gridFacetSize, leftEyeColor, rightEyeColor);
+        drawNextShape(
+            ctx,
+            shapeToDraw,
+            xMargin,
+            yMargin,
+            gridFacetSize,
+            leftEyeColor,
+            rightEyeColor,
+        );
     }
 
     if (gridEnabled) {
@@ -257,8 +300,18 @@ function draw() {
 
     if (increaseSpeedLevel) {
         // no need to draw progress bar if speed level is locked
-        drawLevelProgressBar(ctx, columns, rows, leftEyeColor, rightEyeColor,
-            xMargin, yMargin, gridFacetSize, speedLevel, linesCleared);
+        drawLevelProgressBar(
+            ctx,
+            columns,
+            rows,
+            leftEyeColor,
+            rightEyeColor,
+            xMargin,
+            yMargin,
+            gridFacetSize,
+            speedLevel,
+            linesCleared,
+        );
     }
 
     // call itself in an animation loop and preserve new animation id

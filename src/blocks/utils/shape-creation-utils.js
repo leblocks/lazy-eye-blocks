@@ -7,7 +7,6 @@ import {
     RIGHT_EYE_BOARD_CELL,
 } from './consts';
 
-
 const getRandomCellColor = () => {
     if (Math.random() < LEFT_RIGHT_DISTRIBUTION) {
         return LEFT_EYE_BOARD_CELL;

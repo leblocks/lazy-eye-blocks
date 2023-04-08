@@ -16,7 +16,6 @@ import {
 } from '../../state/consts';
 import { setState } from '../../state';
 
-
 /**
  * Core game state management logic.
  * @param {Object} state Current state.

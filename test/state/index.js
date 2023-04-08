@@ -104,7 +104,6 @@ describe('state module tests', () => {
         expect(observer.callCount).to.eq(2);
     });
 
-
     it('set state and don\'t notify observers', () => {
         const observer = { callCount: 0 };
         // register observer on 'score' property
