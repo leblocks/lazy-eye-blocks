@@ -40,9 +40,6 @@ All tests are located under */test* folder. I've decided to use [mocha](https://
 several bugs on various screens. Have to be handled properly.~~
 Used [hammerjs](http://hammerjs.github.io/) instead of my custom implementaiton that resides on a [branch](https://github.com/leblocks/leblocks-rework/tree/swipe_support_custom_implementation) for now.
 
-***Outdated nodejs version***
-I've used 8.12.0 version of node, due to some constraints. Hence I have a lot of outdated dependencies that make a lot of things harder to do.
-
 ***Non-consistent usage of various browser features:***
 * Babel loader uses *@babel/preset-env* without any specific configuration.
 * Following WebAPIs are being used: *Element.classList.add*, *document.querySelector*, *document.getElementById*, *document.createElement*, *Element.appendChild*. Those APIs are not being transpiled by babel. So correct polyfills should be provided for older browsers.
