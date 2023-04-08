@@ -9,7 +9,7 @@ const config = {
         main: './src/main.js',
     },
     devServer: {
-        contentBase: [
+        static: [
             // so test.html will be able to access node_modules/mocha/ and node_modules/chai
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'dist'),

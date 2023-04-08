@@ -14,6 +14,7 @@
         "afterEach": false
     },
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "func-names": ["off"]
     }
 }
